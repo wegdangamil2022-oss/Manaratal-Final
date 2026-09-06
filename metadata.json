@@ -1,0 +1,6 @@
+{
+  "name": "منارتك للمنح الدراسية",
+  "description": "منصة تعليمية متكاملة للمنح الدراسية، الدورات، التخصصات، والجامعات مع البحث الذكي ونظام متابعة تقدم المتعلمين والتنبيهات الفورية بتصميم مخصص للهاتف باللون الأخضر والذهبي وخط القاهرة.",
+  "requestFramePermissions": ["notifications"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
