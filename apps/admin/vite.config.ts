@@ -1,4 +1,5 @@
-import { defineConfig, Plugin } from 'vite';
+import { defineConfig, loadEnv, Plugin } from 'vite';
+import { googleAiStudioPreviewPlugin, isGoogleAiStudio, previewWorkspaceAliases } from '../frontend-security/GoogleAiStudioPreview';
 import { frontendSecurityHeadersPlugin } from '../frontend-security/ViteFrontendSecurityHeaders';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
@@ -40,16 +41,23 @@ function localAdminReadOnlyGuardPlugin(): Plugin {
 }
 
 export default defineConfig(({ mode }) => {
+  const rootDir = path.resolve(__dirname, '../..');
+  const studio = isGoogleAiStudio({ ...loadEnv(mode, rootDir, ['MANARATAK_', 'VITE_']), ...process.env });
   assertLocalReadOnlyBuildAllowed({ mode, nodeEnv: process.env.NODE_ENV, localReadOnly: process.env.VITE_LOCAL_ADMIN_READ_ONLY });
   return {
-  plugins: [frontendSecurityHeadersPlugin(), react(), tailwindcss(), localAdminReadOnlyGuardPlugin(), disableHmrPlugin()],
+  root: __dirname,
+  envDir: studio ? rootDir : __dirname,
+  plugins: [frontendSecurityHeadersPlugin(), react(), tailwindcss(),
+    ...(studio ? [googleAiStudioPreviewPlugin()] : []), localAdminReadOnlyGuardPlugin(), disableHmrPlugin()],
   server: {
-    hmr: process.env.DISABLE_HMR === 'true' ? false : { clientPort: 443 },
+    hmr: process.env.DISABLE_HMR === 'true' ? false : studio ? true : { clientPort: 443 },
+    host: '0.0.0.0',
     port: 3001,
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      ...(studio ? previewWorkspaceAliases(rootDir) : {}),
     },
   },
   };

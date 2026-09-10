@@ -2,6 +2,14 @@ import { describe, expect, it, vi } from 'vitest';
 import { createApiApp } from '../src/app';
 
 describe('API runtime dependency bootstrap', () => {
+  it('refuses the Google AI Studio Web-only identity before configuration or connections', async () => {
+    const query = vi.fn();
+    await expect(createApiApp({
+      env: { MANARATAK_RUNTIME_PROFILE: 'google-ai-studio' },
+      databaseClient: { $queryRaw: query },
+    })).rejects.toThrow('AI_STUDIO_WEB_ONLY_BACKEND_DISABLED');
+    expect(query).not.toHaveBeenCalled();
+  });
   it('allows normal source-only development to start without DATABASE_URL', async () => {
     await expect(createApiApp({
       resetCache: true,

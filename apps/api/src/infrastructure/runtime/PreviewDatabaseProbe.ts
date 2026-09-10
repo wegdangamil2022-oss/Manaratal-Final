@@ -3,7 +3,8 @@ import { Prisma, PrismaClient } from '@prisma/client';
 type Environment = Readonly<Record<string, string | undefined>>;
 
 export function isPreviewDatabaseProbeEnabled(env: Environment): boolean {
-  return env.VERCEL === '1' && env.VERCEL_ENV === 'preview'
+  return env.MANARATAK_RUNTIME_PROFILE !== 'google-ai-studio' && env.MANARATAK_GOOGLE_AI_STUDIO !== 'true'
+    && env.VERCEL === '1' && env.VERCEL_ENV === 'preview'
     && env.MANARATAK_PREVIEW_DATABASE_PROBE === 'true';
 }
 
