@@ -820,11 +820,6 @@ export default function App() {
   return (
     <div className="manaratak-public flex flex-col min-h-screen w-full bg-[var(--mn-page)] text-[var(--mn-text)] selection:bg-[var(--mn-accent)]/30 selection:text-[var(--mn-heading)] font-['Cairo',sans-serif] pb-24 sm:pb-28 transition-colors mn-panel ">
       {/* App Header (Top Sticky) */}
-      {publicDataMode === 'prototype' && (
-        <div role="status" className="sticky top-0 z-[60] border-b border-amber-300 bg-amber-100 px-3 py-2 text-center text-xs font-bold text-amber-950">
-          وضع تجريبي محلي — البيانات المعروضة غير إنتاجية وليست مصدرًا رسميًا.
-        </div>
-      )}
       <Header
         language={language}
         onToggleLanguage={openLanguage}

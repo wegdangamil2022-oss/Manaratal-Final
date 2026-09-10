@@ -103,9 +103,9 @@ export const FeaturedServices: React.FC<FeaturedServicesProps> = ({
             <button
               type="button"
               onClick={onViewAllClick}
-              className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-[var(--mn-accent)]/50 bg-[var(--mn-surface)] px-6 py-2.5 text-xs font-bold text-[var(--mn-heading)] shadow-[0_0_15px_rgba(214,164,59,0.3)] transition-all hover:bg-[var(--mn-accent)]/10 hover:shadow-[0_0_25px_rgba(214,164,59,0.5)] active:scale-95 sm:w-auto sm:px-8 sm:py-3 sm:text-sm mn-panel "
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-[var(--mn-accent)]/50 bg-[var(--mn-surface)] px-6 py-2.5 text-xs font-bold text-[var(--mn-heading)] shadow-[0_0_15px_rgba(214,164,59,0.3)] transition-all hover:bg-[var(--mn-accent)]/10 hover:shadow-[0_0_25px_rgba(214,164,59,0.5)] active:scale-95 sm:w-auto sm:px-8 sm:py-3 sm:text-sm font-['Cairo',sans-serif] mn-panel "
             >
-              <span>تصفح جميع الخدمات</span>
+              <span className="text-[12px] sm:text-sm font-bold">تصفح جميع الخدمات</span>
               <ChevronLeft className="h-4 w-4 text-[var(--mn-heading)] transition-transform group-hover:-translate-x-1" />
             </button>
           </div>

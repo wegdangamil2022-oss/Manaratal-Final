@@ -1,0 +1,6 @@
+{
+  "name": "Manaratak",
+  "description": "منصة منارتك للمنح الدراسية والجامعات والتخصصات والمسار التعليمي والمهني مع لوحة تحكم إدارية متكاملة",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

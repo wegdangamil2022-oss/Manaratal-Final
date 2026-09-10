@@ -253,11 +253,11 @@ export const CoursesSearchPage: React.FC<CoursesSearchPageProps> = ({ onBack, on
         {onBack && (
           <button
             onClick={onBack}
-            className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 bg-black/25 hover:bg-black/40 border border-white/15 backdrop-blur-md rounded-full flex items-center justify-center transition-all z-30 cursor-pointer text-white shadow-md active:scale-95"
+            className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 w-8 h-8 bg-black/25 hover:bg-black/40 border border-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all z-30 cursor-pointer text-white shadow-xs active:scale-95"
             title="العودة"
             aria-label="العودة"
           >
-            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 rotate-180 text-white" />
+            <ChevronLeft className="w-4 h-4 rotate-180 text-white" />
           </button>
         )}
 

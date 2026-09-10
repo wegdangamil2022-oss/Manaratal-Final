@@ -1,8 +1,0 @@
-export enum CourseEnrollmentStatus {
-  PENDING = 'PENDING',
-  WAITLISTED = 'WAITLISTED',
-  ACTIVE = 'ACTIVE',
-  COMPLETED = 'COMPLETED',
-  CANCELLED = 'CANCELLED',
-  SUSPENDED = 'SUSPENDED'
-}

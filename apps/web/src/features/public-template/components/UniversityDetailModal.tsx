@@ -7,6 +7,7 @@ import {
   Calendar,
   Building2,
   ChevronRight,
+  ChevronLeft,
   ArrowRight,
   Layers,
   Trophy,
@@ -14,7 +15,7 @@ import {
   Languages,
   Clock,
   Sparkles,
-  BookOpen,
+  BookOpen,  BookOpenText,  Briefcase,
   Star,
   Globe,
   FileText,
@@ -37,6 +38,11 @@ import {
   Phone,
   Share2,
   ShieldCheck,
+  BookOpenCheck,
+  Scroll,
+  Compass,
+  Globe2,
+  Zap,
 } from 'lucide-react';
 import { Service, University } from '../types';
 import { RelatedArticlesStrip } from './RelatedArticlesStrip';
@@ -77,11 +83,11 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
   useDetailSearchTarget(searchAnchor, searchTerm);
   return (
     <div
-      className="w-full bg-[var(--mn-page)] mn-dark:bg-[var(--mn-page)] animate-fade-in font-['Cairo',sans-serif] min-h-screen mn-panel mn-dark:mn-panel "
+      className="w-full bg-[var(--mn-page)] dark:bg-[var(--mn-page)] animate-fade-in font-['Cairo',sans-serif] min-h-screen mn-panel dark:mn-panel "
       dir="rtl"
     >
       {/* 1. القسم الأول: رأس الصفحة الملتصق بالهيدر والجوانب */}
-      <div className="w-full bg-gradient-to-b from-[var(--mn-primary)] via-[var(--mn-hero-secondary)] to-[var(--mn-primary)] mn-dark:from-[var(--mn-surface-elevated)] mn-dark:via-[var(--mn-surface-elevated)] mn-dark:to-[var(--mn-surface-elevated)] pt-3 pb-4 border-b-[3px] border-[var(--mn-accent)]/70 relative z-10 shadow-md overflow-hidden mn-inverse mn-dark:mn-panel ">
+      <div className="w-full bg-gradient-to-b from-[var(--mn-primary)] via-[var(--mn-section-line)] to-[var(--mn-primary)] dark:from-[var(--mn-surface-elevated)] dark:via-[var(--mn-surface-elevated)] dark:to-[var(--mn-surface-elevated)] pt-3 pb-4 border-b-[3px] border-[var(--mn-accent)]/70 relative z-10 shadow-md overflow-hidden mn-inverse dark:mn-panel ">
         <div className="absolute top-2 right-2 z-30"><DetailBackButton onBack={onClose} mode="close" /></div>
         {/* Decorative Background Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -220,32 +226,45 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
       {/* 2. استكمال باقي الصفحة (الأقسام الـ 11) */}
       <div className="mn-detail-content mn-detail-content-narrow pt-6 pb-24 flex flex-col gap-6">
         {/* القسم الأول: نبذة عن الجامعة */}
-        <section>
-          <DetailSectionHeader id="university-about" icon={Info} title="نبذة عن الجامعة" />
+        <div
+          className="mn-detail-full-bleed relative bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 dark:shadow-none overflow-hidden mn-panel dark:mn-panel "
+          dir="rtl"
+        >
+          {/* خط التزيين العلوي المتدرج */}
+          <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent z-10" />
 
-          <div className="bg-[var(--mn-surface-muted)] rounded-2xl p-4 sm:p-5 border border-[var(--mn-border)] shadow-sm relative overflow-hidden mn-panel ">
-            {/* زخرفة خلفية ناعمة */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[var(--mn-page)] to-[var(--mn-surface-muted)]/50 rounded-bl-full -z-10 opacity-70 mn-panel "></div>
+          <DetailSectionHeader
+            id="university-about"
+            icon={Info}
+            title="1. نبذة عن الجامعة"
+            className="mx-4 mt-4 sm:mx-5"
+          />
 
-            <p className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-text)] leading-[2] text-justify font-['Cairo',sans-serif] whitespace-pre-line">
-              {university.description}
-            </p>
+          <div className="p-4 sm:p-5">
+            <div className="bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] rounded-2xl p-4 sm:p-5 border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] shadow-2xs relative overflow-hidden mn-panel dark:mn-panel ">
+              {/* زخرفة خلفية ناعمة */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[var(--mn-page)] to-[var(--mn-surface-muted)]/50 rounded-bl-full -z-10 opacity-70 mn-panel "></div>
+
+              <p className="text-[12.5px] sm:text-[13.5px] font-semibold text-[var(--mn-text)] dark:text-[var(--mn-text)] leading-[1.9] text-justify font-['Cairo',sans-serif] whitespace-pre-line">
+                {university.description}
+              </p>
+            </div>
           </div>
-        </section>
+        </div>
 
         {/* القسم الثاني: التصنيفات العالمية — تصميم احترافي فاخر ملتصق بالجوانب ومتناسق مع باقي الأقسام */}
         {university.rankings && university.rankings.length > 0 && (
           <div
-            className="mn-detail-full-bleed relative bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 mn-dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 mn-dark:shadow-none overflow-hidden mn-panel mn-dark:mn-panel "
+            className="mn-detail-full-bleed relative bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 dark:shadow-none overflow-hidden mn-panel dark:mn-panel "
             dir="rtl"
           >
             {/* خط التزيين العلوي المتدرج */}
-            <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] mn-dark:via-[var(--mn-accent-soft)] to-transparent z-10" />
+            <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent z-10" />
 
             <DetailSectionHeader
               id="university-rankings"
               icon={Trophy}
-              title="التصنيفات والاعتمادات الأكاديمية العالمية"
+              title="2. التصنيفات والاعتمادات الأكاديمية العالمية"
               className="mx-4 mt-4 sm:mx-5"
             />
 
@@ -256,7 +275,7 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
                 return (
                   <div
                     key={idx}
-                    className="bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface-elevated)] rounded-2xl border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] mn-dark:hover:border-[var(--mn-accent)] p-3 sm:p-3.5 shadow-2xs hover:shadow-xs transition-all flex items-center justify-between gap-2.5 relative overflow-hidden group mn-panel mn-dark:mn-panel "
+                    className="bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] rounded-2xl border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] dark:hover:border-[var(--mn-accent)] p-3 sm:p-3.5 shadow-2xs hover:shadow-xs transition-all flex items-center justify-between gap-2.5 relative overflow-hidden group mn-panel dark:mn-panel "
                   >
                     {/* Right / Start: Accent bar + Rank Pill */}
                     <div className="flex items-center gap-2.5 shrink-0">
@@ -264,11 +283,11 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
                       <div className="w-1.5 h-9 bg-gradient-to-b from-[var(--mn-primary)] to-[var(--mn-accent-soft)] rounded-full shrink-0 mn-inverse " />
 
                       {/* Rank Pill with Trophy */}
-                      <div className="bg-[var(--mn-page)] mn-dark:bg-[var(--mn-surface)] border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-accent)]/30 rounded-full py-1 px-3 flex items-center gap-2 shadow-2xs mn-panel mn-dark:mn-panel ">
-                        <div className="w-6 h-6 rounded-full bg-[var(--mn-primary)] mn-dark:bg-[var(--mn-accent)]/20 flex items-center justify-center text-[var(--mn-accent-text)] mn-dark:text-[var(--mn-accent-text)] shrink-0 mn-inverse ">
-                          <Trophy className="w-3.5 h-3.5 text-[var(--mn-accent-text)] mn-dark:text-[var(--mn-accent-text)]" />
+                      <div className="bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border border-[var(--mn-border-gold)] dark:border-[var(--mn-accent)]/30 rounded-full py-1 px-3 flex items-center gap-2 shadow-2xs mn-panel dark:mn-panel ">
+                        <div className="w-6 h-6 rounded-full bg-[var(--mn-primary)] dark:bg-[var(--mn-accent)]/20 flex items-center justify-center text-[var(--mn-accent-text)] dark:text-[var(--mn-accent-text)] shrink-0 mn-inverse ">
+                          <Trophy className="w-3.5 h-3.5 text-[var(--mn-accent-text)] dark:text-[var(--mn-accent-text)]" />
                         </div>
-                        <span className="text-xs sm:text-[12.5px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
+                        <span className="text-xs sm:text-[12.5px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
                           {rankNum} عالميًا
                         </span>
                       </div>
@@ -281,16 +300,16 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
                           href={ranking.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-xs sm:text-[12.5px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)] hover:text-[var(--mn-heading)] mn-dark:hover:text-[var(--mn-accent-text)] transition-colors font-['Cairo',sans-serif] leading-snug line-clamp-1"
+                          className="text-xs sm:text-[12.5px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-text)] hover:text-[var(--mn-heading)] dark:hover:text-[var(--mn-accent-text)] transition-colors font-['Cairo',sans-serif] leading-snug line-clamp-1"
                         >
                           {ranking.name}
                         </a>
                       ) : (
-                        <h3 className="text-xs sm:text-[12.5px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)] font-['Cairo',sans-serif] leading-snug line-clamp-1">
+                        <h3 className="text-xs sm:text-[12.5px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-text)] font-['Cairo',sans-serif] leading-snug line-clamp-1">
                           {ranking.name}
                         </h3>
                       )}
-                      <span className="text-[10px] text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)] font-medium font-['Cairo',sans-serif] mt-0.5">
+                      <span className="text-[10px] text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)] font-medium font-['Cairo',sans-serif] mt-0.5">
                         إصدار {ranking.year}
                       </span>
                     </div>
@@ -302,13 +321,13 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
                           href={ranking.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-8 h-8 rounded-xl flex items-center justify-center text-[var(--mn-text-muted)] hover:text-[var(--mn-heading)] mn-dark:hover:text-[var(--mn-accent-text)] hover:bg-[var(--mn-page)] mn-dark:hover:bg-[var(--mn-surface-muted)] transition-colors hover:mn-panel mn-dark:hover:mn-panel "
+                          className="w-8 h-8 rounded-xl flex items-center justify-center text-[var(--mn-text-muted)] hover:text-[var(--mn-heading)] dark:hover:text-[var(--mn-accent-text)] hover:bg-[var(--mn-page)] dark:hover:bg-[var(--mn-surface-muted)] transition-colors hover:mn-panel dark:hover:mn-panel "
                           title="زيارة صفحة التصنيف"
                         >
                           <ExternalLink className="w-4 h-4" />
                         </a>
                       ) : (
-                        <div className="w-8 h-8 flex items-center justify-center text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)]">
+                        <div className="w-8 h-8 flex items-center justify-center text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)]">
                           <ExternalLink className="w-4 h-4" />
                         </div>
                       )}
@@ -323,169 +342,163 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
         {/* القسم الثالث: الدراسة والتخصصات — تصميم احترافي فاخر ملتصق بالجوانب ومتنوع الأنماط */}
         {university.studyPrograms && (
           <div
-            className="mn-detail-full-bleed relative bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 mn-dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 mn-dark:shadow-none overflow-hidden mn-panel mn-dark:mn-panel "
+            className="mn-detail-full-bleed relative bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 dark:shadow-none overflow-hidden mn-panel dark:mn-panel "
             dir="rtl"
           >
             {/* خط التزيين العلوي المتدرج */}
-            <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] mn-dark:via-[var(--mn-accent-soft)] to-transparent z-10" />
+            <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent z-10" />
 
             <DetailSectionHeader
               id="university-programs"
               icon={GraduationCap}
-              title="الدراسة والتخصصات والبرامج الأكاديمية"
+              title="3. الدراسة والتخصصات والبرامج الأكاديمية"
               className="mx-4 mt-4 sm:mx-5"
             />
 
             {/* المحتوى الداخلي المتنوع الأنماط والتفاصيل */}
             <div className="p-4 sm:p-5 space-y-4 font-['Cairo',sans-serif]">
-              {/* 1. الدرجات التعليمية المتاحة */}
-              <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-br from-[var(--mn-page)]/90 mn-dark:from-[var(--mn-surface-elevated)] via-[var(--mn-surface)] mn-dark:via-[var(--mn-surface-elevated)] to-[var(--mn-gold-surface)]/20 mn-dark:to-[var(--mn-surface-muted)] border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] space-y-2.5 shadow-2xs mn-panel mn-dark:mn-panel ">
+              {/* 1. لغات التدريس وأنماط الدراسة (المربع الأول) */}
+              <div className="p-3 sm:p-3.5 rounded-2xl bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] space-y-2.5 shadow-2xs mn-panel dark:mn-panel">
                 <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-lg bg-[var(--mn-primary)]/10 mn-dark:bg-[var(--mn-accent)]/20 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0">
+                  <div className="w-5.5 h-5.5 rounded-lg bg-[var(--mn-primary)]/10 dark:bg-[var(--mn-accent)]/20 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0">
+                    <Globe className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-[11.5px] sm:text-xs font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
+                    لغات التدريس وأنماط الدراسة
+                  </span>
+                </div>
+
+                <div className="space-y-2 pt-0.5">
+                  {/* لغات التدريس */}
+                  {university.studyPrograms.teachingLanguages && university.studyPrograms.teachingLanguages.length > 0 && (
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="text-[10px] sm:text-[10.5px] font-bold text-[var(--mn-text-muted)] shrink-0">
+                        لغات التدريس:
+                      </span>
+                      {university.studyPrograms.teachingLanguages.map((lang) => (
+                        <div
+                          key={lang}
+                          className="bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border border-[var(--mn-accent)]/30 dark:border-[var(--mn-accent)]/25 text-[var(--mn-heading)] dark:text-[var(--mn-text)] px-2.5 py-1 rounded-lg text-[10px] sm:text-[10.5px] font-bold flex items-center gap-1.5 shadow-2xs font-['Cairo',sans-serif] mn-panel dark:mn-panel"
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-primary)] dark:bg-[var(--mn-accent)] shrink-0 mn-inverse dark:mn-gold" />
+                          <span>{lang}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* أنماط الدراسة والحضور */}
+                  {university.studyPrograms.studyModes && university.studyPrograms.studyModes.length > 0 && (
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="text-[10px] sm:text-[10.5px] font-bold text-[var(--mn-text-muted)] shrink-0">
+                        أنماط الحضور:
+                      </span>
+                      {university.studyPrograms.studyModes.map((mode) => (
+                        <div
+                          key={mode}
+                          className="bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border border-[var(--mn-accent)]/30 dark:border-[var(--mn-accent)]/25 text-[var(--mn-heading)] dark:text-[var(--mn-text)] px-2.5 py-1 rounded-lg text-[10px] sm:text-[10.5px] font-bold flex items-center gap-1.5 shadow-2xs font-['Cairo',sans-serif] mn-panel dark:mn-panel"
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-primary)] dark:bg-[var(--mn-accent)] shrink-0 mn-inverse dark:mn-gold" />
+                          <span>{mode}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* 2. الدرجات التعليمية المتاحة */}
+              <div className="p-3 sm:p-3.5 rounded-2xl bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] space-y-2 shadow-2xs mn-panel dark:mn-panel ">
+                <div className="flex items-center gap-2">
+                  <div className="w-5.5 h-5.5 rounded-lg bg-[var(--mn-primary)]/10 dark:bg-[var(--mn-accent)]/20 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0">
                     <GraduationCap className="w-3.5 h-3.5" />
                   </div>
-                  <span className="text-xs sm:text-[13px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
+                  <span className="text-[11.5px] sm:text-xs font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
                     الدرجات التعليمية المتاحة للقبول والدراسة
                   </span>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
                   {(university.studyPrograms.degrees ?? []).map((degree) => (
                     <div
                       key={degree}
-                      className="bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-accent)]/40 mn-dark:border-[var(--mn-accent)]/30 text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)] px-3 py-1.5 rounded-xl text-[11px] sm:text-[11.5px] font-bold flex items-center gap-2 shadow-2xs hover:border-[var(--mn-border-brand)] transition-all font-['Cairo',sans-serif] mn-panel mn-dark:mn-panel "
+                      className="bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border border-[var(--mn-accent)]/30 dark:border-[var(--mn-accent)]/25 text-[var(--mn-heading)] dark:text-[var(--mn-text)] px-2.5 py-1 rounded-lg text-[10px] sm:text-[10.5px] font-bold flex items-center gap-1.5 shadow-2xs hover:border-[var(--mn-border-brand)] transition-all font-['Cairo',sans-serif] mn-panel dark:mn-panel "
                     >
-                      <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-primary)] mn-dark:bg-[var(--mn-accent)] shrink-0 mn-inverse mn-dark:mn-gold " />
+                      <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-primary)] dark:bg-[var(--mn-accent)] shrink-0 mn-inverse dark:mn-gold " />
                       <span>{degree}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* 2. الكليات والأقسام الأكاديمية — مطابقة لتصميم مجالات العمل بعد الدكتوراه */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 pr-1">
-                  <div className="w-6.5 h-6.5 rounded-full bg-[var(--mn-primary)]/5 mn-dark:bg-[var(--mn-accent)]/10 border border-[var(--mn-accent)]/60 ring-2 ring-[var(--mn-focus)]/20 flex items-center justify-center shrink-0 shadow-2xs">
-                    <Building2 className="w-3.5 h-3.5 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]" />
+              {/* 3. الكليات والأقسام الأكاديمية الرئيسية */}
+              <div className="p-3 sm:p-3.5 rounded-2xl bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] space-y-2 shadow-2xs mn-panel dark:mn-panel ">
+                <div className="flex items-center gap-2">
+                  <div className="w-5.5 h-5.5 rounded-lg bg-[var(--mn-primary)]/10 dark:bg-[var(--mn-accent)]/20 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0">
+                    <Building2 className="w-3.5 h-3.5" />
                   </div>
-                  <span className="text-xs sm:text-[13px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] leading-tight font-['Cairo',sans-serif]">
+                  <span className="text-[11.5px] sm:text-xs font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
                     الكليات والأقسام الأكاديمية الرئيسية
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-right pt-0.5">
+                <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
                   {(university.studyPrograms.faculties ?? []).map((faculty, index) => (
                     <div
                       key={index}
-                      className="flex items-start gap-2 p-2.5 rounded-xl bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] hover:border-[var(--mn-accent)] hover:bg-[var(--mn-page)]/40 mn-dark:hover:bg-[var(--mn-surface-muted)] hover:shadow-2xs transition-all duration-200 group text-right mn-panel mn-dark:mn-panel mn-dark:hover:mn-panel "
+                      className="bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border border-[var(--mn-accent)]/30 dark:border-[var(--mn-accent)]/25 text-[var(--mn-heading)] dark:text-[var(--mn-text)] px-2.5 py-1 rounded-lg text-[10px] sm:text-[10.5px] font-bold flex items-center gap-1.5 shadow-2xs hover:border-[var(--mn-border-brand)] transition-all font-['Cairo',sans-serif] mn-panel dark:mn-panel "
                     >
-                      <div className="w-2 h-[2.5px] bg-[var(--mn-primary)]/80 mn-dark:bg-[var(--mn-accent)] group-hover:bg-[var(--mn-primary)] mn-dark:group-hover:bg-[var(--mn-accent)] group-hover:w-3.5 transition-all duration-300 shrink-0 mt-1.5 rounded-full mn-inverse mn-dark:mn-gold group-hover:mn-inverse mn-dark:group-hover:mn-gold " />
-                      <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)] leading-snug group-hover:text-[var(--mn-heading)] mn-dark:group-hover:text-[var(--mn-accent-text)] transition-colors font-['Cairo',sans-serif]">
-                        {faculty}
-                      </span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-primary)] dark:bg-[var(--mn-accent)] shrink-0 mn-inverse dark:mn-gold " />
+                      <span>{faculty}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* 3. أهم التخصصات الرائدة */}
-              <div className="space-y-2 pt-1">
-                <div className="flex items-center gap-2 pr-1">
-                  <div className="w-6.5 h-6.5 rounded-full bg-[var(--mn-primary)]/5 mn-dark:bg-[var(--mn-accent)]/10 border border-[var(--mn-accent)]/60 ring-2 ring-[var(--mn-focus)]/20 flex items-center justify-center shrink-0 shadow-2xs">
-                    <BookOpen className="w-3.5 h-3.5 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]" />
+              {/* 4. أهم التخصصات الرائدة */}
+              <div className="p-3 sm:p-3.5 rounded-2xl bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] space-y-2 shadow-2xs mn-panel dark:mn-panel ">
+                <div className="flex items-center gap-2">
+                  <div className="w-5.5 h-5.5 rounded-lg bg-[var(--mn-primary)]/10 dark:bg-[var(--mn-accent)]/20 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0">
+                    <BookOpen className="w-3.5 h-3.5" />
                   </div>
-                  <span className="text-xs sm:text-[13px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
+                  <span className="text-[11.5px] sm:text-xs font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
                     أبرز التخصصات الأكاديمية الرائدة بالجامعة
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {(university.studyPrograms.majorLinks?.length
-                    ? university.studyPrograms.majorLinks.map((link) => ({ label: link.label, majorId: link.majorId }))
-                    : (university.studyPrograms.topKeyMajors ?? []).map((label) => ({ label, majorId: '' }))).map((major, idx) => {
-                    const content = (
-                      <>
-                        <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-primary)] mn-dark:bg-[var(--mn-accent)] group-hover:scale-125 transition-transform shrink-0 mn-inverse mn-dark:mn-gold " />
-                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)] group-hover:text-[var(--mn-heading)] mn-dark:group-hover:text-[var(--mn-accent-text)] transition-colors leading-snug font-['Cairo',sans-serif]">
-                          {major.label}
-                        </span>
-                      </>
+                <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                  {(
+                    university.studyPrograms.topKeyMajors?.length
+                      ? university.studyPrograms.topKeyMajors
+                      : (university.studyPrograms.majorLinks ?? []).map((l) => l.label)
+                  ).map((majorName, idx) => {
+                    const matchedLink = university.studyPrograms.majorLinks?.find(
+                      (l) => l.label === majorName || l.programLabel === majorName
                     );
-                    const sharedClassName =
-                      "p-2.5 rounded-xl bg-gradient-to-b from-[var(--mn-surface)] mn-dark:from-[var(--mn-surface-elevated)] to-[var(--mn-page)]/60 mn-dark:to-[var(--mn-surface-muted)] border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] hover:border-[var(--mn-accent)] text-right flex items-center gap-2 shadow-2xs hover:shadow-xs transition-all group mn-panel mn-dark:mn-panel ";
+                    const majorId = matchedLink?.majorId;
 
-                    return major.majorId ? (
-                      <button
-                        type="button"
-                        key={major.majorId}
-                        onClick={() => onOpenMajor?.(major.majorId)}
-                        className={`${sharedClassName} cursor-pointer`}
-                        title={`افتح تخصص ${major.label} في منارتك`}
+                    return (
+                      <div
+                        key={majorId || `${majorName}-${idx}`}
+                        onClick={majorId ? () => onOpenMajor?.(majorId) : undefined}
+                        role={majorId ? 'button' : undefined}
+                        tabIndex={majorId ? 0 : undefined}
+                        className={`bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border border-[var(--mn-accent)]/30 dark:border-[var(--mn-accent)]/25 text-[var(--mn-heading)] dark:text-[var(--mn-text)] px-2.5 py-1 rounded-lg text-[10px] sm:text-[10.5px] font-bold flex items-center gap-1.5 shadow-2xs hover:border-[var(--mn-border-brand)] transition-all font-['Cairo',sans-serif] mn-panel dark:mn-panel ${
+                          majorId ? 'cursor-pointer hover:text-[var(--mn-accent-text)]' : ''
+                        }`}
+                        title={majorId ? `افتح تخصص ${majorName} في منارتك` : undefined}
                       >
-                        {content}
-                      </button>
-                    ) : (
-                      <div key={`${major.label}-${idx}`} className={sharedClassName}>
-                        {content}
+                        <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-primary)] dark:bg-[var(--mn-accent)] shrink-0 mn-inverse dark:mn-gold " />
+                        <span>{majorName}</span>
                       </div>
                     );
                   })}
                 </div>
               </div>
 
-              {/* 4. أنماط الدراسة والحضور */}
-              <div className="space-y-2 pt-1">
-                <div className="flex items-center gap-2 pr-1">
-                  <div className="w-6.5 h-6.5 rounded-full bg-[var(--mn-primary)]/5 mn-dark:bg-[var(--mn-accent)]/10 border border-[var(--mn-accent)]/60 ring-2 ring-[var(--mn-focus)]/20 flex items-center justify-center shrink-0 shadow-2xs">
-                    <Calendar className="w-3.5 h-3.5 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]" />
-                  </div>
-                  <span className="text-xs sm:text-[13px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] leading-tight font-['Cairo',sans-serif]">
-                    أنماط الدراسة والحضور
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-2 gap-2 text-right pt-0.5">
-                  {(university.studyPrograms.studyModes ?? []).map((mode) => (
-                    <div
-                      key={mode}
-                      className="flex items-center gap-2 p-2.5 rounded-xl bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] hover:border-[var(--mn-accent)] transition-all group mn-panel mn-dark:mn-panel "
-                    >
-                      <div className="w-2 h-[2.5px] bg-[var(--mn-primary)]/80 mn-dark:bg-[var(--mn-accent)] group-hover:bg-[var(--mn-primary)] mn-dark:group-hover:bg-[var(--mn-accent)] group-hover:w-3.5 transition-all duration-300 shrink-0 rounded-full mn-inverse mn-dark:mn-gold group-hover:mn-inverse mn-dark:group-hover:mn-gold " />
-                      <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)] group-hover:text-[var(--mn-heading)] mn-dark:group-hover:text-[var(--mn-accent-text)] transition-colors font-['Cairo',sans-serif]">
-                        {mode}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* 5. لغة التدريس */}
-              <div className="space-y-2 pt-1">
-                <div className="flex items-center gap-2 pr-1">
-                  <div className="w-6.5 h-6.5 rounded-full bg-[var(--mn-primary)]/5 mn-dark:bg-[var(--mn-accent)]/10 border border-[var(--mn-accent)]/60 ring-2 ring-[var(--mn-focus)]/20 flex items-center justify-center shrink-0 shadow-2xs">
-                    <Globe className="w-3.5 h-3.5 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]" />
-                  </div>
-                  <span className="text-xs sm:text-[13px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] leading-tight font-['Cairo',sans-serif]">
-                    لغات التدريس المعتمدة
-                  </span>
-                </div>
-
-                <div className="p-3 rounded-xl bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] flex items-center gap-3 text-right mn-panel mn-dark:mn-panel ">
-                  <div className="w-2 h-[2.5px] bg-[var(--mn-primary)]/80 mn-dark:bg-[var(--mn-accent)] shrink-0 rounded-full mn-inverse mn-dark:mn-gold " />
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
-                      لغات التدريس:
-                    </span>
-                    <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)] font-['Cairo',sans-serif]">
-                      {(university.studyPrograms.teachingLanguages ?? []).join('، ') || 'غير محددة'}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
               {/* 5. زر الدليل الرسمي المباشر */}
               {(university.studyPrograms.undergradDirectoryUrl || university.studyPrograms.postgradDirectoryUrl) && (
-                <div className="pt-1">
+                <div className="pt-2 pb-0.5 flex justify-center">
                   <a
                     href={
                       university.studyPrograms.undergradDirectoryUrl ||
@@ -493,10 +506,13 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
                     }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mn-external-link inline-flex min-h-10 w-auto items-center justify-center gap-2 rounded-xl px-3 py-2 text-[11px] font-bold sm:text-xs"
+                    className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-teal-500/10 via-cyan-600/15 to-indigo-600/10 hover:from-teal-500/20 hover:via-cyan-600/25 hover:to-indigo-600/20 text-teal-950 border border-teal-400/50 dark:from-amber-500/15 dark:via-yellow-500/20 dark:to-amber-600/15 dark:hover:from-amber-500/25 dark:hover:via-yellow-500/30 dark:hover:to-amber-600/25 dark:text-amber-200 dark:border-amber-400/50 shadow-2xs hover:shadow-xs transition-all duration-200 text-[10px] sm:text-[10.5px] font-bold font-['Cairo',sans-serif] group text-center"
                   >
-                    <FileText className="w-3.5 h-3.5 text-[var(--mn-accent-text)]" />
+                    <div className="w-4 h-4 rounded-lg bg-gradient-to-br from-teal-600 via-cyan-700 to-indigo-800 text-white dark:from-amber-500 dark:via-yellow-500 dark:to-amber-600 dark:text-zinc-950 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform font-bold">
+                      <FileText className="w-2.5 h-2.5" />
+                    </div>
                     <span>استكشف دليل البرامج والتخصصات الرسمي للجامعة</span>
+                    <ExternalLink className="w-2.5 h-2.5 text-cyan-700 dark:text-amber-300 group-hover:translate-x-[-2px] transition-transform" />
                   </a>
                 </div>
               )}
@@ -504,36 +520,36 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
           </div>
         )}
 
-        {/* القسم الرابع: القبول للطلاب الدوليين — تصميم مطابق تماماً لتصميم قسم الدراسة والتخصصات */}
+        {/* القسم الرابع: القبول للطلاب الدوليين */}
         {university.internationalAdmissions && (
         <div
-          className="mn-detail-full-bleed relative bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 mn-dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 mn-dark:shadow-none overflow-hidden mn-panel mn-dark:mn-panel "
+          className="mn-detail-full-bleed relative bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 dark:shadow-none overflow-hidden mn-panel dark:mn-panel "
           dir="rtl"
         >
           {/* خط التزيين الأزرق العلوي المتدرج */}
-          <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] mn-dark:via-[var(--mn-accent-soft)] to-transparent z-10" />
+          <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent z-10" />
 
           <DetailSectionHeader
             id="university-admissions"
             icon={Globe}
-            title="القبول والتسجيل للطلاب الدوليين"
+            title="4. القبول والتسجيل للطلاب الدوليين"
             className="mx-4 mt-4 sm:mx-5"
           />
 
           {/* المحتوى الداخلي لقسم القبول والتسجيل */}
           <div className="p-4 sm:p-5 space-y-4 font-['Cairo',sans-serif]">
             {/* 1. هل تقبل الجامعة طلابًا دوليين؟ */}
-            <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-br from-[var(--mn-page)]/90 mn-dark:from-[var(--mn-surface-elevated)] via-[var(--mn-surface)] mn-dark:via-[var(--mn-surface-elevated)] to-[var(--mn-surface-muted)]/30 mn-dark:to-[var(--mn-surface-muted)] border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] space-y-2.5 shadow-2xs mn-panel mn-dark:mn-panel ">
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-br from-[var(--mn-page)]/90 dark:from-[var(--mn-surface-elevated)] via-[var(--mn-surface)] dark:via-[var(--mn-surface-elevated)] to-[var(--mn-surface-muted)]/30 dark:to-[var(--mn-surface-muted)] border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] space-y-2.5 shadow-2xs mn-panel dark:mn-panel ">
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-lg bg-[var(--mn-primary)]/10 mn-dark:bg-[var(--mn-accent)]/20 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0">
+                <div className="w-6 h-6 rounded-lg bg-[var(--mn-primary)]/10 dark:bg-[var(--mn-accent)]/20 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0">
                   <UserCheck className="w-3.5 h-3.5" />
                 </div>
-                <span className="text-xs sm:text-[13px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
+                <span className="text-xs sm:text-[13px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
                   هل تقبل الجامعة طلابًا دوليين؟
                 </span>
               </div>
 
-              <p className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-text)] mn-dark:text-[var(--mn-text)] leading-relaxed pr-8 font-['Cairo',sans-serif]">
+              <p className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-text)] dark:text-[var(--mn-text)] leading-relaxed pr-8 font-['Cairo',sans-serif]">
                 {university.internationalAdmissions.acceptsDescription ||
                   (university.internationalAdmissions.acceptsInternationalStudents === true
                     ? `نعم، تقبل ${university.name} الطلاب الدوليين وفق متطلبات القبول الرسمية للجامعة.`
@@ -543,193 +559,217 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
               </p>
             </div>
 
-            {/* 2. بوابات وروابط التقديم الرسمية */}
-            <div className="space-y-2 pt-1">
-              <div className="flex items-center gap-2 pr-1">
-                <div className="w-6.5 h-6.5 rounded-full bg-[var(--mn-primary)]/5 mn-dark:bg-[var(--mn-accent)]/10 border border-[var(--mn-accent)]/60 ring-2 ring-[var(--mn-focus)]/20 flex items-center justify-center shrink-0 shadow-2xs">
-                  <Globe className="w-3.5 h-3.5 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]" />
+            {/* 2. روابط وبوابات التقديم الرسمية المعتمدة (في مربع واحد موحد) */}
+            <div className="p-3 sm:p-3.5 rounded-2xl bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] space-y-2.5 shadow-2xs mn-panel dark:mn-panel font-['Cairo',sans-serif]">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-5.5 h-5.5 rounded-lg bg-[var(--mn-primary)]/10 dark:bg-[var(--mn-accent)]/20 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0">
+                    <Globe2 className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-[11.5px] sm:text-xs font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
+                    روابط وبوابات التقديم الرسمية المعتمدة
+                  </span>
                 </div>
-                <span className="text-xs sm:text-[13px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] leading-tight font-['Cairo',sans-serif]">
-                  روابط وبوابات التقديم الرسمية المعتمدة
+                <span className="inline-flex items-center gap-1 text-[9px] sm:text-[9.5px] font-bold text-[var(--mn-accent-text)] bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border border-[var(--mn-border-gold)]/60 dark:border-[var(--mn-border)] px-2 py-0.5 rounded-full">
+                  <ShieldCheck className="w-2.5 h-2.5" />
+                  مواقع معتمدة
                 </span>
               </div>
 
-              {/* شبكة روابط القبول المعتمدة */}
-              <div className="mn-detail-small-grid gap-2 sm:gap-2.5 pt-0.5">
+              {/* شبكة بوابات التقديم الفرعية الموحدة */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-0.5">
                 {/* 1. قبول البكالوريوس */}
                 {university.internationalAdmissions.undergradAdmissionUrl && (
-                <a
-                  href={university.internationalAdmissions.undergradAdmissionUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface-elevated)] hover:bg-[var(--mn-page)]/80 mn-dark:hover:bg-[var(--mn-surface-muted)] rounded-2xl p-3 border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] mn-dark:hover:border-[var(--mn-accent)] shadow-2xs hover:shadow-xs transition-all flex sm:flex-col justify-between sm:justify-center items-center sm:items-start gap-2.5 text-right mn-panel mn-dark:mn-panel hover:mn-panel mn-dark:hover:mn-panel "
-                >
-                  <div className="flex items-center sm:w-full justify-between gap-2">
-                    <div className="w-8 h-8 rounded-xl bg-[var(--mn-surface-muted)]/80 mn-dark:bg-[var(--mn-primary)]/30 group-hover:bg-[var(--mn-primary)] mn-dark:group-hover:bg-[var(--mn-accent)] text-[var(--mn-heading)] mn-dark:text-[var(--mn-digital-text)] group-hover:text-white mn-dark:group-hover:text-[var(--mn-heading)] transition-colors flex items-center justify-center shrink-0 shadow-2xs mn-panel group-hover:mn-inverse mn-dark:group-hover:mn-gold ">
-                      <GraduationCap className="w-4 h-4" />
+                  <a
+                    href={university.internationalAdmissions.undergradAdmissionUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] hover:bg-[var(--mn-surface-muted)] dark:hover:bg-[var(--mn-surface-muted)] rounded-xl p-2 sm:p-2.5 border border-[var(--mn-border-gold)]/50 dark:border-[var(--mn-border)] hover:border-[var(--mn-accent)] transition-all flex items-center justify-between gap-2 text-right mn-panel dark:mn-panel"
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-[var(--mn-primary)]/10 dark:bg-[var(--mn-accent)]/15 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                        <BookOpenCheck className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-[10.5px] sm:text-[11px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-text)] group-hover:text-[var(--mn-accent-text)] transition-colors leading-tight truncate">
+                          قبول البكالوريوس
+                        </span>
+                        <span className="text-[9px] font-medium text-[var(--mn-text-muted)] truncate mt-0.5">
+                          شروط الدرجة الجامعية
+                        </span>
+                      </div>
                     </div>
-                    <div className="hidden sm:flex w-6 h-6 rounded-lg bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] group-hover:bg-[var(--mn-primary)]/10 mn-dark:group-hover:bg-[var(--mn-accent)]/20 text-[var(--mn-text-muted)] group-hover:text-[var(--mn-heading)] mn-dark:group-hover:text-[var(--mn-accent-text)] items-center justify-center shrink-0 transition-colors mn-panel mn-dark:mn-panel ">
-                      <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <div className="w-5 h-5 rounded-md bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] text-[var(--mn-text-muted)] group-hover:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0 transition-colors">
+                      <ArrowUpRight className="w-3 h-3" />
                     </div>
-                  </div>
-                  <div className="flex flex-col min-w-0 flex-1 sm:flex-initial sm:w-full">
-                    <span className="text-[11.5px] sm:text-xs font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)] group-hover:text-[var(--mn-heading)] mn-dark:group-hover:text-[var(--mn-accent-text)] transition-colors leading-tight truncate">
-                      قبول البكالوريوس
-                    </span>
-                    <span className="text-[10px] sm:text-[10.5px] font-medium text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)] truncate mt-0.5">
-                      متطلبات المرحلة الجامعية
-                    </span>
-                  </div>
-                  <div className="sm:hidden w-7 h-7 rounded-lg bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] group-hover:bg-[var(--mn-primary)]/10 mn-dark:group-hover:bg-[var(--mn-accent)]/20 text-[var(--mn-text-muted)] group-hover:text-[var(--mn-heading)] mn-dark:group-hover:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0 transition-colors mn-panel mn-dark:mn-panel ">
-                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
-                </a>
+                  </a>
                 )}
 
                 {/* 2. قبول الدراسات العليا */}
                 {university.internationalAdmissions.postgradAdmissionUrl && (
-                <a
-                  href={university.internationalAdmissions.postgradAdmissionUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface-elevated)] hover:bg-[var(--mn-page)]/80 mn-dark:hover:bg-[var(--mn-surface-muted)] rounded-2xl p-3 border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] mn-dark:hover:border-[var(--mn-accent)] shadow-2xs hover:shadow-xs transition-all flex sm:flex-col justify-between sm:justify-center items-center sm:items-start gap-2.5 text-right mn-panel mn-dark:mn-panel hover:mn-panel mn-dark:hover:mn-panel "
-                >
-                  <div className="flex items-center sm:w-full justify-between gap-2">
-                    <div className="w-8 h-8 rounded-xl bg-[var(--mn-gold-surface)]/80 mn-dark:bg-[var(--mn-gold-surface)]/30 group-hover:bg-[var(--mn-accent)] text-[var(--mn-accent-text)] group-hover:text-white mn-dark:group-hover:text-[var(--mn-heading)] transition-colors flex items-center justify-center shrink-0 shadow-2xs mn-panel group-hover:mn-gold ">
-                      <Award className="w-4 h-4" />
+                  <a
+                    href={university.internationalAdmissions.postgradAdmissionUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] hover:bg-[var(--mn-surface-muted)] dark:hover:bg-[var(--mn-surface-muted)] rounded-xl p-2 sm:p-2.5 border border-[var(--mn-border-gold)]/50 dark:border-[var(--mn-border)] hover:border-[var(--mn-accent)] transition-all flex items-center justify-between gap-2 text-right mn-panel dark:mn-panel"
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-amber-500/15 text-amber-700 dark:text-amber-300 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                        <Scroll className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-[10.5px] sm:text-[11px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-text)] group-hover:text-[var(--mn-accent-text)] transition-colors leading-tight truncate">
+                          قبول الدراسات العليا
+                        </span>
+                        <span className="text-[9px] font-medium text-[var(--mn-text-muted)] truncate mt-0.5">
+                          الماجستير والدكتوراه
+                        </span>
+                      </div>
                     </div>
-                    <div className="hidden sm:flex w-6 h-6 rounded-lg bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] group-hover:bg-[var(--mn-primary)]/10 mn-dark:group-hover:bg-[var(--mn-accent)]/20 text-[var(--mn-text-muted)] group-hover:text-[var(--mn-heading)] mn-dark:group-hover:text-[var(--mn-accent-text)] items-center justify-center shrink-0 transition-colors mn-panel mn-dark:mn-panel ">
-                      <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <div className="w-5 h-5 rounded-md bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] text-[var(--mn-text-muted)] group-hover:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0 transition-colors">
+                      <ArrowUpRight className="w-3 h-3" />
                     </div>
-                  </div>
-                  <div className="flex flex-col min-w-0 flex-1 sm:flex-initial sm:w-full">
-                    <span className="text-[11.5px] sm:text-xs font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)] group-hover:text-[var(--mn-heading)] mn-dark:group-hover:text-[var(--mn-accent-text)] transition-colors leading-tight truncate">
-                      قبول الدراسات العليا
-                    </span>
-                    <span className="text-[10px] sm:text-[10.5px] font-medium text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)] truncate mt-0.5">
-                      الماجستير والدكتوراه والأبحاث
-                    </span>
-                  </div>
-                  <div className="sm:hidden w-7 h-7 rounded-lg bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] group-hover:bg-[var(--mn-primary)]/10 mn-dark:group-hover:bg-[var(--mn-accent)]/20 text-[var(--mn-text-muted)] group-hover:text-[var(--mn-heading)] mn-dark:group-hover:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0 transition-colors mn-panel mn-dark:mn-panel ">
-                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
-                </a>
+                  </a>
                 )}
 
-                {/* 3. صفحة قبول الطلاب الدوليين */}
+                {/* 3. صفحة الطلاب الدوليين */}
                 {university.internationalAdmissions.internationalStudentsUrl && (
-                <a
-                  href={university.internationalAdmissions.internationalStudentsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface-elevated)] hover:bg-[var(--mn-page)]/80 mn-dark:hover:bg-[var(--mn-surface-muted)] rounded-2xl p-3 border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] mn-dark:hover:border-[var(--mn-accent)] shadow-2xs hover:shadow-xs transition-all flex sm:flex-col justify-between sm:justify-center items-center sm:items-start gap-2.5 text-right mn-panel mn-dark:mn-panel hover:mn-panel mn-dark:hover:mn-panel "
-                >
-                  <div className="flex items-center sm:w-full justify-between gap-2">
-                    <div className="w-8 h-8 rounded-xl bg-[var(--mn-success-soft)]/80 mn-dark:bg-[var(--mn-success-soft)]/30 group-hover:bg-[var(--mn-success-solid)] text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] group-hover:text-white transition-colors flex items-center justify-center shrink-0 shadow-2xs">
-                      <Globe className="w-4 h-4" />
+                  <a
+                    href={university.internationalAdmissions.internationalStudentsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] hover:bg-[var(--mn-surface-muted)] dark:hover:bg-[var(--mn-surface-muted)] rounded-xl p-2 sm:p-2.5 border border-[var(--mn-border-gold)]/50 dark:border-[var(--mn-border)] hover:border-[var(--mn-accent)] transition-all flex items-center justify-between gap-2 text-right mn-panel dark:mn-panel"
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                        <Compass className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-[10.5px] sm:text-[11px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-text)] group-hover:text-[var(--mn-accent-text)] transition-colors leading-tight truncate">
+                          دليل الوافدين والتأشيرة
+                        </span>
+                        <span className="text-[9px] font-medium text-[var(--mn-text-muted)] truncate mt-0.5">
+                          مكتب الطلاب الدوليين
+                        </span>
+                      </div>
                     </div>
-                    <div className="hidden sm:flex w-6 h-6 rounded-lg bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] group-hover:bg-[var(--mn-primary)]/10 mn-dark:group-hover:bg-[var(--mn-accent)]/20 text-[var(--mn-text-muted)] group-hover:text-[var(--mn-heading)] mn-dark:group-hover:text-[var(--mn-accent-text)] items-center justify-center shrink-0 transition-colors mn-panel mn-dark:mn-panel ">
-                      <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <div className="w-5 h-5 rounded-md bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] text-[var(--mn-text-muted)] group-hover:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0 transition-colors">
+                      <ArrowUpRight className="w-3 h-3" />
                     </div>
-                  </div>
-                  <div className="flex flex-col min-w-0 flex-1 sm:flex-initial sm:w-full">
-                    <span className="text-[11.5px] sm:text-xs font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)] group-hover:text-[var(--mn-heading)] mn-dark:group-hover:text-[var(--mn-accent-text)] transition-colors leading-tight truncate">
-                      صفحة الطلاب الدوليين
-                    </span>
-                    <span className="text-[10px] sm:text-[10.5px] font-medium text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)] truncate mt-0.5">
-                      دليل الوافدين والتأشيرة
-                    </span>
-                  </div>
-                  <div className="sm:hidden w-7 h-7 rounded-lg bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] group-hover:bg-[var(--mn-primary)]/10 mn-dark:group-hover:bg-[var(--mn-accent)]/20 text-[var(--mn-text-muted)] group-hover:text-[var(--mn-heading)] mn-dark:group-hover:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0 transition-colors mn-panel mn-dark:mn-panel ">
-                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
-                </a>
+                  </a>
                 )}
+
+                {/* 4. بوابة التقديم الإلكتروني الرئيسية */}
+                {university.internationalAdmissions.applicationPortalUrl && (
+                  <a
+                    href={university.internationalAdmissions.applicationPortalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] hover:bg-[var(--mn-surface-muted)] dark:hover:bg-[var(--mn-surface-muted)] rounded-xl p-2 sm:p-2.5 border border-[var(--mn-border-gold)]/60 dark:border-[var(--mn-accent)]/40 hover:border-[var(--mn-accent)] transition-all flex items-center justify-between gap-2 text-right mn-panel dark:mn-panel"
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[var(--mn-primary)] via-[var(--mn-accent)] to-[var(--mn-primary)] text-white dark:text-zinc-950 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform shadow-2xs">
+                        <Zap className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="flex flex-col min-w-0">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="text-[10.5px] sm:text-[11px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-text)] group-hover:text-[var(--mn-accent-text)] transition-colors leading-tight">
+                            بوابة التقديم الإلكتروني الرئيسية
+                          </span>
+                          <span className="inline-flex items-center text-[8px] font-bold text-white dark:text-zinc-950 bg-[var(--mn-primary)] dark:bg-[var(--mn-accent)] px-1 py-0.2 rounded shrink-0">
+                            البوابة المباشرة
+                          </span>
+                        </div>
+                        <span className="text-[9px] font-medium text-[var(--mn-text-muted)] truncate mt-0.5">
+                          منصة التسجيل وإنشاء حساب الطالب بالجامعة
+                        </span>
+                      </div>
+                    </div>
+                    <div className="w-5 h-5 rounded-md bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] text-[var(--mn-text-muted)] group-hover:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0 transition-colors">
+                      <ArrowUpRight className="w-3 h-3" />
+                    </div>
+                  </a>
+                )}
+              </div>
+
+              {/* ملاحظة الأمان والتوثيق */}
+              <div className="flex items-center justify-center gap-1.5 pt-1 text-[9.5px] font-medium text-[var(--mn-text-muted)]">
+                <ShieldCheck className="w-3 h-3 text-[var(--mn-accent-text)] shrink-0" />
+                <span>جميع البوابات تنقلك مباشرة إلى المنصات الرسمية المعتمدة للجامعة.</span>
               </div>
             </div>
-
-            {/* زر بوابة التقديم الرسمية المباشر الممتد (مطابق تماماً لزر استكشف دليل...) */}
-            {university.internationalAdmissions.applicationPortalUrl && (
-              <div className="pt-1">
-                <a
-                  href={university.internationalAdmissions.applicationPortalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mn-external-link inline-flex min-h-10 w-auto items-center justify-center gap-2 rounded-xl px-3 py-2 text-[11px] font-bold sm:text-xs"
-                >
-                  <Globe className="w-3.5 h-3.5 text-[var(--mn-accent-text)]" />
-                  <span>بوابة التقديم والتسجيل الرسمية للجامعة</span>
-                </a>
-              </div>
-            )}
           </div>
         </div>
         )}
 
-        {/* القسم الأخير: الرسوم الدراسية وتكاليف الدراسة */}
+        {/* القسم الخامس: الرسوم الدراسية وتكاليف الدراسة */}
         {university.tuitionFees && (
           <div
-            className="mn-detail-full-bleed relative bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 mn-dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 mn-dark:shadow-none overflow-hidden mn-panel mn-dark:mn-panel "
+            className="mn-detail-full-bleed relative bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 dark:shadow-none overflow-hidden mn-panel dark:mn-panel "
             dir="rtl"
           >
             {/* خط التزيين العلوي المتدرج */}
-            <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] mn-dark:via-[var(--mn-accent-soft)] to-transparent z-10" />
+            <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent z-10" />
 
             <DetailSectionHeader
               id="university-tuition"
               icon={Landmark}
-              title="الرسوم الدراسية وتكاليف الدراسة"
+              title="5. الرسوم الدراسية وتكاليف الدراسة"
               className="mx-4 mt-4 sm:mx-5"
             />
 
             {/* المحتوى الداخلي لقسم الرسوم */}
             <div className="p-4 sm:p-5 space-y-4 font-['Cairo',sans-serif]">
-              {/* بطاقة الرسوم السنوية العامة والعملة */}
-              <div className="p-4 rounded-2xl bg-gradient-to-br from-[var(--mn-surface-muted)]/70 mn-dark:from-[var(--mn-surface-elevated)] via-[var(--mn-surface)] mn-dark:via-[var(--mn-surface-elevated)] to-[var(--mn-gold-surface)]/40 mn-dark:to-[var(--mn-surface-muted)] border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] space-y-3 shadow-2xs relative overflow-hidden mn-dark:mn-panel ">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-lg bg-[var(--mn-primary)]/10 mn-dark:bg-[var(--mn-accent)]/20 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0">
-                      <Landmark className="w-3.5 h-3.5" />
-                    </div>
-                    <span className="text-xs sm:text-[13px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
-                      متوسط الرسوم السنوية العامة
-                    </span>
+              {/* بطاقة الرسوم السنوية العامة والعملة - تصميم عصري مدمج ومريح للهاتف */}
+              <div className="p-3.5 sm:p-4 rounded-2xl bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] space-y-3 shadow-2xs relative overflow-hidden mn-panel dark:mn-panel font-['Cairo',sans-serif]">
+                {/* رأس البطاقة */}
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-lg bg-[var(--mn-primary)]/10 dark:bg-[var(--mn-accent)]/20 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] flex items-center justify-center shrink-0">
+                    <Landmark className="w-3.5 h-3.5" />
                   </div>
-
-                  {/* شارة العملة المعتمدة */}
-                  <div className="bg-[var(--mn-page)] mn-dark:bg-[var(--mn-surface)] border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-accent)]/30 rounded-full py-0.5 px-2.5 flex items-center gap-1.5 shadow-2xs mn-panel mn-dark:mn-panel ">
-                    <span className="text-[10.5px] sm:text-[11px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]">
-                      العملة: {university.tuitionFees.currency}
-                    </span>
-                  </div>
+                  <span className="text-xs sm:text-[13px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif]">
+                    متوسط الرسوم السنوية العامة
+                  </span>
                 </div>
 
-                {/* القيمة البارزة للرسوم */}
+                {/* لوحة القيمة البارزة للرسوم متضمنة العملة المعتمدة على الجانب الأيسر */}
                 {university.tuitionFees.annualAverageTuition && (
-                  <div className="bg-[var(--mn-surface-elevated)]/80 mn-dark:bg-[var(--mn-surface)]/80 rounded-xl p-3 border border-[var(--mn-border-brand)]/10 mn-dark:border-[var(--mn-border)] flex items-center justify-between gap-3 mn-panel mn-dark:mn-panel ">
-                    <span className="text-[11px] sm:text-xs font-bold text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)]">
-                      النطاق السنوي التقديري للطلاب الدوليين:
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif] tracking-tight">
+                  <div className="rounded-xl p-3 sm:p-3.5 bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border border-[var(--mn-border-gold)]/60 dark:border-[var(--mn-border)] shadow-2xs flex items-center justify-between gap-2.5 mn-panel dark:mn-panel">
+                    {/* الجانب الأيمن: المبلغ البارز */}
+                    <div className="text-xs sm:text-sm md:text-[15px] font-extrabold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] font-['Cairo',sans-serif] tracking-tight">
                       {university.tuitionFees.annualAverageTuition}
-                    </span>
+                    </div>
+
+                    {/* الجانب الأيسر: شارة العملة على جنب */}
+                    {university.tuitionFees.currency && (
+                      <div className="bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border-gold)]/70 dark:border-[var(--mn-border)] rounded-xl py-1.5 px-2.5 flex items-center gap-1.5 shadow-2xs shrink-0">
+                        <Coins className="w-3 h-3 text-[var(--mn-accent-text)]" />
+                        <span className="text-[9.5px] sm:text-[10px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] whitespace-nowrap">
+                          العملة: {university.tuitionFees.currency}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 )}
 
+                {/* الملاحظة التوضيحية التفصيلية للرسوم */}
                 {university.tuitionFees.generalDescription && (
-                  <p className="text-[10.5px] sm:text-[11px] font-medium text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)] leading-relaxed font-['Cairo',sans-serif]">
-                    {university.tuitionFees.generalDescription}
-                  </p>
+                  <div className="flex items-start gap-2 p-2.5 rounded-xl bg-[var(--mn-page)]/60 dark:bg-[var(--mn-surface)]/60 border border-[var(--mn-border-gold)]/40 dark:border-[var(--mn-border)]/60">
+                    <Info className="w-3.5 h-3.5 text-[var(--mn-accent-text)] shrink-0 mt-0.5" />
+                    <p className="text-[10px] sm:text-[10.5px] font-medium text-[var(--mn-text-muted)] leading-relaxed font-['Cairo',sans-serif]">
+                      {university.tuitionFees.generalDescription}
+                    </p>
+                  </div>
                 )}
               </div>
 
               {/* شبكة رسوم التخصصات والمراحل الأكاديمية */}
               <div className="space-y-2 pt-1">
                 <div className="flex items-center gap-2 pr-1">
-                  <div className="w-6 h-6 rounded-full bg-[var(--mn-primary)]/5 mn-dark:bg-[var(--mn-accent)]/10 border border-[var(--mn-accent)]/60 ring-2 ring-[var(--mn-focus)]/20 flex items-center justify-center shrink-0 shadow-2xs">
-                    <Building2 className="w-3 h-3 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]" />
+                  <div className="w-6 h-6 rounded-full bg-[var(--mn-primary)]/5 dark:bg-[var(--mn-accent)]/10 border border-[var(--mn-accent)]/60 ring-2 ring-[var(--mn-focus)]/20 flex items-center justify-center shrink-0 shadow-2xs">
+                    <Building2 className="w-3 h-3 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)]" />
                   </div>
-                  <span className="text-[11.5px] sm:text-xs font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] leading-tight font-['Cairo',sans-serif]">
+                  <span className="text-[11.5px] sm:text-xs font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] leading-tight font-['Cairo',sans-serif]">
                     تفصيل الرسوم حسب الكلية والمرحلة
                   </span>
                 </div>
@@ -737,15 +777,15 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
                 <div className="flex flex-col gap-2 pt-0.5">
                   {/* 1. رسوم البكالوريوس (المرحلة الجامعية) */}
                   {university.tuitionFees.undergradTuition && (
-                    <div className="bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface-elevated)] rounded-xl border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] mn-dark:hover:border-[var(--mn-accent)] p-2.5 sm:p-3 shadow-2xs hover:shadow-xs transition-all flex flex-row items-center justify-between gap-3 relative overflow-hidden group mn-panel mn-dark:mn-panel ">
+                    <div className="bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] rounded-xl border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] dark:hover:border-[var(--mn-accent)] p-2.5 sm:p-3 shadow-2xs hover:shadow-xs transition-all flex flex-row items-center justify-between gap-3 relative overflow-hidden group mn-panel dark:mn-panel ">
                       <div className="flex items-center gap-2.5 shrink-0">
                         <div className="w-1.5 h-8 bg-gradient-to-b from-[var(--mn-primary)] to-[var(--mn-accent-soft)] rounded-full shrink-0 mn-inverse " />
-                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)]">
+                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-text)]">
                           رسوم البكالوريوس
                         </span>
                       </div>
-                      <div className="bg-[var(--mn-page)] mn-dark:bg-[var(--mn-surface)] border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] rounded-lg py-1.5 px-3 flex items-center justify-center text-center shadow-2xs shrink-0 max-w-[55%] group-hover:border-[var(--mn-border-brand)]/30 mn-dark:group-hover:border-[var(--mn-accent)]/50 transition-colors mn-panel mn-dark:mn-panel ">
-                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] mn-dark:text-white">
+                      <div className="bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border border-[var(--mn-border)] dark:border-[var(--mn-border)] rounded-lg py-1.5 px-3 flex items-center justify-center text-center shadow-2xs shrink-0 max-w-[55%] group-hover:border-[var(--mn-border-brand)]/30 dark:group-hover:border-[var(--mn-accent)]/50 transition-colors mn-panel dark:mn-panel ">
+                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] dark:text-white">
                           {university.tuitionFees.undergradTuition}
                         </span>
                       </div>
@@ -754,15 +794,15 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
 
                   {/* 2. رسوم البكالوريوس في الطب */}
                   {university.tuitionFees.medicineTuition && (
-                    <div className="bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface-elevated)] rounded-xl border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] mn-dark:hover:border-[var(--mn-accent)] p-2.5 sm:p-3 shadow-2xs hover:shadow-xs transition-all flex flex-row items-center justify-between gap-3 relative overflow-hidden group mn-panel mn-dark:mn-panel ">
+                    <div className="bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] rounded-xl border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] dark:hover:border-[var(--mn-accent)] p-2.5 sm:p-3 shadow-2xs hover:shadow-xs transition-all flex flex-row items-center justify-between gap-3 relative overflow-hidden group mn-panel dark:mn-panel ">
                       <div className="flex items-center gap-2.5 shrink-0">
                         <div className="w-1.5 h-8 bg-gradient-to-b from-[var(--mn-primary)] to-[var(--mn-accent-soft)] rounded-full shrink-0 mn-inverse " />
-                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)]">
+                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-text)]">
                           رسوم كلية الطب
                         </span>
                       </div>
-                      <div className="bg-[var(--mn-page)] mn-dark:bg-[var(--mn-surface)] border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] rounded-lg py-1.5 px-3 flex items-center justify-center text-center shadow-2xs shrink-0 max-w-[55%] group-hover:border-[var(--mn-border-brand)]/30 mn-dark:group-hover:border-[var(--mn-accent)]/50 transition-colors mn-panel mn-dark:mn-panel ">
-                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] mn-dark:text-white">
+                      <div className="bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border border-[var(--mn-border)] dark:border-[var(--mn-border)] rounded-lg py-1.5 px-3 flex items-center justify-center text-center shadow-2xs shrink-0 max-w-[55%] group-hover:border-[var(--mn-border-brand)]/30 dark:group-hover:border-[var(--mn-accent)]/50 transition-colors mn-panel dark:mn-panel ">
+                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] dark:text-white">
                           {university.tuitionFees.medicineTuition}
                         </span>
                       </div>
@@ -771,15 +811,15 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
 
                   {/* 3. رسوم الكليات الهندسية */}
                   {university.tuitionFees.engineeringTuition && (
-                    <div className="bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface-elevated)] rounded-xl border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] mn-dark:hover:border-[var(--mn-accent)] p-2.5 sm:p-3 shadow-2xs hover:shadow-xs transition-all flex flex-row items-center justify-between gap-3 relative overflow-hidden group mn-panel mn-dark:mn-panel ">
+                    <div className="bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] rounded-xl border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] dark:hover:border-[var(--mn-accent)] p-2.5 sm:p-3 shadow-2xs hover:shadow-xs transition-all flex flex-row items-center justify-between gap-3 relative overflow-hidden group mn-panel dark:mn-panel ">
                       <div className="flex items-center gap-2.5 shrink-0">
                         <div className="w-1.5 h-8 bg-gradient-to-b from-[var(--mn-primary)] to-[var(--mn-accent-soft)] rounded-full shrink-0 mn-inverse " />
-                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)]">
+                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-text)]">
                           رسوم الكليات الهندسية
                         </span>
                       </div>
-                      <div className="bg-[var(--mn-page)] mn-dark:bg-[var(--mn-surface)] border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] rounded-lg py-1.5 px-3 flex items-center justify-center text-center shadow-2xs shrink-0 max-w-[55%] group-hover:border-[var(--mn-border-brand)]/30 mn-dark:group-hover:border-[var(--mn-accent)]/50 transition-colors mn-panel mn-dark:mn-panel ">
-                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] mn-dark:text-white">
+                      <div className="bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border border-[var(--mn-border)] dark:border-[var(--mn-border)] rounded-lg py-1.5 px-3 flex items-center justify-center text-center shadow-2xs shrink-0 max-w-[55%] group-hover:border-[var(--mn-border-brand)]/30 dark:group-hover:border-[var(--mn-accent)]/50 transition-colors mn-panel dark:mn-panel ">
+                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] dark:text-white">
                           {university.tuitionFees.engineeringTuition}
                         </span>
                       </div>
@@ -788,15 +828,15 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
 
                   {/* 4. رسوم الدراسات العليا */}
                   {university.tuitionFees.postgradTuition && (
-                    <div className="bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface-elevated)] rounded-xl border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] mn-dark:hover:border-[var(--mn-accent)] p-2.5 sm:p-3 shadow-2xs hover:shadow-xs transition-all flex flex-row items-center justify-between gap-3 relative overflow-hidden group mn-panel mn-dark:mn-panel ">
+                    <div className="bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] rounded-xl border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] dark:hover:border-[var(--mn-accent)] p-2.5 sm:p-3 shadow-2xs hover:shadow-xs transition-all flex flex-row items-center justify-between gap-3 relative overflow-hidden group mn-panel dark:mn-panel ">
                       <div className="flex items-center gap-2.5 shrink-0">
                         <div className="w-1.5 h-8 bg-gradient-to-b from-[var(--mn-primary)] to-[var(--mn-accent-soft)] rounded-full shrink-0 mn-inverse " />
-                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)]">
+                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-text)]">
                           رسوم الدراسات العليا
                         </span>
                       </div>
-                      <div className="bg-[var(--mn-page)] mn-dark:bg-[var(--mn-surface)] border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] rounded-lg py-1.5 px-3 flex items-center justify-center text-center shadow-2xs shrink-0 max-w-[55%] group-hover:border-[var(--mn-border-brand)]/30 mn-dark:group-hover:border-[var(--mn-accent)]/50 transition-colors mn-panel mn-dark:mn-panel ">
-                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] mn-dark:text-white">
+                      <div className="bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border border-[var(--mn-border)] dark:border-[var(--mn-border)] rounded-lg py-1.5 px-3 flex items-center justify-center text-center shadow-2xs shrink-0 max-w-[55%] group-hover:border-[var(--mn-border-brand)]/30 dark:group-hover:border-[var(--mn-accent)]/50 transition-colors mn-panel dark:mn-panel ">
+                        <span className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] dark:text-white">
                           {university.tuitionFees.postgradTuition}
                         </span>
                       </div>
@@ -805,17 +845,20 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
                 </div>
               </div>
 
-              {/* زر رابط الرسوم الرسمي الممتد */}
+              {/* زر رابط الرسوم الرسمي الممتد - بنفس التصميم المميز والأنيق */}
               {university.tuitionFees.officialTuitionUrl && (
-                <div className="pt-1">
+                <div className="pt-2 pb-0.5 flex justify-center">
                   <a
                     href={university.tuitionFees.officialTuitionUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mn-external-link inline-flex min-h-10 w-auto items-center justify-center gap-2 rounded-xl px-3 py-2 text-[11px] font-bold sm:text-xs"
+                    className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-teal-500/10 via-cyan-600/15 to-indigo-600/10 hover:from-teal-500/20 hover:via-cyan-600/25 hover:to-indigo-600/20 text-teal-950 border border-teal-400/50 dark:from-amber-500/15 dark:via-yellow-500/20 dark:to-amber-600/15 dark:hover:from-amber-500/25 dark:hover:via-yellow-500/30 dark:hover:to-amber-600/25 dark:text-amber-200 dark:border-amber-400/50 shadow-2xs hover:shadow-xs transition-all duration-200 text-[10px] sm:text-[10.5px] font-bold font-['Cairo',sans-serif] group text-center"
                   >
-                    <Landmark className="w-3.5 h-3.5 text-[var(--mn-accent-text)]" />
+                    <div className="w-4 h-4 rounded-lg bg-gradient-to-br from-teal-600 via-cyan-700 to-indigo-800 text-white dark:from-amber-500 dark:via-yellow-500 dark:to-amber-600 dark:text-zinc-950 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform font-bold">
+                      <Landmark className="w-2.5 h-2.5" />
+                    </div>
                     <span>رابط جدول الرسوم والمصروفات الدراسية الرسمي للجامعة</span>
+                    <ExternalLink className="w-2.5 h-2.5 text-cyan-700 dark:text-amber-300 group-hover:translate-x-[-2px] transition-transform" />
                   </a>
                 </div>
               )}
@@ -826,108 +869,186 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
         {/* المنح الدراسية تأتي مباشرة بعد الرسوم لمساعدة الطالب على تقييم خيارات التمويل */}
         {university.scholarships && university.scholarships.length > 0 && (
           <section
-            className="mn-detail-full-bleed relative bg-[var(--mn-surface)] mn-dark:bg-[var(--mn-surface)] border-b border-[var(--mn-border-brand)]/30 mn-dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/40 mn-dark:shadow-none overflow-hidden mn-panel mn-dark:mn-panel "
+            className="mn-detail-full-bleed relative bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/40 dark:shadow-none overflow-hidden mn-panel dark:mn-panel"
             dir="rtl"
             aria-labelledby="university-scholarships"
           >
-            <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-accent-soft)] to-transparent" />
+            <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent z-10" />
 
-            <DetailSectionHeader
-              id="university-scholarships"
-              icon={Award}
-              title="المنح الدراسية"
-              subtitle="المنح المرتبطة بهذه الجامعة في بيانات منارتك، مع إبقاء رابط المصدر الرسمي لكل منحة."
-              className="mx-4 mt-4 sm:mx-5"
-            />
+            <div className="flex items-center justify-between mx-4 mt-4 sm:mx-5">
+              <DetailSectionHeader
+                id="university-scholarships"
+                icon={Award}
+                title="6. المنح الدراسية المتاحة"
+                subtitle="المنح المرتبطة بالجامعة مع خيارات التمويل وشروط التقديم والمصادر الرسمية."
+              />
+              <span className="hidden sm:inline-flex items-center gap-1 text-[10.5px] font-bold text-[var(--mn-accent-text)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] px-2.5 py-1 rounded-full shrink-0">
+                <GraduationCap className="w-3.5 h-3.5" />
+                {university.scholarships.length} منح دراسية
+              </span>
+            </div>
 
-            <div className="grid grid-cols-1 gap-3 p-4 sm:grid-cols-2 sm:p-5">
+            <div className="grid grid-cols-1 gap-2.5 p-3.5 sm:grid-cols-2 sm:gap-3 sm:p-4">
               {university.scholarships.map((scholarship, index) => (
                 <article
                   key={scholarship.id}
-                  role={scholarship.platformScholarshipId ? 'button' : undefined}
-                  tabIndex={scholarship.platformScholarshipId ? 0 : undefined}
-                  onClick={() => {
-                    if (scholarship.platformScholarshipId) {
-                      onOpenScholarship?.(scholarship.platformScholarshipId);
-                    }
-                  }}
-                  onKeyDown={(event) => {
-                    if (scholarship.platformScholarshipId && (event.key === 'Enter' || event.key === ' ')) {
-                      event.preventDefault();
-                      onOpenScholarship?.(scholarship.platformScholarshipId);
-                    }
-                  }}
-                  className={`group relative overflow-hidden rounded-2xl border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] bg-gradient-to-br from-[var(--mn-surface)] via-[var(--mn-surface)] to-[var(--mn-surface)]/60 mn-dark:from-[var(--mn-surface-elevated)] mn-dark:via-[var(--mn-surface-elevated)] mn-dark:to-[var(--mn-surface-muted)] p-3.5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[var(--mn-accent)] hover:shadow-md  mn-panel mn-dark:mn-panel ${scholarship.platformScholarshipId ? 'cursor-pointer' : ''}`}
+                  className="group relative overflow-hidden rounded-2xl border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] hover:bg-[var(--mn-surface)] dark:hover:bg-[var(--mn-surface)] p-3 sm:p-3.5 shadow-2xs hover:shadow-xs transition-all hover:border-[var(--mn-accent)] flex flex-col justify-between mn-panel dark:mn-panel"
                 >
-                  <div className="absolute inset-y-0 right-0 w-1 bg-gradient-to-b from-[var(--mn-primary)] via-[var(--mn-accent-soft)] to-[var(--mn-hero-secondary)] mn-inverse " />
-                  <div className="flex items-start gap-3 pr-1">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--mn-accent)]/40 bg-[var(--mn-primary)] text-[var(--mn-accent-text)] shadow-sm mn-inverse ">
-                      <GraduationCap className="h-5 w-5" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="mb-1 flex flex-wrap items-center gap-1.5">
-                        <span className="rounded-full bg-[var(--mn-accent)]/15 px-2 py-0.5 text-[9.5px] font-bold text-[var(--mn-accent-text)] mn-dark:text-[var(--mn-accent-soft)]">
-                          منحة {index + 1}
-                        </span>
-                        {scholarship.type && (
-                          <span className="rounded-full border border-[var(--mn-border-brand)]/15 bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] px-2 py-0.5 text-[9.5px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)] mn-panel mn-dark:mn-panel ">
-                            {scholarship.type}
-                          </span>
-                        )}
+                  <div>
+                    {/* الصف العلوي: الأيقونة والعناوين والنوع */}
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-start gap-2 min-w-0">
+                        <div className="w-6 h-6 rounded-full bg-amber-500/15 border border-amber-400/40 text-amber-700 dark:text-amber-300 flex items-center justify-center shrink-0 shadow-2xs mt-0.5">
+                          <Award className="w-3.5 h-3.5" />
+                        </div>
+                        <div className="flex flex-col min-w-0">
+                          <h3 className="text-[11.5px] sm:text-[12px] font-bold leading-snug text-[var(--mn-heading)] dark:text-white group-hover:text-[var(--mn-accent-text)] transition-colors truncate">
+                            {scholarship.name}
+                          </h3>
+                          {scholarship.nameEn && (
+                            <p className="text-[9px] font-medium text-[var(--mn-text-muted)] truncate" dir="ltr">
+                              {scholarship.nameEn}
+                            </p>
+                          )}
+                        </div>
                       </div>
-                      <h3 className="text-[12px] sm:text-[13px] font-bold leading-5 text-[var(--mn-heading)] mn-dark:text-white">
-                        {scholarship.name}
-                      </h3>
-                      {scholarship.nameEn && (
-                        <p
-                          className="mt-0.5 truncate text-[9.5px] font-bold text-[var(--mn-text-muted)]"
-                          dir="ltr"
-                        >
-                          {scholarship.nameEn}
-                        </p>
+
+                      {scholarship.type && (
+                        <span className="rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[8.5px] font-bold text-emerald-700 dark:text-emerald-300 px-1.5 py-0.5 shrink-0 whitespace-nowrap">
+                          {scholarship.type}
+                        </span>
                       )}
                     </div>
+
+                    {/* الفئة المستهدفة */}
+                    {scholarship.audience && (
+                      <div className="flex items-center gap-1 mt-1.5 pt-1.5 border-t border-[var(--mn-border-gold)]/20 dark:border-[var(--mn-border)] text-[9.5px]">
+                        <Users className="w-2.5 h-2.5 text-[var(--mn-accent-text)] shrink-0" />
+                        <span className="font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] shrink-0 text-[9px]">
+                          المستهدفون:
+                        </span>
+                        <span className="text-[var(--mn-text-muted)] font-medium truncate">
+                          {scholarship.audience}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
-                  {scholarship.audience && (
-                    <div className="mt-3 rounded-xl border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface-elevated)]/80 mn-dark:bg-[var(--mn-surface)]/80 px-3 py-2 mn-panel mn-dark:mn-panel ">
-                      <span className="block text-[9px] font-bold text-[var(--mn-accent-text)] mn-dark:text-[var(--mn-accent-text)]">
-                        الفئة المستهدفة
+                  {/* أزرار الإجراءات المدمجة أسفل الكارت */}
+                  <div className="flex items-center justify-between gap-2 mt-2 pt-1.5 border-t border-[var(--mn-border-gold)]/20 dark:border-[var(--mn-border)]">
+                    {scholarship.platformScholarshipId ? (
+                      <button
+                        type="button"
+                        onClick={() => onOpenScholarship?.(scholarship.platformScholarshipId!)}
+                        className="inline-flex items-center gap-0.5 text-[9px] font-bold text-[var(--mn-accent-text)] hover:underline cursor-pointer py-0.5"
+                      >
+                        <Sparkles className="w-2.5 h-2.5" />
+                        <span>دليل المنحة</span>
+                        <ChevronLeft className="w-2.5 h-2.5" />
+                      </button>
+                    ) : (
+                      <span className="inline-flex items-center gap-0.5 text-[9px] font-medium text-[var(--mn-text-muted)]">
+                        <ShieldCheck className="w-2.5 h-2.5 text-[var(--mn-accent-text)]" />
+                        <span>منحة معتمدة</span>
                       </span>
-                      <p className="mt-0.5 text-[10px] sm:text-[10.5px] font-semibold leading-5 text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)]">
-                        {scholarship.audience}
-                      </p>
-                    </div>
-                  )}
+                    )}
 
-                  <a
-                    href={scholarship.officialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(event) => event.stopPropagation()}
-                    className="mn-external-link mt-3 inline-flex min-h-10 w-auto items-center justify-center gap-1.5 rounded-xl px-3 py-2 text-[10.5px] font-bold"
-                  >
-                    <span>زيارة صفحة المنحة الرسمية</span>
-                    <ExternalLink className="h-3.5 w-3.5 text-[var(--mn-accent-text)]" />
-                  </a>
+                    <a
+                      href={scholarship.officialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(event) => event.stopPropagation()}
+                      className="inline-flex items-center gap-0.5 text-[9px] font-semibold text-[var(--mn-text-muted)] hover:text-[var(--mn-accent-text)] transition-colors py-0.5"
+                    >
+                      <span>المصدر الرسمي</span>
+                      <ArrowUpRight className="w-2.5 h-2.5" />
+                    </a>
+                  </div>
                 </article>
               ))}
             </div>
           </section>
         )}
 
-        {contextualServices.length > 0 && (
-          <ContextualServicesStrip
-            services={contextualServices}
-            onOpenService={onOpenService}
-            title="خدمات قد تساعدك أثناء التقديم"
-            note="اقتراح سياقي فقط؛ لا يعني أن هذه الخدمات تابعة للجامعة أو معتمدة منها."
-          />
-        )}
-
-        <RelatedArticlesStrip articles={university.relatedArticles} onOpenArticle={onOpenArticle} />
-
         <UniversityDecisionSections university={university} onOpenExam={onOpenExam} />
+
+        {(contextualServices.length > 0 || (university.relatedArticles && university.relatedArticles.length > 0)) && (
+          <section className="mx-4 sm:mx-5 mb-8 mt-2 rounded-2xl border border-[var(--mn-border-brand)]/30 dark:border-[var(--mn-border)] bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] shadow-md shadow-[var(--mn-shadow-ink)]/50 dark:shadow-none overflow-hidden mn-panel dark:mn-panel relative">
+            <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent z-10" />
+            
+            <div className="p-4 sm:p-5">
+              {contextualServices.length > 0 && (
+                <div className={university.relatedArticles && university.relatedArticles.length > 0 ? "mb-6 pb-6 border-b border-[var(--mn-border-brand)]/10 dark:border-[var(--mn-border)]" : ""}>
+                  <div className="mb-3 flex items-center gap-2">
+                    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-[var(--mn-primary)]/10 text-[var(--mn-heading)] dark:bg-[var(--mn-accent)]/10 dark:text-[var(--mn-accent-text)]">
+                      <Briefcase className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <h3 className="text-[11px] font-bold text-[var(--mn-heading)]">خدمات قد تساعدك أثناء التقديم</h3>
+                      <p className="text-[8.5px] font-medium text-[var(--mn-text-muted)] mt-0.5 leading-4">اقتراح سياقي فقط؛ لا يعني أن هذه الخدمات تابعة للجامعة أو معتمدة منها.</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                    {contextualServices.map((service) => (
+                      <button
+                        key={service.id}
+                        type="button"
+                        onClick={() => onOpenService?.(service)}
+                        className="group flex min-h-12 items-center gap-2.5 rounded-xl border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] px-3 py-2.5 text-right transition-colors hover:border-[var(--mn-accent)] dark:hover:border-[var(--mn-border-gold)] active:scale-[0.99] mn-panel dark:mn-panel shadow-2xs"
+                      >
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--mn-primary)]/10 dark:bg-[var(--mn-accent)]/10 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)]">
+                          <GraduationCap className="h-4 w-4" />
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate text-[9.5px] font-bold text-[var(--mn-text)] dark:text-[var(--mn-text)] group-hover:text-[var(--mn-heading)] transition-colors">{service.title}</span>
+                          <span className="mt-0.5 block truncate text-[8.5px] font-medium text-[var(--mn-text-muted)]">{service.category}</span>
+                        </span>
+                        <ChevronLeft className="h-4 w-4 shrink-0 text-[var(--mn-accent-text)] transition-transform group-hover:-translate-x-0.5" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {university.relatedArticles && university.relatedArticles.length > 0 && (
+                <div>
+                  <div className="mb-3 flex items-center gap-2">
+                    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-[var(--mn-primary)]/10 text-[var(--mn-heading)] dark:bg-[var(--mn-accent)]/10 dark:text-[var(--mn-accent-text)]">
+                      <BookOpenText className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <h3 className="text-[11px] font-bold text-[var(--mn-heading)]">مقالات وأدلة مرتبطة</h3>
+                      <p className="text-[8.5px] font-medium text-[var(--mn-text-muted)] mt-0.5 leading-4">محتوى تحريري يساعدك على فهم المتطلبات والسياق</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {university.relatedArticles.map((article) => (
+                      <button
+                        key={article.id}
+                        type="button"
+                        onClick={() => onOpenArticle?.(article.id)}
+                        disabled={!onOpenArticle}
+                        className="group flex flex-col justify-between rounded-xl border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] p-3.5 text-right transition-colors enabled:hover:border-[var(--mn-accent)] dark:enabled:hover:border-[var(--mn-border-gold)] enabled:active:scale-[0.99] mn-panel dark:mn-panel shadow-2xs h-full"
+                      >
+                        <div>
+                          <div className="flex items-center gap-1.5 text-[8px] font-bold text-[var(--mn-accent-text)] mb-2">
+                            <span>{article.typeLabel || 'مقال'}</span>
+                            {article.category && <span className="text-[var(--mn-text-muted)]">• {article.category}</span>}
+                          </div>
+                          <p className="text-[10px] sm:text-[10.5px] font-bold leading-5 text-[var(--mn-text)] group-hover:text-[var(--mn-heading)] transition-colors line-clamp-2">{article.title}</p>
+                        </div>
+                        <div className="mt-3 flex items-center justify-between gap-2 border-t border-[var(--mn-border-gold)]/50 dark:border-[var(--mn-border)]/50 pt-2.5">
+                          {article.meta ? <p className="line-clamp-1 text-[8.5px] font-semibold text-[var(--mn-text-muted)]">{article.meta}</p> : <span />}
+                          <ChevronLeft className="h-3.5 w-3.5 shrink-0 text-[var(--mn-accent-text)] transition-transform group-hover:-translate-x-0.5" />
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );
@@ -948,24 +1069,26 @@ function UniversityDecisionSections({
   const dataTrust = university.dataTrust;
 
   return (
-    <div className="mn-detail-full-bleed" dir="rtl">
+    <div className="mn-detail-full-bleed space-y-6" dir="rtl">
       {language && (
         <section
-          className="border-b border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] mn-panel mn-dark:mn-panel "
+          className="mn-detail-full-bleed relative bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 dark:shadow-none overflow-hidden mn-panel dark:mn-panel "
           aria-labelledby="language-requirements"
         >
+          <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent z-10" />
+
           <CompactSectionHeader
             id="language-requirements"
-            title="متطلبات اللغة"
+            title="7. متطلبات اللغة"
             icon={<Languages className="h-4 w-4" />}
           />
-          <div className="space-y-3 px-4 pb-4 sm:px-5">
+          <div className="space-y-3 p-4 sm:p-5">
             <div className="grid grid-cols-2 gap-2">
               <CompactFact label="هل توجد متطلبات لغة؟" value={language.required ? 'نعم' : 'لا'} />
               <CompactFact label="اللغة المطلوبة" value={language.languages.join('، ')} />
             </div>
-            <div className="rounded-xl border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface)] mn-dark:bg-[var(--mn-surface)] p-3 mn-panel mn-dark:mn-panel ">
-              <p className="mb-2 text-[10px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]">
+            <div className="rounded-xl border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] p-3 mn-panel dark:mn-panel ">
+              <p className="mb-2 text-[10px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)]">
                 الاختبارات المقبولة
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -973,7 +1096,7 @@ function UniversityDecisionSections({
                   ? language.acceptedTestLinks.map((link) => ({ label: link.label, examId: link.examId }))
                   : language.acceptedTests.map((label) => ({ label, examId: '' }))).map((test) => {
                   const className =
-                    "rounded-lg border border-[var(--mn-accent)]/30 bg-[var(--mn-page)] mn-dark:bg-[var(--mn-surface)] px-2 py-1 text-[9.5px] font-bold text-[var(--mn-text)] mn-dark:text-[var(--mn-text)] mn-panel mn-dark:mn-panel ";
+                    "rounded-lg border border-[var(--mn-accent)]/30 bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] px-2 py-0.5 text-[8.5px] sm:text-[9px] font-semibold text-[var(--mn-text)] dark:text-[var(--mn-text)] mn-panel dark:mn-panel tracking-normal";
 
                   return test.examId ? (
                     <button
@@ -993,45 +1116,57 @@ function UniversityDecisionSections({
                 })}
               </div>
             </div>
-            <OfficialInfoLink href={language.officialUrl} label="متطلبات اللغة الرسمية" />
+            <OfficialInfoLink
+              href={language.officialUrl}
+              label="متطلبات اللغة الرسمية"
+              icon={<Languages className="w-2.5 h-2.5" />}
+            />
           </div>
         </section>
       )}
 
       {documents && (
         <section
-          className="border-b border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface)] mn-dark:bg-[var(--mn-surface)] mn-panel mn-dark:mn-panel "
+          className="mn-detail-full-bleed relative bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 dark:shadow-none overflow-hidden mn-panel dark:mn-panel "
           aria-labelledby="required-documents-title"
         >
+          <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent z-10" />
+
           <CompactSectionHeader
             id="required-documents-title"
-            title="الوثائق المطلوبة"
+            title="8. الوثائق المطلوبة"
             icon={<FileText className="h-4 w-4" />}
           />
-          <div className="grid gap-2.5 px-4 pb-4 sm:grid-cols-2 sm:px-5">
-            <DocumentList title="الوثائق العامة المطلوبة" items={documents.generalDocuments} />
-            <DocumentList
-              title="متطلبات إضافية للدراسات العليا"
-              items={documents.graduateAdditionalDocuments}
-            />
-            <div className="sm:col-span-2">
-              <OfficialInfoLink href={documents.officialUrl} label="دليل الوثائق الرسمي" />
+          <div className="space-y-3 p-4 sm:p-5">
+            <div className="grid gap-2.5 sm:grid-cols-2">
+              <DocumentList title="الوثائق العامة المطلوبة" items={documents.generalDocuments} />
+              <DocumentList
+                title="متطلبات إضافية للدراسات العليا"
+                items={documents.graduateAdditionalDocuments}
+              />
             </div>
+            <OfficialInfoLink
+              href={documents.officialUrl}
+              label="دليل الوثائق والمستندات الرسمي"
+              icon={<FileText className="w-2.5 h-2.5" />}
+            />
           </div>
         </section>
       )}
 
       {housing && (
         <section
-          className="border-b border-[var(--mn-border-brand)]/30 mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] mn-panel mn-dark:mn-panel "
+          className="mn-detail-full-bleed relative bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 dark:shadow-none overflow-hidden mn-panel dark:mn-panel "
           aria-labelledby="university-housing"
         >
+          <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent z-10" />
+
           <CompactSectionHeader
             id="university-housing"
-            title="السكن الجامعي"
+            title="9. السكن الجامعي"
             icon={<Building2 className="h-4 w-4" />}
           />
-          <div className="space-y-3 px-4 pb-4 sm:px-5">
+          <div className="space-y-3 p-4 sm:p-5">
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
               <CompactFact label="هل يتوفر سكن؟" value={housing.available ? 'نعم' : 'لا'} />
               <CompactFact
@@ -1042,7 +1177,11 @@ function UniversityDecisionSections({
               <CompactFact label="العملة" value={housing.currency} />
             </div>
             {housing.officialUrl && (
-              <OfficialInfoLink href={housing.officialUrl} label="معلومات السكن الرسمية" />
+              <OfficialInfoLink
+                href={housing.officialUrl}
+                label="دليل ومعلومات السكن الجامعي الرسمي"
+                icon={<Building2 className="w-2.5 h-2.5" />}
+              />
             )}
           </div>
         </section>
@@ -1050,26 +1189,29 @@ function UniversityDecisionSections({
 
       {livingCosts && (
         <section
-          className="border-b border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface)] mn-dark:bg-[var(--mn-surface)] mn-panel mn-dark:mn-panel "
+          className="mn-detail-full-bleed relative bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 dark:shadow-none overflow-hidden mn-panel dark:mn-panel "
           aria-labelledby="university-living-costs-title"
         >
+          <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent z-10" />
+
           <CompactSectionHeader
             id="university-living-costs-title"
-            title="تكاليف المعيشة"
+            title="10. تكاليف المعيشة"
             icon={<Banknote className="h-4 w-4" />}
           />
-          <div className="space-y-2.5 px-4 pb-4 sm:px-5">
+          <div className="space-y-2.5 p-4 sm:p-5">
             <div className="grid grid-cols-2 gap-2">
               <CompactFact label="التكلفة الشهرية التقديرية" value={livingCosts.monthlyEstimate} />
               <CompactFact label="العملة" value={livingCosts.currency} />
             </div>
-            <p className="rounded-xl border border-[var(--mn-border-gold)] bg-[var(--mn-page)] px-3 py-2 text-[9.5px] font-semibold leading-4 text-[var(--mn-text-muted)] mn-dark:border-[var(--mn-border)] mn-dark:bg-[var(--mn-surface)] mn-dark:text-[var(--mn-text-muted)] mn-panel mn-dark:mn-panel ">
+            <p className="rounded-xl border border-[var(--mn-border-gold)] bg-[var(--mn-surface-muted)] px-3 py-2 text-[9.5px] font-semibold leading-4 text-[var(--mn-text-muted)] dark:border-[var(--mn-border)] dark:bg-[var(--mn-surface-elevated)] dark:text-[var(--mn-text-muted)] mn-panel dark:mn-panel ">
               {livingCosts.variationNote}
             </p>
             {livingCosts.officialUrl && (
               <OfficialInfoLink
                 href={livingCosts.officialUrl}
-                label="تفاصيل تكاليف المعيشة الرسمية"
+                label="تفاصيل ودليل تكاليف المعيشة الرسمية"
+                icon={<Banknote className="w-2.5 h-2.5" />}
               />
             )}
           </div>
@@ -1078,15 +1220,17 @@ function UniversityDecisionSections({
 
       {contacts && (
         <section
-          className="border-b border-[var(--mn-border-gold)] bg-[var(--mn-surface-muted)] mn-dark:border-[var(--mn-border)] mn-dark:bg-[var(--mn-surface)] mn-panel mn-dark:mn-panel "
+          className="mn-detail-full-bleed relative bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] border-y border-[var(--mn-border-brand)]/30 dark:border-[var(--mn-border)] shadow-md shadow-[var(--mn-shadow-ink)]/50 dark:shadow-none overflow-hidden mn-panel dark:mn-panel "
           aria-labelledby="university-contacts"
         >
+          <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent z-10" />
+
           <CompactSectionHeader
             id="university-contacts"
-            title="التواصل والروابط الرسمية"
+            title="11. التواصل والروابط الرسمية"
             icon={<Phone className="h-4 w-4" />}
           />
-          <div className="mn-detail-small-grid px-4 pb-4 sm:px-5">
+          <div className="mn-detail-small-grid p-4 sm:p-5">
             {contacts.phone && (
               <ReferenceLink
                 href={`tel:${contacts.phone.replace(/\s/g, '')}`}
@@ -1171,16 +1315,16 @@ function ReferenceLink({
       href={href}
       target={href.startsWith('tel:') ? undefined : '_blank'}
       rel={href.startsWith('tel:') ? undefined : 'noopener noreferrer'}
-      className="group flex min-h-12 items-center gap-2 rounded-xl border border-[var(--mn-border-gold)] bg-[var(--mn-surface)] px-3 py-2 transition-colors hover:border-[var(--mn-accent)] mn-dark:border-[var(--mn-border)] mn-dark:bg-[var(--mn-surface)] mn-panel mn-dark:mn-panel "
+      className="group flex min-h-12 items-center gap-2 rounded-xl border border-[var(--mn-border-gold)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] px-3 py-2 transition-colors hover:border-[var(--mn-accent)] dark:border-[var(--mn-border)] mn-panel dark:mn-panel "
     >
-      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--mn-primary)]/10 text-[var(--mn-heading)] mn-dark:bg-[var(--mn-accent)]/10 mn-dark:text-[var(--mn-accent-text)]">
+      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--mn-primary)]/10 text-[var(--mn-heading)] dark:bg-[var(--mn-accent)]/10 dark:text-[var(--mn-accent-text)]">
         {icon ?? <ExternalLink className="h-3.5 w-3.5" />}
       </span>
       <span className="min-w-0">
-        <span className="block text-[8.5px] font-bold text-[var(--mn-accent-text)] mn-dark:text-[var(--mn-accent-text)]">
+        <span className="block text-[8.5px] font-bold text-[var(--mn-accent-text)] dark:text-[var(--mn-accent-text)]">
           {label}
         </span>
-        <span className="block text-[9.5px] font-bold leading-4 text-[var(--mn-text)] group-hover:text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)]">
+        <span className="block text-[9.5px] font-bold leading-4 text-[var(--mn-text)] group-hover:text-[var(--mn-heading)] dark:text-[var(--mn-text)]">
           {value}
         </span>
       </span>
@@ -1202,11 +1346,11 @@ function CompactSectionHeader({
 
 function CompactFact({ label, value }: { label: string; value: string }) {
   return (
-    <div className="min-w-0 rounded-xl border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface)] mn-dark:bg-[var(--mn-surface)] px-2.5 py-2.5 shadow-2xs mn-panel mn-dark:mn-panel ">
-      <span className="block text-[9px] font-bold text-[var(--mn-accent-text)] mn-dark:text-[var(--mn-accent-text)]">
+    <div className="min-w-0 rounded-xl border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] px-2.5 py-2.5 shadow-2xs mn-panel dark:mn-panel ">
+      <span className="block text-[9px] font-bold text-[var(--mn-accent-text)] dark:text-[var(--mn-accent-text)]">
         {label}
       </span>
-      <span className="mt-1 block text-[10px] sm:text-[10.5px] font-bold leading-4 text-[var(--mn-text)] mn-dark:text-[var(--mn-text)]">
+      <span className="mt-1 block text-[10px] sm:text-[10.5px] font-bold leading-4 text-[var(--mn-text)] dark:text-[var(--mn-text)]">
         {value}
       </span>
     </div>
@@ -1215,15 +1359,15 @@ function CompactFact({ label, value }: { label: string; value: string }) {
 
 function DocumentList({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="rounded-xl border border-[var(--mn-border-gold)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] p-3 mn-panel mn-dark:mn-panel ">
-      <h3 className="mb-2 text-[10px] font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]">
+    <div className="rounded-xl border border-[var(--mn-border-gold)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface-elevated)] p-3 mn-panel dark:mn-panel ">
+      <h3 className="mb-2 text-[10px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)]">
         {title}
       </h3>
       <ul className="space-y-1.5">
         {items.map((item) => (
           <li
             key={item}
-            className="flex items-start gap-1.5 text-[9.5px] sm:text-[10px] font-semibold leading-4 text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)]"
+            className="flex items-start gap-1.5 text-[9.5px] sm:text-[10px] font-semibold leading-4 text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)]"
           >
             <CheckCircle2 className="mt-0.5 h-3 w-3 shrink-0 text-[var(--mn-accent-text)]" />
             <span>{item}</span>
@@ -1234,16 +1378,30 @@ function DocumentList({ title, items }: { title: string; items: string[] }) {
   );
 }
 
-function OfficialInfoLink({ href, label }: { href: string; label: string }) {
+function OfficialInfoLink({
+  href,
+  label,
+  icon,
+}: {
+  href?: string;
+  label: string;
+  icon?: React.ReactNode;
+}) {
+  if (!href) return null;
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="mn-external-link inline-flex min-h-10 w-auto items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[var(--mn-primary)] via-[var(--mn-hero-secondary)] to-[var(--mn-primary)] px-3 text-[10px] font-bold text-white shadow-sm transition-all hover:from-[var(--mn-primary)] hover:to-[var(--mn-primary-hover)] active:scale-[0.99] mn-inverse hover:mn-inverse "
-    >
-      <span>{label}</span>
-      <ExternalLink className="h-3 w-3 text-[var(--mn-accent-text)]" />
-    </a>
+    <div className="pt-2 pb-0.5 flex justify-center">
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-teal-500/10 via-cyan-600/15 to-indigo-600/10 hover:from-teal-500/20 hover:via-cyan-600/25 hover:to-indigo-600/20 text-teal-950 border border-teal-400/50 dark:from-amber-500/15 dark:via-yellow-500/20 dark:to-amber-600/15 dark:hover:from-amber-500/25 dark:hover:via-yellow-500/30 dark:hover:to-amber-600/25 dark:text-amber-200 dark:border-amber-400/50 shadow-2xs hover:shadow-xs transition-all duration-200 text-[10px] sm:text-[10.5px] font-bold font-['Cairo',sans-serif] group text-center"
+      >
+        <div className="w-4 h-4 rounded-lg bg-gradient-to-br from-teal-600 via-cyan-700 to-indigo-800 text-white dark:from-amber-500 dark:via-yellow-500 dark:to-amber-600 dark:text-zinc-950 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform font-bold">
+          {icon ?? <FileText className="w-2.5 h-2.5" />}
+        </div>
+        <span>{label}</span>
+        <ExternalLink className="w-2.5 h-2.5 text-cyan-700 dark:text-amber-300 group-hover:translate-x-[-2px] transition-transform" />
+      </a>
+    </div>
   );
 }

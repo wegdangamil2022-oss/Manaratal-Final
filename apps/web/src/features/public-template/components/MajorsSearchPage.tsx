@@ -45,6 +45,7 @@ export const MajorsSearchPage: React.FC<MajorsSearchPageProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFaculty, setSelectedFaculty] = useState('الكل');
   const [selectedDegree, setSelectedDegree] = useState('الكل');
+  const [designStyle] = useState<'classic' | 'bento' | 'minimalist'>('minimalist');
 
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -122,11 +123,11 @@ export const MajorsSearchPage: React.FC<MajorsSearchPageProps> = ({
         {onBack && (
           <button
             onClick={onBack}
-            className="absolute top-4 right-4 h-10 w-10 bg-black/20 hover:bg-black/30 backdrop-blur-md rounded-full transition-all z-20 cursor-pointer text-white flex items-center justify-center"
+            className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 w-8 h-8 bg-black/25 hover:bg-black/40 border border-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all z-30 cursor-pointer text-white shadow-xs active:scale-95"
             title="العودة"
             aria-label="العودة"
           >
-            <ChevronLeft className="w-5 h-5 rotate-180" />
+            <ChevronLeft className="w-4 h-4 rotate-180 text-white" />
           </button>
         )}
 
@@ -195,20 +196,21 @@ export const MajorsSearchPage: React.FC<MajorsSearchPageProps> = ({
           </div>
 
           {/* Integrated Search Bar in Hero */}
-          <div className="pt-1 max-w-md mx-auto px-2">
+          <div className="pt-1 max-w-sm sm:max-w-md mx-auto px-1">
             <div className="relative">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="ابحث باسم التخصص، الكلية، الوظيفة..."
-                className="w-full py-2.5 pl-4 pr-10 bg-[var(--mn-primary)]/85 hover:bg-[var(--mn-primary-hover)] focus:bg-[var(--mn-primary)] border border-[var(--mn-accent)]/40 focus:border-[var(--mn-accent)] rounded-full text-xs sm:text-[13px] font-bold text-white placeholder-white focus:outline-none shadow-inner transition-all text-center font-['Cairo',sans-serif] mn-inverse hover:mn-inverse focus:mn-inverse "
+                className="w-full py-2 pl-4 pr-10 bg-[var(--mn-surface)] text-[var(--mn-heading)] rounded-full text-[11px] font-bold placeholder:text-[var(--mn-text-muted)] placeholder:text-[11px] placeholder:font-bold placeholder:font-['Cairo',sans-serif] focus:outline-none shadow-md border border-[var(--mn-border)] focus:border-[var(--mn-accent)] transition-all text-center font-['Cairo',sans-serif] mn-panel "
+                style={{ fontSize: '11px', fontWeight: 'bold', fontFamily: 'Cairo, sans-serif' }}
               />
-              <Search className="w-4 h-4 text-[var(--mn-accent-text)] absolute right-4 top-1/2 -translate-y-1/2" />
+              <Search className="w-3.5 h-3.5 text-[var(--mn-accent-text)] absolute right-3.5 top-1/2 -translate-y-1/2" />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 p-1 text-[var(--mn-on-dark-muted)] hover:text-white cursor-pointer"
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 p-1 text-[var(--mn-text-muted)] hover:text-[var(--mn-text)] cursor-pointer"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -328,6 +330,7 @@ export const MajorsSearchPage: React.FC<MajorsSearchPageProps> = ({
                 isFavorited={favoriteIds.includes(major.id)}
                 onToggleFavorite={onToggleFavorite}
                 onSelectMajor={onSelectMajor}
+                designStyle={designStyle}
               />
             ))
           )}

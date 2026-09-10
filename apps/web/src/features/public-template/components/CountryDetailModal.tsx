@@ -57,7 +57,7 @@ const EntityCard: React.FC<{
     type="button"
     onClick={onClick}
     disabled={!onClick}
-    className="min-w-[154px] max-w-[176px] flex-1 rounded-2xl border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface)] mn-dark:bg-[var(--mn-surface-elevated)] p-3 text-right shadow-2xs transition-all enabled:hover:border-[var(--mn-border-brand)] enabled:active:scale-[0.99] disabled:cursor-default mn-panel mn-dark:mn-panel "
+    className="min-w-[154px] max-w-[176px] flex-1 rounded-2xl border border-[var(--mn-border)] dark:border-[var(--mn-border)] bg-[var(--mn-surface)] dark:bg-[var(--mn-surface-elevated)] p-3 text-right shadow-2xs transition-all enabled:hover:border-[var(--mn-border-brand)] enabled:active:scale-[0.99] disabled:cursor-default mn-panel dark:mn-panel "
   >
     <div className="flex items-start gap-2">
       <div className="w-7 h-7 rounded-lg bg-[var(--mn-page)] border border-[var(--mn-border-brand)]/20 flex items-center justify-center text-[var(--mn-accent-text)] shrink-0 mn-panel ">
@@ -159,7 +159,7 @@ export const CountryDetailModal: React.FC<CountryDetailModalProps> = ({
         {/* 1. Canonical reference facts — dense 2-column tiles */}
         <section className="grid grid-cols-2 gap-2">
           {facts.map((fact) => (
-            <div key={fact.label} className="rounded-xl border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface)] mn-dark:bg-[var(--mn-surface-elevated)] px-2.5 py-2.5 shadow-2xs min-h-[58px] mn-panel mn-dark:mn-panel ">
+            <div key={fact.label} className="rounded-xl border border-[var(--mn-border)] dark:border-[var(--mn-border)] bg-[var(--mn-surface)] dark:bg-[var(--mn-surface-elevated)] px-2.5 py-2.5 shadow-2xs min-h-[58px] mn-panel dark:mn-panel ">
               <div className="flex items-center gap-1.5 text-[var(--mn-accent-text)] mb-1">
                 {fact.icon}
                 <span className="text-[8.5px] font-bold text-[var(--mn-text-muted)]">{fact.label}</span>
@@ -170,11 +170,11 @@ export const CountryDetailModal: React.FC<CountryDetailModalProps> = ({
         </section>
 
         {/* 2. Overview */}
-        <section className="rounded-2xl border border-[var(--mn-border-brand)]/25 bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel mn-dark:mn-panel ">
+        <section className="rounded-2xl border border-[var(--mn-border-brand)]/25 bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel dark:mn-panel ">
           <SectionTitle icon={<Globe2 className="w-4 h-4" />} id="country-about" title={`الدراسة في ${country.name}`} subtitle="نظرة سريعة تساعد الطالب على تقييم الوجهة" />
-          <p className="text-[10.5px] sm:text-[11px] leading-[1.9] font-semibold text-[var(--mn-text)] mn-dark:text-[var(--mn-text)]">{country.description}</p>
+          <p className="text-[10.5px] sm:text-[11px] leading-[1.9] font-semibold text-[var(--mn-text)] dark:text-[var(--mn-text)]">{country.description}</p>
           {country.studySystemSummary && (
-            <p className="mt-2 pt-2 border-t border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] text-[10px] leading-[1.8] font-semibold text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)]">
+            <p className="mt-2 pt-2 border-t border-[var(--mn-border)] dark:border-[var(--mn-border)] text-[10px] leading-[1.8] font-semibold text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)]">
               {country.studySystemSummary}
             </p>
           )}
@@ -182,7 +182,7 @@ export const CountryDetailModal: React.FC<CountryDetailModalProps> = ({
 
         {/* 3. Universities — horizontal cards */}
         {country.featuredUniversities && country.featuredUniversities.length > 0 && (
-          <section className="rounded-2xl border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel mn-dark:mn-panel ">
+          <section className="rounded-2xl border border-[var(--mn-border)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel dark:mn-panel ">
             <SectionTitle icon={<Building2 className="w-4 h-4" />} id="country-universities" title="جامعات بارزة" subtitle="روابط داخلية إلى قالب الجامعة" />
             <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
               {country.featuredUniversities.map((item) => (
@@ -194,7 +194,7 @@ export const CountryDetailModal: React.FC<CountryDetailModalProps> = ({
 
         {/* 4. Scholarships */}
         {country.featuredScholarships && country.featuredScholarships.length > 0 && (
-          <section className="rounded-2xl border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel mn-dark:mn-panel ">
+          <section className="rounded-2xl border border-[var(--mn-border)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel dark:mn-panel ">
             <div className="flex items-start justify-between gap-2 mb-2">
               <SectionTitle icon={<GraduationCap className="w-4 h-4" />} id="country-scholarships" title="منح دراسية" subtitle="منح مرتبطة بهذه الدولة" />
               {onBrowseScholarships && (
@@ -213,7 +213,7 @@ export const CountryDetailModal: React.FC<CountryDetailModalProps> = ({
 
         {/* 5. Majors */}
         {country.featuredMajors && country.featuredMajors.length > 0 && (
-          <section className="rounded-2xl border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel mn-dark:mn-panel ">
+          <section className="rounded-2xl border border-[var(--mn-border)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel dark:mn-panel ">
             <SectionTitle icon={<BookOpen className="w-4 h-4" />} id="country-study" title="تخصصات بارزة للدراسة" subtitle="علاقة مشتقة من برامج الجامعات في الدولة" />
             <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
               {country.featuredMajors.map((item) => (
@@ -224,14 +224,14 @@ export const CountryDetailModal: React.FC<CountryDetailModalProps> = ({
         )}
 
         {/* 6. Admission + tests in compact horizontal blocks */}
-        <section className="rounded-2xl border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel mn-dark:mn-panel ">
+        <section className="rounded-2xl border border-[var(--mn-border)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel dark:mn-panel ">
           <SectionTitle icon={<FileCheck2 className="w-4 h-4" />} id="country-exams" title="القبول والاختبارات" subtitle="المتطلبات النهائية تختلف حسب الجامعة والبرنامج" />
           {country.admissionHighlights && country.admissionHighlights.length > 0 && (
             <div className="grid grid-cols-2 gap-2 mb-2.5">
               {country.admissionHighlights.map((item, index) => (
-                <div key={index} className="rounded-xl border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface)] px-2.5 py-2 flex items-start gap-1.5 min-h-[66px] mn-panel ">
+                <div key={index} className="rounded-xl border border-[var(--mn-border)] dark:border-[var(--mn-border)] bg-[var(--mn-surface)] px-2.5 py-2 flex items-start gap-1.5 min-h-[66px] mn-panel ">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[var(--mn-accent-text)] mt-0.5 shrink-0" />
-                  <p className="text-[9px] sm:text-[9.5px] font-semibold leading-[1.7] text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)]">{item}</p>
+                  <p className="text-[9px] sm:text-[9.5px] font-semibold leading-[1.7] text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)]">{item}</p>
                 </div>
               ))}
             </div>
@@ -246,24 +246,24 @@ export const CountryDetailModal: React.FC<CountryDetailModalProps> = ({
         </section>
 
         {/* 7. Visa */}
-        <section className="rounded-2xl border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel mn-dark:mn-panel ">
+        <section className="rounded-2xl border border-[var(--mn-border)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel dark:mn-panel ">
           <SectionTitle icon={<ShieldCheck className="w-4 h-4" />} id="country-visa" title="التأشيرة وشروط الدراسة" subtitle={country.visaEase} />
           <div className="grid grid-cols-2 gap-2">
             {(country.visaHighlights?.length ? country.visaHighlights : [country.visaEase]).map((item, index) => (
-              <div key={index} className="rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] px-2.5 py-2 min-h-[58px] flex items-start gap-1.5 mn-panel ">
+              <div key={index} className="rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border)] dark:border-[var(--mn-border)] px-2.5 py-2 min-h-[58px] flex items-start gap-1.5 mn-panel ">
                 <ShieldCheck className="w-3.5 h-3.5 text-[var(--mn-accent-text)] mt-0.5 shrink-0" />
-                <p className="text-[9px] sm:text-[9.5px] font-semibold leading-[1.7] text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)]">{item}</p>
+                <p className="text-[9px] sm:text-[9.5px] font-semibold leading-[1.7] text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)]">{item}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* 8. Cost */}
-        <section className="rounded-2xl border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel mn-dark:mn-panel ">
+        <section className="rounded-2xl border border-[var(--mn-border)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel dark:mn-panel ">
           <SectionTitle icon={<WalletCards className="w-4 h-4" />} id="country-costs" title="تكاليف المعيشة والدراسة" />
           <div className="grid grid-cols-2 gap-2">
             {costItems.map((item) => (
-              <div key={item.label} className="rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] px-2.5 py-2.5 min-h-[58px] mn-panel ">
+              <div key={item.label} className="rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border)] dark:border-[var(--mn-border)] px-2.5 py-2.5 min-h-[58px] mn-panel ">
                 <p className="text-[8.5px] font-bold text-[var(--mn-text-muted)]">{item.label}</p>
                 <p className="text-[10px] font-bold text-[var(--mn-heading)] mt-1 leading-4">{item.value}</p>
               </div>
@@ -272,11 +272,11 @@ export const CountryDetailModal: React.FC<CountryDetailModalProps> = ({
         </section>
 
         {/* 9. Student cities and life */}
-        <section className="rounded-2xl border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel mn-dark:mn-panel ">
+        <section className="rounded-2xl border border-[var(--mn-border)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel dark:mn-panel ">
           <SectionTitle icon={<Users className="w-4 h-4" />} id="country-cities" title="المدن والحياة الطلابية" />
           <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none mb-2.5">
             {country.popularCities.map((city) => (
-              <div key={city} className="min-w-[104px] rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] px-2.5 py-2 text-center mn-panel ">
+              <div key={city} className="min-w-[104px] rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border)] dark:border-[var(--mn-border)] px-2.5 py-2 text-center mn-panel ">
                 <MapPin className="w-3.5 h-3.5 text-[var(--mn-accent-text)] mx-auto mb-1" />
                 <p className="text-[9.5px] font-bold text-[var(--mn-heading)]">{city}</p>
               </div>
@@ -285,9 +285,9 @@ export const CountryDetailModal: React.FC<CountryDetailModalProps> = ({
           {country.studentLifeHighlights && (
             <div className="grid grid-cols-2 gap-2">
               {country.studentLifeHighlights.map((item, index) => (
-                <div key={index} className="rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] p-2.5 flex gap-1.5 items-start mn-panel ">
+                <div key={index} className="rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border)] dark:border-[var(--mn-border)] p-2.5 flex gap-1.5 items-start mn-panel ">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[var(--mn-accent-text)] shrink-0 mt-0.5" />
-                  <p className="text-[9px] leading-[1.7] font-semibold text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)]">{item}</p>
+                  <p className="text-[9px] leading-[1.7] font-semibold text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)]">{item}</p>
                 </div>
               ))}
             </div>
@@ -298,7 +298,7 @@ export const CountryDetailModal: React.FC<CountryDetailModalProps> = ({
 
         {/* 10. Official links; source/audit and SEO stay admin-only */}
         {country.officialLinks && country.officialLinks.length > 0 && (
-          <section className="rounded-2xl border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] mn-dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel mn-dark:mn-panel ">
+          <section className="rounded-2xl border border-[var(--mn-border)] dark:border-[var(--mn-border)] bg-[var(--mn-surface-muted)] dark:bg-[var(--mn-surface)] px-3 py-3 shadow-2xs mn-panel dark:mn-panel ">
             <SectionTitle icon={<ExternalLink className="w-4 h-4" />} id="country-official-links" title="روابط رسمية" subtitle="مصادر حكومية أو رسمية مرتبطة بالدراسة" />
             <div className="grid grid-cols-2 gap-2">
               {country.officialLinks.map((link) => (

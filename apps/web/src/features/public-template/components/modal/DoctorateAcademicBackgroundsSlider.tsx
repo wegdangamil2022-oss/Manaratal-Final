@@ -80,7 +80,7 @@ export const DoctorateAcademicBackgroundsSlider: React.FC<
       dir="rtl"
     >
       {/* Top Emerald Accent Line */}
-      <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
 
       {/* Section Header */}
       <div className="flex flex-col items-center justify-center mb-3.5 pt-0.5">

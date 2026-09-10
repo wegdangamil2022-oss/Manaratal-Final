@@ -160,16 +160,16 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
       {/* ========================================================================= */}
       {/* HERO EMERALD BANNER - COMPACT LUXURY ARABIC DESIGN WITH GOLD ACCENTS       */}
       {/* ========================================================================= */}
-      <div className="relative mn-search-hero text-white px-3 sm:px-4 pt-4 pb-12 sm:pb-14 overflow-hidden shadow-xs mn-inverse ">
+      <div className="relative mn-search-hero text-white px-3 sm:px-4 pt-4 pb-3 overflow-hidden shadow-xs mn-inverse ">
         {/* Top-Right Circular Back Button */}
         {onBack && (
           <button
             onClick={onBack}
-            className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 bg-black/25 hover:bg-black/40 border border-white/15 backdrop-blur-md rounded-full flex items-center justify-center transition-all z-30 cursor-pointer text-white shadow-md active:scale-95"
+            className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 w-8 h-8 bg-black/25 hover:bg-black/40 border border-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all z-30 cursor-pointer text-white shadow-xs active:scale-95"
             title="العودة"
             aria-label="العودة"
           >
-            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 rotate-180 text-white" />
+            <ChevronLeft className="w-4 h-4 rotate-180 text-white" />
           </button>
         )}
 
@@ -188,7 +188,7 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
 
           {/* Mosque / Architectural silhouette on right in dark shade */}
           <svg
-            className="absolute -right-4 bottom-0 h-40 w-40 text-[var(--mn-heading)] pointer-events-none"
+            className="absolute -right-4 bottom-0 h-40 w-40 text-white/10 pointer-events-none"
             viewBox="0 0 200 200"
             fill="currentColor"
           >
@@ -252,7 +252,8 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="ابحث باسم الجامعة، الدولة، أو التخصص..."
-                className="w-full py-2.5 pl-4 pr-10 bg-[var(--mn-surface)] text-[var(--mn-heading)] rounded-full text-xs font-semibold placeholder:text-[var(--mn-text-muted)] focus:outline-none shadow-md border border-[var(--mn-border)] focus:border-[var(--mn-accent)] transition-all text-center font-['Cairo',sans-serif] mn-panel "
+                className="w-full py-2.5 pl-4 pr-10 bg-[var(--mn-surface)] text-[var(--mn-heading)] rounded-full text-[12px] font-bold placeholder:text-[var(--mn-text-muted)] placeholder:text-[12px] placeholder:font-bold placeholder:font-['Cairo',sans-serif] focus:outline-none shadow-md border border-[var(--mn-border)] focus:border-[var(--mn-accent)] transition-all text-center font-['Cairo',sans-serif] mn-panel "
+                style={{ fontSize: '12px', fontWeight: 'bold', fontFamily: 'Cairo, sans-serif' }}
               />
               <Search className="w-4 h-4 text-[var(--mn-accent-text)] absolute right-3.5 top-1/2 -translate-y-1/2" />
               {searchQuery && (
@@ -278,20 +279,18 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
             </button>
           </div>
         )}
-      </div>
-
-      {/* ========================================================================= */}
-      {/* 3 SEPARATE FLOATING FILTER TILES (القارة • الدولة • المدينة) */}
-      {/* ========================================================================= */}
-      <div className="max-w-lg mx-auto mn-inline-gutter -mt-7 sm:-mt-8 relative z-20">
+        {/* ========================================================================= */}
+        {/* 3 SEPARATE FLOATING FILTER TILES (القارة • الدولة • المدينة) */}
+        {/* ========================================================================= */}
+        <div className="max-w-lg mx-auto mn-inline-gutter mt-2.5 relative z-20 pb-0">
         <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
           {/* Tile 1: القارة */}
           <div className="relative bg-[var(--mn-surface)] hover:bg-[var(--mn-gold-surface)]/40 border-1.5 border-[var(--mn-accent)]/70 hover:border-[var(--mn-accent)] rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-center text-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all h-[58px] sm:h-[64px] cursor-pointer mn-panel ">
             <div className="flex items-center justify-center gap-1 text-[var(--mn-heading)] font-semibold text-[11px] sm:text-xs font-['Cairo',sans-serif] w-full">
+              <Globe2 className="w-3.5 h-3.5 text-[var(--mn-accent-text)] shrink-0" />
               <span className="truncate">
                 {selectedContinent === 'الكل' ? 'القارة' : selectedContinent}
               </span>
-              <Globe2 className="w-3.5 h-3.5 text-[var(--mn-accent-text)] shrink-0" />
             </div>
             <ChevronDown className="w-3.5 h-3.5 text-[var(--mn-text-muted)] mt-0.5" />
             <select
@@ -311,10 +310,10 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
           {/* Tile 2: الدولة */}
           <div className="relative bg-[var(--mn-surface)] hover:bg-[var(--mn-gold-surface)]/40 border-1.5 border-[var(--mn-accent)]/70 hover:border-[var(--mn-accent)] rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-center text-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all h-[58px] sm:h-[64px] cursor-pointer mn-panel ">
             <div className="flex items-center justify-center gap-1 text-[var(--mn-heading)] font-semibold text-[11px] sm:text-xs font-['Cairo',sans-serif] w-full">
+              <MapPin className="w-3.5 h-3.5 text-[var(--mn-accent-text)] shrink-0" />
               <span className="truncate">
                 {selectedCountry === 'الكل' ? 'الدولة' : selectedCountry}
               </span>
-              <MapPin className="w-3.5 h-3.5 text-[var(--mn-accent-text)] shrink-0" />
             </div>
             <ChevronDown className="w-3.5 h-3.5 text-[var(--mn-text-muted)] mt-0.5" />
             <select
@@ -334,8 +333,8 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
           {/* Tile 3: المدينة */}
           <div className="relative bg-[var(--mn-surface)] hover:bg-[var(--mn-gold-surface)]/40 border-1.5 border-[var(--mn-accent)]/70 hover:border-[var(--mn-accent)] rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-center text-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all h-[58px] sm:h-[64px] cursor-pointer mn-panel ">
             <div className="flex items-center justify-center gap-1 text-[var(--mn-heading)] font-semibold text-[11px] sm:text-xs font-['Cairo',sans-serif] w-full">
-              <span className="truncate">{selectedCity === 'الكل' ? 'المدينة' : selectedCity}</span>
               <Building2 className="w-3.5 h-3.5 text-[var(--mn-accent-text)] shrink-0" />
+              <span className="truncate">{selectedCity === 'الكل' ? 'المدينة' : selectedCity}</span>
             </div>
             <ChevronDown className="w-3.5 h-3.5 text-[var(--mn-text-muted)] mt-0.5" />
             <select
@@ -352,6 +351,7 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
             </select>
           </div>
         </div>
+      </div>
       </div>
 
       {/* ========================================================================= */}
@@ -404,39 +404,39 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
                     }
                   }}
                   onClick={() => onSelectUniversity?.(univ)}
-                  className="bg-[var(--mn-surface)] rounded-xl sm:rounded-2xl border-2 border-[var(--mn-border-brand)]/40 hover:border-[var(--mn-border-brand)] shadow-sm hover:shadow-md transition-all p-2.5 sm:p-3 relative overflow-hidden group cursor-pointer flex flex-col gap-2 sm:gap-2.5 mn-panel "
+                  className="bg-[var(--mn-surface)] rounded-xl sm:rounded-2xl border-2 border-[var(--mn-accent)]/35 hover:border-[var(--mn-accent)] active:border-[var(--mn-accent)] active:bg-[var(--mn-accent)]/10 shadow-sm hover:shadow-[0_0_12px_rgba(214,164,59,0.25)] active:shadow-[0_0_15px_rgba(214,164,59,0.35)] transition-all duration-150 active:scale-[0.985] p-2.5 sm:p-3 relative overflow-hidden group cursor-pointer flex flex-col gap-2 sm:gap-2.5 select-none mn-panel "
                 >
                   <div className="absolute top-0 right-0 w-1.5 h-full bg-gradient-to-b from-[var(--mn-accent)] to-[var(--mn-gold-surface)] opacity-0 group-hover:opacity-100 transition-opacity mn-gold "></div>
 
                   {/* Top Row: Logo & Names + Actions */}
-                  <div className="flex items-start justify-between gap-2.5">
-                    <div className="flex items-center gap-2 sm:gap-2.5">
-                      {/* University Logo / Image */}
-                      <div className="w-10 h-10 rounded-full p-0.5 bg-gradient-to-tr from-[var(--mn-accent)] via-[var(--mn-accent)] to-[var(--mn-hero-secondary)] shadow-xs shrink-0 flex items-center justify-center mn-gold ">
-                        <div className="w-full h-full rounded-full overflow-hidden bg-[var(--mn-page)] border border-white flex items-center justify-center text-lg sm:text-xl shadow-inner mn-panel ">
-                          {univ.countryFlag}
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 sm:gap-2.5 text-right min-w-0 flex-1">
+                      {/* Circular Flag Badge like the Scholarship Card */}
+                      <div className="w-9.5 h-9.5 sm:w-10.5 sm:h-10.5 rounded-full p-0.5 bg-gradient-to-tr from-[var(--mn-primary)] via-[var(--mn-hero-secondary)] to-[var(--mn-accent-soft)] shadow-xs shrink-0 flex items-center justify-center mn-inverse ">
+                        <div className="w-full h-full rounded-full overflow-hidden bg-[var(--mn-surface)] border border-white flex items-center justify-center text-lg sm:text-xl shadow-inner mn-panel ">
+                          <span style={{ fontSize: '18px' }}>{univ.countryFlag || '🌐'}</span>
                         </div>
                       </div>
 
-                      {/* Names */}
-                      <div className="flex flex-col items-start text-right">
-                        <h3 className="text-[13px] sm:text-[14px] font-bold text-[var(--mn-heading)] font-['Cairo',sans-serif] leading-tight group-hover:text-[var(--mn-heading)] transition-colors line-clamp-1">
-                          {univ.name}{' '}
-                          <span className="text-[var(--mn-text-muted)] font-bold text-[10px] sm:text-[11px] mr-1">
-                            ({univ.nameEn.replace('University of ', '').replace(' University', '')})
-                          </span>
+                      {/* Names with beautiful responsive typography */}
+                      <div className="flex flex-col items-start text-right min-w-0 flex-1">
+                        <h3 className="text-[13px] sm:text-[14px] font-bold text-[var(--mn-heading)] font-['Cairo',sans-serif] leading-tight truncate w-full">
+                          {univ.name}
                         </h3>
+                        <span className="text-[10px] sm:text-[11px] font-medium text-[var(--mn-text-muted)] font-['Cairo',sans-serif] truncate w-full">
+                          {univ.nameEn}
+                        </span>
                       </div>
                     </div>
 
-                    {/* Save to Favorites Button */}
+                    {/* Save to Favorites Button with precise heart coloring */}
                     <button
                       onClick={(e) => toggleSave(e, univ.id)}
-                      className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full bg-[var(--mn-page)] hover:bg-[var(--mn-surface-muted)] flex items-center justify-center transition-all shrink-0 border border-[var(--mn-border)] shadow-xs z-10 active:scale-90 mn-panel hover:mn-panel "
+                      className="w-8 h-8 rounded-full bg-[var(--mn-page)] hover:bg-[var(--mn-surface-muted)] border border-[var(--mn-border)] flex items-center justify-center transition-all active:scale-90 cursor-pointer shadow-2xs shrink-0 mn-panel hover:mn-panel "
                       title="حفظ في المفضلة"
                     >
                       <Heart
-                        className={`w-4 h-4 sm:w-4.5 sm:h-4.5 transition-colors ${isSaved ? 'fill-red-500 text-[var(--mn-danger-text)]' : 'text-[var(--mn-text-muted)] hover:text-[var(--mn-danger-text)]'}`}
+                        className={`w-4 h-4 ${isSaved ? 'fill-[var(--mn-accent)] text-[var(--mn-accent-text)]' : 'text-[var(--mn-text-muted)]'}`}
                       />
                     </button>
                   </div>
@@ -466,16 +466,17 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
                       </span>
                     </div>
 
-                    {/* 4. View Details Button */}
+                    {/* 4. View Details Button matching Scholarship details CTA */}
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         onSelectUniversity?.(univ);
                       }}
-                      className="bg-[var(--mn-primary)] hover:bg-[var(--mn-primary)] text-white rounded-lg px-2 py-1 flex items-center justify-center gap-1 text-[10px] sm:text-[10.5px] font-bold transition-all active:scale-95 cursor-pointer font-['Cairo',sans-serif] shadow-2xs mn-inverse hover:mn-inverse "
+                      className="bg-[var(--mn-primary)] hover:bg-[var(--mn-primary)] text-white rounded-lg px-2.5 py-1.5 flex items-center justify-center gap-1 transition-all active:scale-95 cursor-pointer shadow-2xs mn-inverse hover:mn-inverse "
+                      style={{ fontSize: '10.5px', fontWeight: 'bold', fontFamily: 'Cairo, sans-serif' }}
                     >
-                      <span>عرض التفاصيل</span>
-                      <ChevronLeft className="w-3 h-3 rotate-180" />
+                      <span className="text-[10px] sm:text-[11px] font-bold text-center leading-tight text-[var(--mn-accent-soft)]">عرض التفاصيل</span>
+                      <ChevronLeft className="w-3.5 h-3.5 rotate-180 text-[var(--mn-accent-soft)]" />
                     </button>
                   </div>
                 </div>

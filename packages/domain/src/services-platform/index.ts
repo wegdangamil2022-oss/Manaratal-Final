@@ -239,4 +239,4 @@ export interface ServiceFinanceInvoiceLinkedEvent {
 }
 
 
-export * from './operations';
+// Operational server contracts are intentionally outside this design sandbox.

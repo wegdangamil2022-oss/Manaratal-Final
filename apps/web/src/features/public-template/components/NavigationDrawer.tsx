@@ -55,7 +55,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
       id: 'home',
       label: 'الرئيسية',
       icon: (
-        <GraduationCap className="w-4 h-4 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]" />
+        <GraduationCap className="w-4 h-4 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)]" />
       ),
     },
     {
@@ -82,21 +82,21 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
       id: 'universities',
       label: 'دليل الجامعات العالمية',
       icon: (
-        <Building2 className="w-4 h-4 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]" />
+        <Building2 className="w-4 h-4 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)]" />
       ),
     },
     {
       id: 'courses',
       label: 'الدورات التدريبية',
       icon: (
-        <BookOpen className="w-4 h-4 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]" />
+        <BookOpen className="w-4 h-4 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)]" />
       ),
     },
     {
       id: 'majors',
       label: 'دليل التخصصات',
       icon: (
-        <Layers className="w-4 h-4 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]" />
+        <Layers className="w-4 h-4 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)]" />
       ),
     },
     {id: 'scholarships', label: 'المنح الدراسية', icon: <GraduationCap className="w-4 h-4" />},
@@ -108,20 +108,20 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
 
   return (
     <div role="presentation" tabIndex={-1} onKeyDown={function (event) { if (event.key === 'Escape') onClose(); }} onClick={event => {if (event.target === event.currentTarget) onClose();}} className="fixed inset-0 bg-black/70 backdrop-blur-xs z-[80] flex justify-end">
-      <div id="mn-navigation-dialog" role="dialog" aria-modal="true" aria-label="القائمة الرئيسية" tabIndex={-1} className="bg-[var(--mn-surface)] mn-dark:bg-[var(--mn-surface)] max-w-xs w-full h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-200 text-right border-l border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] mn-panel mn-dark:mn-panel ">
+      <div id="mn-navigation-dialog" role="dialog" aria-modal="true" aria-label="القائمة الرئيسية" tabIndex={-1} className="bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] max-w-xs w-full h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-200 text-right border-l border-[var(--mn-border)] dark:border-[var(--mn-border)] mn-panel dark:mn-panel ">
         {/* Drawer Header */}
-        <div className="bg-[var(--mn-primary)] mn-dark:bg-[var(--mn-surface)] p-5 text-white border-b border-[var(--mn-accent)]/30 relative mn-inverse mn-dark:mn-panel ">
+        <div className="bg-[var(--mn-primary)] dark:bg-[var(--mn-surface)] p-5 text-white border-b border-[var(--mn-accent)]/30 relative mn-inverse dark:mn-panel ">
           <button
             aria-label="إغلاق القائمة"
             onClick={onClose}
-            className="absolute top-3 left-3 h-10 w-10 rounded-xl bg-[var(--mn-primary)] mn-dark:bg-[var(--mn-surface-elevated)] hover:bg-black/30 text-[var(--mn-text-muted)] hover:text-white flex items-center justify-center transition-colors cursor-pointer mn-inverse mn-dark:mn-panel "
+            className="absolute top-3 left-3 h-10 w-10 rounded-xl bg-[var(--mn-primary)] dark:bg-[var(--mn-surface-elevated)] hover:bg-black/30 text-[var(--mn-text-muted)] hover:text-white flex items-center justify-center transition-colors cursor-pointer mn-inverse dark:mn-panel "
           >
             <X className="w-4 h-4" />
           </button>
 
           {/* User Profile Avatar & Name */}
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-[var(--mn-primary)] mn-dark:bg-[var(--mn-surface-elevated)] border-2 border-[var(--mn-accent)] flex items-center justify-center text-[var(--mn-accent-text)] shadow-md mn-inverse mn-dark:mn-panel ">
+            <div className="w-12 h-12 rounded-full bg-[var(--mn-primary)] dark:bg-[var(--mn-surface-elevated)] border-2 border-[var(--mn-accent)] flex items-center justify-center text-[var(--mn-accent-text)] shadow-md mn-inverse dark:mn-panel ">
               <User className="w-6 h-6" />
             </div>
             {userProfile ? (
@@ -130,7 +130,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
                 <p className="text-[11px] text-[var(--mn-accent-text)] font-bold">
                   {userProfile.email}
                 </p>
-                <div className="mt-1 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--mn-primary)] mn-dark:bg-[var(--mn-surface-elevated)] text-[10px] text-[var(--mn-on-dark-muted)] border border-[var(--mn-accent)]/40 mn-inverse mn-dark:mn-panel ">
+                <div className="mt-1 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--mn-primary)] dark:bg-[var(--mn-surface-elevated)] text-[10px] text-[var(--mn-on-dark-muted)] border border-[var(--mn-accent)]/40 mn-inverse dark:mn-panel ">
                   <span>المعدل: {userProfile.gpa}</span>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
                 onNavigate(item.id);
                 onClose();
               }}
-              className="w-full text-right p-3 rounded-2xl text-xs font-bold text-[var(--mn-text)] mn-dark:text-[var(--mn-text)] hover:bg-[var(--mn-primary)]/10 mn-dark:hover:bg-[var(--mn-surface-muted)] hover:text-[var(--mn-heading)] mn-dark:hover:text-[var(--mn-accent-text)] flex items-center justify-between transition-colors active:scale-98 cursor-pointer mn-dark:hover:mn-panel "
+              className="w-full text-right p-3 rounded-2xl text-xs font-bold text-[var(--mn-text)] dark:text-[var(--mn-text)] hover:bg-[var(--mn-primary)]/10 dark:hover:bg-[var(--mn-surface-muted)] hover:text-[var(--mn-heading)] dark:hover:text-[var(--mn-accent-text)] flex items-center justify-between transition-colors active:scale-98 cursor-pointer dark:hover:mn-panel "
             >
               <div className="flex items-center gap-2.5">
                 {item.icon}
@@ -170,12 +170,12 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
             </button>
           ))}
 
-          <div className="pt-2 border-t border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] my-2" />
+          <div className="pt-2 border-t border-[var(--mn-border)] dark:border-[var(--mn-border)] my-2" />
 
           {/* Dark Mode Toggle in Drawer */}
           {onToggleDarkMode && (
-            <div className="p-3 rounded-2xl bg-[var(--mn-page)] mn-dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] text-xs flex items-center justify-between mn-panel mn-dark:mn-panel ">
-              <div className="flex items-center gap-2 text-[var(--mn-text)] mn-dark:text-[var(--mn-text)] font-bold">
+            <div className="p-3 rounded-2xl bg-[var(--mn-page)] dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border)] dark:border-[var(--mn-border)] text-xs flex items-center justify-between mn-panel dark:mn-panel ">
+              <div className="flex items-center gap-2 text-[var(--mn-text)] dark:text-[var(--mn-text)] font-bold">
                 {isDarkMode ? (
                   <Sun className="w-4 h-4 text-[var(--mn-accent-text)]" />
                 ) : (
@@ -186,7 +186,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
               <button
                 onClick={onToggleDarkMode}
                 aria-label={isDarkMode ? 'التبديل إلى الوضع النهاري' : 'التبديل إلى الوضع الليلي'}
-                className="min-h-10 px-3 py-2 bg-[var(--mn-surface)] mn-dark:bg-[var(--mn-surface)] border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] rounded-xl text-xs font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] cursor-pointer flex items-center gap-1 mn-panel mn-dark:mn-panel "
+                className="min-h-10 px-3 py-2 bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] border border-[var(--mn-border)] dark:border-[var(--mn-border)] rounded-xl text-xs font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] cursor-pointer flex items-center gap-1 mn-panel dark:mn-panel "
               >
                 {isDarkMode ? 'ليلي' : 'نهاري'}
               </button>
@@ -194,15 +194,15 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
           )}
 
           {/* Language Toggle in Drawer */}
-          <div className="p-3 rounded-2xl bg-[var(--mn-page)] mn-dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] text-xs flex items-center justify-between mt-2 mn-panel mn-dark:mn-panel ">
-            <div className="flex items-center gap-2 text-[var(--mn-text)] mn-dark:text-[var(--mn-text)] font-bold">
-              <Globe className="w-4 h-4 text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)]" />
+          <div className="p-3 rounded-2xl bg-[var(--mn-page)] dark:bg-[var(--mn-surface-elevated)] border border-[var(--mn-border)] dark:border-[var(--mn-border)] text-xs flex items-center justify-between mt-2 mn-panel dark:mn-panel ">
+            <div className="flex items-center gap-2 text-[var(--mn-text)] dark:text-[var(--mn-text)] font-bold">
+              <Globe className="w-4 h-4 text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)]" />
               <span>اللغة / Language</span>
             </div>
             <button
               onClick={onToggleLanguage}
               aria-label="تبديل لغة الواجهة"
-              className="min-h-10 px-3 py-2 bg-[var(--mn-surface)] mn-dark:bg-[var(--mn-surface)] border border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] rounded-xl text-xs font-bold text-[var(--mn-heading)] mn-dark:text-[var(--mn-text)] cursor-pointer mn-panel mn-dark:mn-panel "
+              className="min-h-10 px-3 py-2 bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] border border-[var(--mn-border)] dark:border-[var(--mn-border)] rounded-xl text-xs font-bold text-[var(--mn-heading)] dark:text-[var(--mn-text)] cursor-pointer mn-panel dark:mn-panel "
             >
               {language === 'ar' ? 'العربية' : 'English'}
             </button>
@@ -210,7 +210,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-3 bg-[var(--mn-page)] mn-dark:bg-[var(--mn-surface)] border-t border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] text-center text-[10px] text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)] mn-panel mn-dark:mn-panel ">
+        <div className="p-3 bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border-t border-[var(--mn-border)] dark:border-[var(--mn-border)] text-center text-[10px] text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)] mn-panel dark:mn-panel ">
           منصة منارتك للفرص التعليمية • تصميم الهاتف المحمول
         </div>
       </div>

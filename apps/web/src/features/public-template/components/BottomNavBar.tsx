@@ -26,8 +26,8 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
         <Home
           className={`w-5 h-5 transition-transform duration-200 ${
             isActive
-              ? 'stroke-[2.5] text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] scale-110'
-              : 'stroke-[1.8] text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)]'
+              ? 'stroke-[2.5] text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] scale-110'
+              : 'stroke-[1.8] text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)]'
           }`}
         />
       ),
@@ -39,8 +39,8 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
         <Search
           className={`w-5 h-5 transition-transform duration-200 ${
             isActive
-              ? 'stroke-[2.5] text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] scale-110'
-              : 'stroke-[1.8] text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)]'
+              ? 'stroke-[2.5] text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] scale-110'
+              : 'stroke-[1.8] text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)]'
           }`}
         />
       ),
@@ -54,7 +54,7 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
             className={`w-5 h-5 transition-transform duration-200 ${
               isActive
                 ? 'stroke-[2.5] fill-[var(--mn-accent)] text-[var(--mn-accent-text)] scale-110'
-                : 'stroke-[1.8] text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)]'
+                : 'stroke-[1.8] text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)]'
             }`}
           />
           {favoritesCount > 0 && (
@@ -93,8 +93,8 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
           <Bell
             className={`w-5 h-5 transition-transform duration-200 ${
               isActive
-                ? 'stroke-[2.5] text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] scale-110'
-                : 'stroke-[1.8] text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)]'
+                ? 'stroke-[2.5] text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] scale-110'
+                : 'stroke-[1.8] text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)]'
             }`}
           />
           {unreadNotificationsCount > 0 && (
@@ -110,7 +110,7 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
   return (
     <nav
       id="manaratak-bottom-nav"
-      className="w-full select-none fixed bottom-0 left-0 right-0 z-30 bg-[var(--mn-surface)] mn-dark:bg-[var(--mn-surface)] border-t-2 border-[var(--mn-border)] mn-dark:border-[var(--mn-border)] shadow-[0_-6px_25px_rgba(0,0,0,0.15)] mn-dark:shadow-[0_-6px_25px_rgba(0,0,0,0.5)] pt-1.5 pb-[max(8px,env(safe-area-inset-bottom,8px))] transition-colors mn-panel mn-dark:mn-panel "
+      className="w-full select-none fixed bottom-0 left-0 right-0 z-30 bg-[var(--mn-surface)] dark:bg-[var(--mn-surface)] border-t-2 border-[var(--mn-border)] dark:border-[var(--mn-border)] shadow-[0_-6px_25px_rgba(0,0,0,0.15)] dark:shadow-[0_-6px_25px_rgba(0,0,0,0.5)] pt-1.5 pb-[max(8px,env(safe-area-inset-bottom,8px))] transition-colors mn-panel dark:mn-panel "
     >
       <div className="max-w-md mx-auto flex items-stretch justify-around w-full px-[var(--mn-container-mobile)]">
         {tabs.map((tab) => {
@@ -123,8 +123,8 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
               onClick={() => onTabChange(tab.id)}
               className={`flex min-w-0 flex-1 flex-col items-center justify-center min-h-[52px] py-1.5 px-1 rounded-xl transition-all duration-150 active:scale-90 relative cursor-pointer ${
                 isActive
-                  ? 'text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] font-bold'
-                  : 'text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)] hover:text-[var(--mn-heading)] mn-dark:hover:text-[var(--mn-text)]'
+                  ? 'text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] font-bold'
+                  : 'text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)] hover:text-[var(--mn-heading)] dark:hover:text-[var(--mn-text)]'
               }`}
             >
               {/* Icon */}
@@ -136,8 +136,8 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
               <span
                 className={`text-[10px] sm:text-[11px] leading-tight font-medium ${
                   isActive
-                    ? 'text-[var(--mn-heading)] mn-dark:text-[var(--mn-accent-text)] font-bold'
-                    : 'text-[var(--mn-text-muted)] mn-dark:text-[var(--mn-text-muted)]'
+                    ? 'text-[var(--mn-heading)] dark:text-[var(--mn-accent-text)] font-bold'
+                    : 'text-[var(--mn-text-muted)] dark:text-[var(--mn-text-muted)]'
                 }`}
               >
                 {tab.label}

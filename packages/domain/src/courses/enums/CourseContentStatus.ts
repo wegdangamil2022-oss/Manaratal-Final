@@ -1,6 +1,0 @@
-export enum CourseContentStatus {
-  DRAFT = 'DRAFT',
-  READY_TO_REVIEW = 'READY_TO_REVIEW',
-  PUBLISHED = 'PUBLISHED',
-  ARCHIVED = 'ARCHIVED'
-}

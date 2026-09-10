@@ -1,9 +1,0 @@
-export enum CmsContentType {
-  ARTICLE = 'ARTICLE',
-  STUDY_GUIDE = 'STUDY_GUIDE',
-  NEWS = 'NEWS',
-  FAQ = 'FAQ',
-  CHECKLIST = 'CHECKLIST',
-  STATIC_PAGE = 'STATIC_PAGE',
-  LANDING_PAGE = 'LANDING_PAGE',
-}

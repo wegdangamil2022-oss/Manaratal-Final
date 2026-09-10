@@ -1,6 +1,0 @@
-export enum SourceStatus {
-  ACTIVE = 'ACTIVE',
-  NEEDS_REVIEW = 'NEEDS_REVIEW',
-  DISABLED = 'DISABLED',
-  BLOCKED = 'BLOCKED'
-}

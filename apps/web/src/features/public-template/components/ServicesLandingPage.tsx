@@ -116,11 +116,11 @@ export const ServicesLandingPage: React.FC<ServicesLandingPageProps> = ({ onBack
           <button
             type="button"
             onClick={onBack}
-            className="absolute right-3 top-3 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/25 text-white shadow-md backdrop-blur-md transition-all hover:bg-black/40 active:scale-95 sm:right-4 sm:top-4 sm:h-10 sm:w-10"
+            className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 w-8 h-8 bg-black/25 hover:bg-black/40 border border-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all z-30 cursor-pointer text-white shadow-xs active:scale-95"
             title="العودة"
             aria-label="العودة"
           >
-            <ChevronLeft className="h-4 w-4 rotate-180 text-white sm:h-5 sm:w-5" />
+            <ChevronLeft className="w-4 h-4 rotate-180 text-white" />
           </button>
         )}
 

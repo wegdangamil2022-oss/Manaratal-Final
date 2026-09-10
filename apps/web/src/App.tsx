@@ -8,11 +8,6 @@ export function App() {
     <I18nProvider>
       <ThemeProvider defaultTheme="system">
         <RTLProvider>
-          {import.meta.env.VITE_GOOGLE_AI_STUDIO === 'true' && !import.meta.env.VITE_API_URL && (
-            <div role="status" dir="rtl" className="bg-amber-50 p-3 text-center text-sm text-amber-950">
-              واجهة تجريبية — خدمة البيانات غير متصلة بعد. ستظهر البيانات عند ربط الخادم التجريبي.
-            </div>
-          )}
           <AppRouter />
         </RTLProvider>
       </ThemeProvider>

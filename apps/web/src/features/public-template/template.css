@@ -6,9 +6,9 @@
   #manaratak-header > div { padding-inline: var(--mn-container-mobile); }
   #manaratak-header .mn-header-row { min-width: 0; gap: 5px; }
   #manaratak-header .mn-header-brand { min-width: 0; flex: 1; gap: 6px; }
-  #manaratak-header .mn-header-brand > button { width: 40px; height: 40px; }
+  #manaratak-header .mn-header-brand > button { width: 60px; height: 60px; min-width: 60px; min-height: 60px; }
   #manaratak-header .mn-header-brand > div { min-width: 0; }
-  #manaratak-header .mn-header-brand span:first-child { font-size: 11px; letter-spacing: .3px; }
+  #manaratak-header .mn-header-brand span:first-child { font-size: 13px; letter-spacing: .3px; }
   #manaratak-header .mn-header-brand span:last-child { font-size: 9px; overflow: hidden; text-overflow: ellipsis; }
   #manaratak-header .mn-header-actions { flex-shrink: 0; gap: 3px; }
   #manaratak-header .mn-header-actions > button { width: 40px; min-width: 40px; height: 40px; min-height: 40px; padding-inline: 0; justify-content: center; }
@@ -18,7 +18,7 @@
 }
 @media (max-width: 359px) {
   #manaratak-header .mn-header-brand span:last-child { display: none; }
-  #manaratak-header .mn-header-brand span:first-child { font-size: 10px; letter-spacing: .15px; }
+  #manaratak-header .mn-header-brand span:first-child { font-size: 13px; letter-spacing: .15px; }
   #manaratak-header .mn-header-actions { gap: 3px; }
   #btn-dark-mode-toggle, #btn-single-language { display: none; }
 }
@@ -197,6 +197,7 @@
   --mn-link: #0a626b;
   --mn-digital-text: #0a626b;
   --mn-hero-secondary: #095661;
+  --mn-section-line: #095661;
   --mn-gold-surface: #fbefcf;
   --mn-border-gold: rgb(214 164 59 / 35%);
   --mn-on-dark-muted: #ddeff2;
@@ -248,6 +249,8 @@
   --mn-info-border: #497c91;
   --mn-link: #83cbd2;
   --mn-digital-text: #83cbd2;
+  --mn-hero-secondary: #0e6470;
+  --mn-section-line: #f2cd78;
   --mn-gold-surface: #343529;
   --mn-border-gold: rgb(242 205 120 / 38%);
   --mn-shadow-ink: #000000;
@@ -269,8 +272,9 @@
   --mn-accent-soft: #f2cd78;
   --mn-theme-accent-text: #f2cd78;
   --mn-accent-text: var(--mn-theme-accent-text);
-  --mn-border: rgb(214 164 59 / 24%);
-  --mn-border-brand: rgb(33 167 180 / 34%);
+  --mn-border: rgb(242 205 120 / 42%);
+  --mn-border-brand: rgb(242 205 120 / 62%);
+  --mn-border-gold: rgb(242 205 120 / 68%);
   --mn-focus: rgb(242 205 120 / 46%);
   --mn-on-primary: #ffffff;
   --mn-on-accent: #142b5f;
@@ -449,25 +453,13 @@
 
 .manaratak-public .mn-detail-section-header {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 9px;
+  justify-content: center;
+  gap: 4px;
   margin-bottom: 11px;
   position: relative;
-  padding-bottom: 8px;
-}
-.manaratak-public .mn-detail-section-header::after {
-  content: '';
-  position: absolute;
-  inset-inline-start: 0;
-  bottom: 0;
-  width: min(150px, 46%);
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--mn-accent), rgb(214 164 59 / 10%));
-}
-[dir='rtl'] .manaratak-public .mn-detail-section-header::after,
-.manaratak-public[dir='rtl'] .mn-detail-section-header::after {
-  background: linear-gradient(270deg, var(--mn-accent), rgb(214 164 59 / 10%));
+  text-align: center;
 }
 .manaratak-public .mn-detail-section-icon {
   width: 30px;
@@ -489,12 +481,27 @@
 .manaratak-public .mn-detail-section-title {
   margin: 0;
   color: var(--mn-heading);
-  font-size: 15px;
-  line-height: 1.55;
+  font-size: 14px;
+  line-height: 1.5;
   font-weight: 700;
+  font-family: 'Cairo', sans-serif;
+  position: relative;
+  padding-bottom: 5px;
+  display: inline-block;
+}
+.manaratak-public .mn-detail-section-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: min(150px, 90%);
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--mn-accent), transparent);
 }
 @media (min-width: 640px) {
-  .manaratak-public .mn-detail-section-title { font-size: 17px; }
+  .manaratak-public .mn-detail-section-title { font-size: 16px; }
 }
 
 .manaratak-public .mn-page-title {
@@ -566,10 +573,10 @@
 }
 
 .manaratak-public .mn-detail-close {
-  width: 40px;
-  height: 40px;
-  flex: 0 0 40px;
-  border-radius: 12px;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border-radius: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;

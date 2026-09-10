@@ -105,14 +105,14 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
   return (
     <div className="px-0 space-y-2.5 z-20 relative -mt-2.5 sm:-mt-3" dir="rtl">
       {/* 1. BASIC FELLOWSHIP INFORMATION CARD */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent z-10" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent z-10" />
 
         {/* Section Header */}
         <DetailSectionHeader icon={BookOpen} title="1. معلومات الزمالة الأساسية" />
 
         {/* Table Header Row */}
-        <div className="grid grid-cols-12 bg-gradient-to-r from-[var(--mn-primary)]/10 via-[var(--mn-hero-secondary)]/5 to-[var(--mn-hero-secondary)]/10 border-y border-[var(--mn-border-gold)] py-2.5 px-3.5 sm:px-4 items-center">
+        <div className="grid grid-cols-12 bg-[var(--mn-surface-muted)] border-y border-[var(--mn-border)] py-2.5 px-3.5 sm:px-4 items-center">
           <div className="col-span-4 text-[12px] font-bold text-[var(--mn-heading)] text-right">
             الحقل
           </div>
@@ -122,9 +122,9 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
         </div>
 
         {/* Table Body Rows */}
-        <div className="divide-y divide-[var(--mn-border-gold)] bg-[var(--mn-surface)] mn-panel ">
+        <div className="divide-y divide-[var(--mn-border)] bg-[var(--mn-surface)] ">
           {/* Reference Code */}
-          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-center hover:bg-[var(--mn-gold-surface)]/20 transition-colors">
+          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-center hover:bg-[var(--mn-surface-muted)]/50 transition-colors">
             <div className="col-span-4 text-[12px] font-bold text-[var(--mn-heading)]">
               الرمز المرجعي
             </div>
@@ -134,7 +134,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           </div>
 
           {/* Arabic Name */}
-          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-center hover:bg-[var(--mn-gold-surface)]/20 transition-colors">
+          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-center hover:bg-[var(--mn-surface-muted)]/50 transition-colors">
             <div className="col-span-4 text-[12px] font-bold text-[var(--mn-heading)]">
               الاسم بالعربية
             </div>
@@ -142,7 +142,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           </div>
 
           {/* Name in English */}
-          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-center bg-[var(--mn-gold-surface)]/25 hover:bg-[var(--mn-gold-surface)]/40 transition-colors">
+          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-center bg-[var(--mn-page)] hover:bg-[var(--mn-surface-muted)]/50 transition-colors">
             <div className="col-span-4 text-[12px] font-bold text-[var(--mn-heading)]">
               الاسم بالإنجليزية
             </div>
@@ -152,7 +152,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           </div>
 
           {/* Fellowship Type */}
-          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-center hover:bg-[var(--mn-gold-surface)]/20 transition-colors">
+          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-center hover:bg-[var(--mn-surface-muted)]/50 transition-colors">
             <div className="col-span-4 text-[12px] font-bold text-[var(--mn-heading)]">
               نوع الزمالة
             </div>
@@ -162,7 +162,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           </div>
 
           {/* Field */}
-          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-center hover:bg-[var(--mn-gold-surface)]/20 transition-colors">
+          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-center hover:bg-[var(--mn-surface-muted)]/50 transition-colors">
             <div className="col-span-4 text-[12px] font-bold text-[var(--mn-heading)]">
               المجال المهني أو البحثي
             </div>
@@ -172,7 +172,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           </div>
 
           {/* Associated Majors */}
-          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-start hover:bg-[var(--mn-gold-surface)]/20 transition-colors">
+          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-start hover:bg-[var(--mn-surface-muted)]/50 transition-colors">
             <div className="col-span-4 text-[12px] font-bold text-[var(--mn-heading)] pt-0.5">
               التخصصات المرتبطة
             </div>
@@ -183,7 +183,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           </div>
 
           {/* Canonical linked majors — navigation demo for future API relationships */}
-          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-start bg-[var(--mn-primary)]/[0.025] mn-inverse ">
+          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-start bg-[var(--mn-page)] border-y border-[var(--mn-border)]">
             <div className="col-span-4 text-[12px] font-bold text-[var(--mn-heading)] pt-1">
               روابط التخصص
             </div>
@@ -193,7 +193,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
                   key={item.id}
                   type="button"
                   onClick={() => onOpenMajor?.(item.id)}
-                  className="group flex w-full items-center justify-between gap-2 rounded-lg border border-[var(--mn-border-brand)]/50 bg-[var(--mn-surface)] px-2.5 py-2 text-right transition-all hover:border-[var(--mn-accent)] hover:bg-[var(--mn-gold-surface)]/30 hover:shadow-2xs mn-panel "
+                  className="group flex w-full items-center justify-between gap-2 rounded-lg border border-[var(--mn-border)] bg-[var(--mn-surface)] px-2.5 py-2 text-right transition-all hover:border-[var(--mn-accent)] hover:bg-[var(--mn-surface-muted)] hover:shadow-2xs "
                 >
                   <span className="min-w-0">
                     <span className="block text-[10.5px] font-bold text-[var(--mn-heading)]">
@@ -210,7 +210,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           </div>
 
           {/* Target Audience Summary */}
-          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-start hover:bg-[var(--mn-gold-surface)]/20 transition-colors">
+          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-start hover:bg-[var(--mn-surface-muted)]/50 transition-colors">
             <div className="col-span-4 text-[12px] font-bold text-[var(--mn-heading)] pt-0.5">
               الفئة المستهدفة
             </div>
@@ -220,7 +220,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           </div>
 
           {/* Duration */}
-          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-start hover:bg-[var(--mn-gold-surface)]/20 transition-colors">
+          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-start hover:bg-[var(--mn-surface-muted)]/50 transition-colors">
             <div className="col-span-4 text-[12px] font-bold text-[var(--mn-heading)] pt-0.5">
               المدة الشائعة
             </div>
@@ -231,7 +231,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           </div>
 
           {/* Training Nature */}
-          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-start hover:bg-[var(--mn-gold-surface)]/20 transition-colors">
+          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-start hover:bg-[var(--mn-surface-muted)]/50 transition-colors">
             <div className="col-span-4 text-[12px] font-bold text-[var(--mn-heading)] pt-0.5">
               طبيعة التدريب
             </div>
@@ -242,7 +242,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           </div>
 
           {/* Licensing Requirement */}
-          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-center hover:bg-[var(--mn-gold-surface)]/20 transition-colors">
+          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-center hover:bg-[var(--mn-surface-muted)]/50 transition-colors">
             <div className="col-span-4 text-[12px] font-bold text-[var(--mn-heading)]">
               متطلب الترخيص العام
             </div>
@@ -252,7 +252,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           </div>
 
           {/* Short Description */}
-          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-start bg-[var(--mn-page)]/50 hover:bg-[var(--mn-page)] transition-colors hover:mn-panel ">
+          <div className="grid grid-cols-12 py-2.5 px-3.5 sm:px-4 items-start bg-[var(--mn-page)] hover:bg-[var(--mn-surface-muted)]/50 transition-colors">
             <div className="col-span-4 text-[12px] font-bold text-[var(--mn-heading)] pt-0.5">
               الوصف المختصر
             </div>
@@ -264,18 +264,18 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 2. NATURE & OBJECTIVE OF FELLOWSHIP */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={FileText} title="2. طبيعة الزمالة وهدفها" />
 
         <div className="space-y-2.5">
-          <div className="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-br from-[var(--mn-page)]/90 to-[var(--mn-gold-surface)]/20 border border-[var(--mn-border-gold)] text-right space-y-2 mn-panel ">
+          <div className="p-3 sm:p-3.5 rounded-2xl bg-[var(--mn-page)] border border-[var(--mn-border)] text-right space-y-2 ">
             <p className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-text)] leading-[2] text-justify">
               تؤسس الزمالة كفاءة واسعة في أمراض القلب لدى البالغين قبل الانتقال إلى تخصصات أدق مثل
               التداخلات أو اضطرابات النظم أو قصور القلب. وتشمل تقييم الأعراض القلبية، وفهم الفحوص،
               وإدارة الحالات المزمنة والحادة، والتنسيق مع الطوارئ والعناية والجراحة.
             </p>
-            <p className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-text)] leading-[2] text-justify pt-1.5 border-t border-[var(--mn-border-gold)]">
+            <p className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-text)] leading-[2] text-justify pt-1.5 border-t border-[var(--mn-border)]">
               لا تمنح الزمالة وحدها صلاحية عالمية؛ إذ ترتبط الصلاحيات بالترخيص والاعتماد والامتيازات
               السريرية المحلية.
             </p>
@@ -284,8 +284,8 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 3. TYPE OF FELLOWSHIP */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={Layers} title="3. نوع الزمالة" />
 
         <div className="grid grid-cols-2 gap-2 sm:gap-2.5 text-right">
@@ -300,9 +300,9 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           ).map((item, idx) => (
             <div
               key={idx}
-              className="flex flex-row items-start gap-2 p-2 sm:p-2.5 rounded-r-lg rounded-l-sm bg-[var(--mn-gold-surface)]/30 border-l-4 border-l-[var(--mn-accent)] border-y border-r border-[var(--mn-border-gold)] hover:bg-[var(--mn-gold-surface)]/80 hover:border-l-[var(--mn-primary)] hover:shadow-sm transition-all duration-300 group text-right h-full hover:mn-panel "
+              className="flex flex-row items-start gap-2 p-2 sm:p-2.5 rounded-xl bg-[var(--mn-page)] border border-[var(--mn-border)] hover:bg-[var(--mn-surface-muted)] transition-all duration-300 group text-right h-full "
             >
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[var(--mn-accent)] group-hover:bg-[var(--mn-primary)] shrink-0 mt-1.5 shadow-sm transition-colors mn-gold group-hover:mn-inverse " />
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[var(--mn-primary)] dark:bg-[var(--mn-accent)] group-hover:bg-[var(--mn-accent)] dark:group-hover:bg-[var(--mn-primary)] shrink-0 mt-1.5 shadow-sm transition-colors" />
               <span className="text-[10px] sm:text-[11px] font-bold text-[var(--mn-heading)] leading-relaxed group-hover:text-[var(--mn-heading)] transition-colors flex-1">
                 {item}
               </span>
@@ -312,8 +312,8 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 4. TARGET AUDIENCE */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={Users} title="4. الفئة المستهدفة" />
 
         <div className="grid grid-cols-2 gap-2 sm:gap-2.5 text-right">
@@ -327,9 +327,9 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           ).map((item, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-2 p-2 sm:p-2.5 rounded-full bg-[var(--mn-page)] border border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] hover:bg-[var(--mn-surface)] hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group text-right h-full mn-panel hover:mn-panel "
+              className="flex items-center gap-2 p-2 sm:p-2.5 rounded-full bg-[var(--mn-page)] border border-[var(--mn-border)] hover:border-[var(--mn-border-brand)] hover:bg-[var(--mn-surface)] hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group text-right h-full "
             >
-              <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[var(--mn-primary)]/10 flex items-center justify-center shrink-0 group-hover:bg-[var(--mn-primary)] transition-colors group-hover:mn-inverse ">
+              <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[var(--mn-primary)]/10 flex items-center justify-center shrink-0 group-hover:bg-[var(--mn-primary)] dark:group-hover:bg-[var(--mn-accent)] transition-colors ">
                 <Users className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[var(--mn-heading)] group-hover:text-white transition-colors" />
               </div>
               <span className="text-[9px] sm:text-[10px] font-bold text-[var(--mn-text)] leading-snug group-hover:text-[var(--mn-heading)] transition-colors flex-1">
@@ -341,8 +341,8 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 5. GENERAL PREVIOUS QUALIFICATIONS */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={CheckCircle} title="5. المؤهلات السابقة العامة" />
 
         <div className="space-y-3 text-right">
@@ -358,7 +358,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
             ).map((item, idx) => (
               <div
                 key={idx}
-                className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border-gold)] hover:border-[var(--mn-accent)] hover:bg-[var(--mn-page)]/40 hover:shadow-2xs transition-all duration-200 group text-right mn-panel "
+                className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border-gold)] hover:border-[var(--mn-accent)] hover:bg-[var(--mn-page)]/40 hover:shadow-2xs transition-all duration-200 group text-right "
               >
                 <CheckCircle2 className="w-4 h-4 text-[var(--mn-heading)] shrink-0 mt-0.5" />
                 <span className="text-[10.5px] sm:text-[11px] font-bold text-[var(--mn-heading)] leading-relaxed">
@@ -368,7 +368,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
             ))}
           </div>
 
-          <div className="rounded-xl border border-[var(--mn-border-brand)]/50 bg-gradient-to-l from-[var(--mn-primary)]/[0.035] to-[var(--mn-surface)] p-2.5 sm:p-3 mn-inverse ">
+          <div className="rounded-xl border border-[var(--mn-border-brand)]/50 bg-gradient-to-l from-[var(--mn-primary)]/[0.035] to-[var(--mn-surface)] p-2.5 sm:p-3 ">
             <div className="mb-2 flex items-center gap-1.5">
               <GraduationCap className="h-3.5 w-3.5 text-[var(--mn-accent-text)]" />
               <h3 className="text-[10.5px] font-bold text-[var(--mn-heading)]">
@@ -381,7 +381,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
                   key={`background-${item.id}`}
                   type="button"
                   onClick={() => onOpenMajor?.(item.id)}
-                  className="group flex items-center justify-between gap-2 rounded-lg border border-[var(--mn-border)] bg-[var(--mn-surface)] px-2.5 py-2 text-right transition-all hover:border-[var(--mn-accent)] hover:bg-[var(--mn-gold-surface)]/30 mn-panel "
+                  className="group flex items-center justify-between gap-2 rounded-lg border border-[var(--mn-border)] bg-[var(--mn-surface)] px-2.5 py-2 text-right transition-all hover:border-[var(--mn-accent)] hover:bg-[var(--mn-gold-surface)]/30 "
                 >
                   <span className="text-[10px] font-semibold text-[var(--mn-heading)]">{item.name}</span>
                   <ArrowLeft className="h-3 w-3 shrink-0 text-[var(--mn-accent-text)] transition-transform group-hover:-translate-x-0.5" />
@@ -392,7 +392,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
 
           {/* Phase 10 Note */}
           <div className="flex items-start gap-2.5 p-3 rounded-2xl bg-[var(--mn-gold-surface)]/30 border border-[var(--mn-accent)]/50 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-1 h-full bg-[var(--mn-accent)] mn-gold " />
+            <div className="absolute top-0 right-0 w-1 h-full bg-[var(--mn-accent)] " />
             <div className="w-5 h-5 rounded-full bg-[var(--mn-accent)]/10 border border-[var(--mn-accent)] flex items-center justify-center shrink-0 mt-0.5">
               <Info className="w-3 h-3 text-[var(--mn-accent-text)]" />
             </div>
@@ -407,8 +407,8 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 6. DURATION AND TRAINING PATTERN */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={Clock} title="6. المدة ونمط التدريب" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-right">
@@ -423,9 +423,9 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           ).map((item, idx) => (
             <div
               key={idx}
-              className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-[var(--mn-page)]/80 border border-[var(--mn-border-gold)] hover:border-[var(--mn-accent)] hover:bg-[var(--mn-surface)] hover:shadow-2xs transition-all text-right mn-panel hover:mn-panel "
+              className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-[var(--mn-page)]/80 border border-[var(--mn-border-gold)] hover:border-[var(--mn-accent)] hover:bg-[var(--mn-surface)] hover:shadow-2xs transition-all text-right "
             >
-              <div className="w-1.5 h-3.5 bg-[var(--mn-primary)] rounded-full shrink-0 mt-0.5 mn-inverse " />
+              <div className="w-1.5 h-3.5 bg-[var(--mn-primary)] dark:bg-[var(--mn-accent)] rounded-full shrink-0 mt-0.5 " />
               <span className="text-[10.5px] sm:text-[11px] font-bold text-[var(--mn-heading)] leading-relaxed">
                 {item}
               </span>
@@ -435,8 +435,8 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 7. TRAINING COMPONENTS */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={Stethoscope} title="7. مكونات التدريب" />
 
         <div className="space-y-4 text-right">
@@ -461,9 +461,9 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
               ).map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-2 p-2.5 rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border-gold)] mn-panel "
+                  className="flex items-start gap-2 p-2.5 rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border-gold)] "
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-primary)] shrink-0 mt-1.5 mn-inverse " />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-primary)] dark:bg-[var(--mn-accent)] shrink-0 mt-1.5 " />
                   <span className="text-[10.5px] font-bold text-[var(--mn-heading)] leading-snug">
                     {item}
                   </span>
@@ -492,9 +492,9 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
               ).map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-2 p-2.5 rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border-gold)] mn-panel "
+                  className="flex items-start gap-2 p-2.5 rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border-gold)] "
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-accent)] shrink-0 mt-1.5 mn-gold " />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-accent)] shrink-0 mt-1.5 " />
                   <span className="text-[10.5px] font-bold text-[var(--mn-heading)] leading-snug">
                     {item}
                   </span>
@@ -524,7 +524,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
                   key={idx}
                   className="flex items-start gap-2 p-2.5 rounded-xl bg-[var(--mn-gold-surface)]/20 border border-[var(--mn-border-gold)]"
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-primary)] shrink-0 mt-1.5 mn-inverse " />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-primary)] dark:bg-[var(--mn-accent)] shrink-0 mt-1.5 " />
                   <span className="text-[10.5px] font-bold text-[var(--mn-heading)] leading-snug">
                     {item}
                   </span>
@@ -536,8 +536,8 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 8. TARGET COMPETENCIES */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={Award} title="8. الكفاءات المستهدفة" />
 
         <div className="grid grid-cols-2 gap-2 sm:gap-2.5 pt-0.5 text-right">
@@ -554,9 +554,9 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           ).map((comp, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-2 p-2 sm:p-2.5 rounded-t-lg bg-gradient-to-b from-[var(--mn-surface)] to-[var(--mn-page)] border-b-2 border-b-[var(--mn-border-gold)] hover:border-b-[var(--mn-primary)] hover:bg-[var(--mn-page)] transition-all duration-300 group text-right h-full mn-panel hover:mn-panel "
+              className="flex items-center gap-2 p-2 sm:p-2.5 rounded-t-lg bg-gradient-to-b from-[var(--mn-surface)] to-[var(--mn-page)] border-b-2 border-b-[var(--mn-border-gold)] hover:border-b-[var(--mn-primary)] dark:hover:border-b-[var(--mn-accent)] hover:bg-[var(--mn-page)] transition-all duration-300 group text-right h-full "
             >
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[var(--mn-surface-muted)] group-hover:bg-[var(--mn-primary)] transition-colors shrink-0 mn-panel group-hover:mn-inverse " />
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[var(--mn-primary)] dark:bg-[var(--mn-accent)] group-hover:bg-[var(--mn-accent)] dark:group-hover:bg-[var(--mn-primary)] transition-colors shrink-0" />
               <span className="text-[10px] sm:text-[11px] font-bold text-[var(--mn-heading)] leading-snug group-hover:text-[var(--mn-heading)] transition-colors flex-1">
                 {comp}
               </span>
@@ -566,8 +566,8 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 9. SUB-SPECIALTIES & PATHWAYS */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={Compass} title="9. المسارات والتخصصات الدقيقة" />
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-0.5 text-right">
@@ -584,9 +584,9 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           ).map((track, idx) => (
             <div
               key={idx}
-              className="flex items-center p-2.5 rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border-gold)] hover:border-[var(--mn-accent)]/60 hover:shadow-2xs transition-all duration-200 group text-right overflow-hidden relative min-h-[44px] mn-panel "
+              className="flex items-center p-2.5 rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border-gold)] hover:border-[var(--mn-accent)]/60 hover:shadow-2xs transition-all duration-200 group text-right overflow-hidden relative min-h-[44px] "
             >
-              <div className="absolute right-0 top-0 bottom-0 w-1.5 bg-[var(--mn-primary)]/80 group-hover:bg-[var(--mn-primary)] transition-colors mn-inverse group-hover:mn-inverse " />
+              <div className="absolute right-0 top-0 bottom-0 w-1.5 bg-[var(--mn-primary)]/80 dark:bg-[var(--mn-accent)]/80 group-hover:bg-[var(--mn-primary)] dark:group-hover:bg-[var(--mn-accent)] transition-colors" />
               <span className="text-[10.5px] sm:text-[11px] font-bold text-[var(--mn-heading)] leading-snug group-hover:text-[var(--mn-heading)] transition-colors pr-2">
                 {track}
               </span>
@@ -596,8 +596,8 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 10. SUPERVISION & TRAINING ENVIRONMENT */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={ShieldCheck} title="10. الإشراف وبيئة التدريب" />
 
         <div className="grid grid-cols-2 gap-2.5 sm:gap-3 text-right">
@@ -612,9 +612,9 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           ).map((item, idx) => (
             <div
               key={idx}
-              className="flex flex-row items-start gap-2 p-2 sm:p-2.5 rounded-lg bg-[var(--mn-surface)] border border-[var(--mn-border)] shadow-[2px_2px_0px_var(--mn-accent-soft)] hover:shadow-[3px_3px_0px_var(--mn-primary)] hover:-translate-y-0.5 hover:-translate-x-0.5 transition-all duration-300 text-right group h-full mn-panel "
+              className="flex flex-row items-start gap-2 p-2 sm:p-2.5 rounded-lg bg-[var(--mn-surface)] border border-[var(--mn-border)] shadow-[2px_2px_0px_var(--mn-accent-soft)] hover:shadow-[3px_3px_0px_var(--mn-primary)] dark:hover:shadow-[3px_3px_0px_var(--mn-accent)] hover:-translate-y-0.5 hover:-translate-x-0.5 transition-all duration-300 text-right group h-full "
             >
-              <div className="w-4 h-4 sm:w-5 sm:h-5 rounded bg-[var(--mn-surface-muted)] text-[var(--mn-text-muted)] flex items-center justify-center shrink-0 font-bold text-[9px] sm:text-[10px] group-hover:bg-[var(--mn-primary)] group-hover:text-white transition-colors mn-panel group-hover:mn-inverse ">
+              <div className="w-4 h-4 sm:w-5 sm:h-5 rounded bg-[var(--mn-surface-muted)] text-[var(--mn-text-muted)] flex items-center justify-center shrink-0 font-bold text-[9px] sm:text-[10px] group-hover:bg-[var(--mn-primary)] group-hover:text-white dark:group-hover:bg-[var(--mn-accent)] dark:group-hover:text-[var(--mn-primary)] transition-colors ">
                 {idx + 1}
               </div>
               <span className="text-[10px] sm:text-[11px] font-bold text-[var(--mn-text)] leading-snug group-hover:text-[var(--mn-heading)] transition-colors flex-1 mt-0.5">
@@ -626,8 +626,8 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 11. ASSESSMENT & COMPLETION REQUIREMENTS */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={ListChecks} title="11. التقييم ومتطلبات الإكمال" />
 
         <div className="grid grid-cols-2 gap-2 sm:gap-2.5 pt-0.5 text-right">
@@ -645,7 +645,7 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
               key={idx}
               className="flex items-start gap-2 p-2 sm:p-2.5 rounded-lg bg-[var(--mn-accent)]/5 border-2 border-dotted border-[var(--mn-accent)]/50 hover:border-[var(--mn-border-brand)] hover:bg-[var(--mn-surface-muted)]/60 hover:shadow-sm transition-all text-right group h-full"
             >
-              <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-sm bg-[var(--mn-accent)]/20 text-[var(--mn-heading)] flex items-center justify-center shrink-0 mt-0.5 font-bold text-[9px] group-hover:bg-[var(--mn-primary)] group-hover:text-white transition-colors rotate-45 group-hover:mn-inverse ">
+              <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-sm bg-[var(--mn-accent)]/20 text-[var(--mn-heading)] flex items-center justify-center shrink-0 mt-0.5 font-bold text-[9px] group-hover:bg-[var(--mn-primary)] group-hover:text-white dark:group-hover:bg-[var(--mn-accent)] dark:group-hover:text-[var(--mn-primary)] transition-colors rotate-45 ">
                 <Star className="h-2.5 w-2.5 -rotate-45 fill-current" aria-hidden="true" />
               </div>
               <span className="text-[10px] sm:text-[11px] font-bold text-[var(--mn-heading)] leading-snug group-hover:text-[var(--mn-heading)] transition-colors flex-1 pt-0.5">
@@ -657,8 +657,8 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 12. RESULTING CERTIFICATE OR TITLE */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={Award} title="12. الشهادة أو الصفة الناتجة" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-right">
@@ -672,9 +672,9 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           ).map((cert, idx) => (
             <div
               key={idx}
-              className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-[var(--mn-page)]/80 border border-[var(--mn-border-gold)] hover:border-[var(--mn-accent)] hover:bg-[var(--mn-surface)] hover:shadow-2xs transition-all text-right group mn-panel hover:mn-panel "
+              className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-[var(--mn-page)]/80 border border-[var(--mn-border-gold)] hover:border-[var(--mn-accent)] hover:bg-[var(--mn-surface)] hover:shadow-2xs transition-all text-right group "
             >
-              <div className="w-5 h-5 rounded-lg bg-[var(--mn-accent)]/10 text-[var(--mn-accent-text)] flex items-center justify-center shrink-0 mt-0.5 font-bold text-[10px] group-hover:bg-[var(--mn-accent)] group-hover:text-white transition-colors group-hover:mn-gold ">
+              <div className="w-5 h-5 rounded-lg bg-[var(--mn-accent)]/10 text-[var(--mn-accent-text)] flex items-center justify-center shrink-0 mt-0.5 font-bold text-[10px] group-hover:bg-[var(--mn-accent)] group-hover:text-white transition-colors ">
                 <Star className="h-3 w-3 fill-current" aria-hidden="true" />
               </div>
               <span className="text-[10.5px] sm:text-[11px] font-bold text-[var(--mn-heading)] leading-relaxed">
@@ -686,11 +686,11 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 13. SCOPE OF PRACTICE & LICENSING */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={Scale} title="13. نطاق الممارسة والترخيص" />
 
-        <div className="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-br from-[var(--mn-page)]/90 to-[var(--mn-gold-surface)]/20 border border-[var(--mn-border-gold)] text-right mn-panel ">
+        <div className="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-br from-[var(--mn-page)]/90 to-[var(--mn-gold-surface)]/20 border border-[var(--mn-border-gold)] text-right ">
           <p className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-text)] leading-[2] text-justify">
             {major.practiceScopeAndLicensing ||
               'تدعم الزمالة ممارسة طب القلب للبالغين ضمن الترخيص والاعتماد والامتيازات الممنوحة. لا تسمح تلقائيًا بإجراء تدخلات متقدمة أو إجراءات كهربائية أو جراحية دون تدريب دقيق واعتماد منفصل.'}
@@ -699,8 +699,8 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 14. WORK FIELDS AFTER FELLOWSHIP */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={Briefcase} title="14. مجالات العمل بعد الزمالة" />
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-right pt-0.5">
@@ -716,9 +716,9 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
           ).map((field, index) => (
             <div
               key={index}
-              className="flex items-start gap-2 p-2.5 rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border-gold)] hover:border-[var(--mn-accent)] hover:bg-[var(--mn-page)]/40 hover:shadow-2xs transition-all duration-200 group text-right mn-panel "
+              className="flex items-start gap-2 p-2.5 rounded-xl bg-[var(--mn-surface)] border border-[var(--mn-border-gold)] hover:border-[var(--mn-accent)] hover:bg-[var(--mn-page)]/40 hover:shadow-2xs transition-all duration-200 group text-right "
             >
-              <div className="w-2 h-[2.5px] bg-[var(--mn-primary)]/80 group-hover:bg-[var(--mn-primary)] group-hover:w-3.5 transition-all duration-300 shrink-0 mt-1.5 rounded-full mn-inverse group-hover:mn-inverse " />
+              <div className="w-2 h-[2.5px] bg-[var(--mn-primary)]/80 dark:bg-[var(--mn-accent)]/80 group-hover:bg-[var(--mn-primary)] dark:group-hover:bg-[var(--mn-accent)] group-hover:w-3.5 transition-all duration-300 shrink-0 mt-1.5 rounded-full" />
               <span className="text-[10.5px] font-bold text-[var(--mn-heading)] leading-snug group-hover:text-[var(--mn-heading)] transition-colors">
                 {field}
               </span>
@@ -728,12 +728,12 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 15. RELATION TO RESIDENCY, BOARD & PHD */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={UserCheck} title="15. العلاقة بالإقامة والبورد والدكتوراه" />
 
         {/* Table 15 */}
-        <div className="w-full overflow-x-auto no-scrollbar rounded-xl border border-[var(--mn-border-gold)] shadow-2xs bg-[var(--mn-surface)] mn-panel ">
+        <div className="w-full overflow-x-auto no-scrollbar rounded-xl border border-[var(--mn-border-gold)] shadow-2xs bg-[var(--mn-surface)] ">
           <table className="w-full text-right border-collapse min-w-[500px]">
             <thead>
               <tr className="bg-gradient-to-l from-[var(--mn-primary)]/5 to-[var(--mn-surface)] border-b border-[var(--mn-border-gold)]">
@@ -797,12 +797,12 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 16. SIMILAR FELLOWSHIPS & DIFFERENCES */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={GitCompare} title="16. الزمالات المشابهة والفروق" />
 
         {/* Table 16 */}
-        <div className="w-full overflow-x-auto no-scrollbar rounded-xl border border-[var(--mn-border-gold)] shadow-2xs bg-[var(--mn-surface)] mn-panel ">
+        <div className="w-full overflow-x-auto no-scrollbar rounded-xl border border-[var(--mn-border-gold)] shadow-2xs bg-[var(--mn-surface)] ">
           <table className="w-full text-right border-collapse min-w-[500px]">
             <thead>
               <tr className="bg-gradient-to-l from-[var(--mn-primary)]/5 to-[var(--mn-surface)] border-b border-[var(--mn-border-gold)]">
@@ -864,13 +864,13 @@ export const FellowshipDetailView: React.FC<FellowshipDetailViewProps> = ({
       </div>
 
       {/* 17. PROFESSIONAL & REGULATORY ALERT */}
-      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden mn-panel ">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-hero-secondary)] to-transparent" />
+      <div className="relative w-full bg-[var(--mn-surface)] rounded-none p-3.5 sm:p-4 border-y border-[var(--mn-border-brand)]/40 shadow-md shadow-[var(--mn-shadow-ink)]/60 overflow-hidden ">
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--mn-section-line)] to-transparent" />
         <DetailSectionHeader icon={ShieldAlert} title="17. التنبيه المهني والتنظيمي" />
 
         <div className="space-y-2 text-right">
           <div className="p-3 sm:p-3.5 rounded-2xl bg-[var(--mn-gold-surface)]/30 border border-[var(--mn-accent)]/40 text-right relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-1.5 h-full bg-[var(--mn-accent)] mn-gold " />
+            <div className="absolute top-0 right-0 w-1.5 h-full bg-[var(--mn-accent)] " />
             <p className="text-[11px] sm:text-[11.5px] font-bold text-[var(--mn-heading)] leading-[1.9]">
               {major.professionalRegulatoryAlert ||
                 'الزمالة لا تمنح حق ممارسة طب القلب خارج الترخيص والاعتماد المحلي، ولا تسمح بإجراءات تخصصية دقيقة دون تدريب وامتيازات منفصلة. القرارات العاجلة والإجرائية يجب أن تتم داخل بيئة معتمدة وتحت حوكمة سريرية.'}

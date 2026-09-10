@@ -1,4 +1,0 @@
-export enum CourseCompletionStatus {
-  COMPLETED = 'COMPLETED',
-  CERTIFICATE_SIGNAL_READY = 'CERTIFICATE_SIGNAL_READY'
-}
