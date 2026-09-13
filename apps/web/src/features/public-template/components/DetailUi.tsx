@@ -10,7 +10,6 @@ export function DetailSectionHeader({
   subtitle,
   level = 2,
   className = '',
-  titleStyle,
   titleClassName = '',
 }: {
   id?: string;
@@ -20,7 +19,6 @@ export function DetailSectionHeader({
   subtitle?: string;
   level?: 2 | 3;
   className?: string;
-  titleStyle?: React.CSSProperties;
   titleClassName?: string;
 }) {
   const Heading = level === 2 ? 'h2' : 'h3';
@@ -28,7 +26,7 @@ export function DetailSectionHeader({
     <div id={id} className={`mn-detail-section-header scroll-mt-28 flex flex-col items-center text-center ${className}`}>
       <div className="flex items-center justify-center gap-2">
         <span className="mn-detail-section-icon shrink-0" aria-hidden="true">{Icon ? <Icon className="h-4 w-4" /> : iconNode}</span>
-        <Heading style={titleStyle} className={`mn-detail-section-title ${titleClassName}`}>{title}</Heading>
+        <Heading className={`mn-detail-section-title ${titleClassName}`}>{title}</Heading>
       </div>
       {subtitle ? <p className="mt-1 text-[11px] font-medium leading-5 text-[var(--mn-text-muted)] max-w-xl mx-auto text-center">{subtitle}</p> : null}
     </div>

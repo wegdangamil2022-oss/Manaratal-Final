@@ -388,7 +388,7 @@ export const CountriesSearchPage: React.FC<CountriesSearchPageProps> = ({
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="ابحث باسم الدولة أو القارة..."
                 className="w-full py-2.5 pl-4 pr-10 bg-[var(--mn-surface)] text-[var(--mn-heading)] rounded-full text-[12px] font-bold placeholder:text-[var(--mn-text-muted)] placeholder:text-[12px] placeholder:font-bold placeholder:font-['Cairo',sans-serif] focus:outline-none shadow-md border border-[var(--mn-border)] focus:border-[var(--mn-accent)] transition-all text-center font-['Cairo',sans-serif] mn-panel "
-                style={{ fontSize: '12px', fontWeight: 'bold', fontFamily: 'Cairo, sans-serif' }}
+                data-mn-font="12" data-mn-bold="true" data-mn-cairo="true"
               />
               <Search className="w-4 h-4 text-[var(--mn-accent-text)] absolute right-3.5 top-1/2 -translate-y-1/2" />
               {searchQuery && (

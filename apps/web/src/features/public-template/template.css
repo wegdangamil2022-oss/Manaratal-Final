@@ -249,7 +249,7 @@
   --mn-info-border: #497c91;
   --mn-link: #83cbd2;
   --mn-digital-text: #83cbd2;
-  --mn-hero-secondary: #0e6470;
+  --mn-hero-secondary: #095661;
   --mn-section-line: #f2cd78;
   --mn-gold-surface: #343529;
   --mn-border-gold: rgb(242 205 120 / 38%);
@@ -712,3 +712,13 @@
 .mn-anim-14-delay-9 { animation-duration: 14s; animation-delay: -9s; }
 .mn-anim-15-delay-7 { animation-duration: 15s; animation-delay: -7s; }
 .mn-anim-16-delay-5 { animation-duration: 16s; animation-delay: -5s; }
+.manaratak-public [data-mn-font='9'] { font-size: 9px; }
+.manaratak-public [data-mn-font='10.5'] { font-size: 10.5px; }
+.manaratak-public [data-mn-font='11'] { font-size: 11px; }
+.manaratak-public [data-mn-font='12'] { font-size: 12px; }
+.manaratak-public [data-mn-font='13'] { font-size: 13px; }
+.manaratak-public [data-mn-font='15'] { font-size: 15px; }
+.manaratak-public [data-mn-font='18'] { font-size: 18px; }
+.manaratak-public [data-mn-bold='true'] { font-weight: bold; }
+.manaratak-public [data-mn-cairo='true'] { font-family: Cairo, sans-serif; }
+.manaratak-public .mn-detail-section-title.mn-detail-section-title-small { font-size: 13px; }

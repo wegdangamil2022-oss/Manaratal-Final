@@ -462,7 +462,7 @@ export const ScholarshipsSearchPage: React.FC<ScholarshipsSearchPageProps> = ({
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="اكتب اسم المنحة، التخصص، أو الدولة..."
                 className="w-full py-2.5 pl-4 pr-10 bg-[var(--mn-surface)] text-[var(--mn-heading)] rounded-full text-[12px] font-bold placeholder:text-[var(--mn-text-muted)] placeholder:text-[12px] placeholder:font-bold placeholder:font-['Cairo',sans-serif] focus:outline-none shadow-md border border-[var(--mn-border)] focus:border-[var(--mn-accent)] transition-all text-center font-['Cairo',sans-serif] mn-panel "
-                style={{ fontSize: '12px', fontWeight: 'bold', fontFamily: 'Cairo, sans-serif' }}
+                data-mn-font="12" data-mn-bold="true" data-mn-cairo="true"
               />
               <Search className="w-4 h-4 text-[var(--mn-accent-text)] absolute right-3.5 top-1/2 -translate-y-1/2" />
               {searchQuery && (
@@ -495,7 +495,8 @@ export const ScholarshipsSearchPage: React.FC<ScholarshipsSearchPageProps> = ({
         <div className="max-w-lg mx-auto mn-inline-gutter mt-2.5 relative z-20 pb-0">
           <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
             {/* Tile 1: الفلترة الذكية */}
-            <div
+            <button
+              type="button"
               onClick={() => setIsFilterOpen(true)}
               className="relative bg-[var(--mn-surface)] hover:bg-[var(--mn-gold-surface)]/40 border-1.5 border-[var(--mn-accent)]/70 hover:border-[var(--mn-accent)] rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-center text-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all h-[58px] sm:h-[64px] cursor-pointer mn-panel "
             >
@@ -516,7 +517,7 @@ export const ScholarshipsSearchPage: React.FC<ScholarshipsSearchPageProps> = ({
                 </span>
               </div>
               <ChevronDown className="w-3.5 h-3.5 text-[var(--mn-text-muted)] mt-0.5" />
-            </div>
+            </button>
 
             {/* Tile 2: نوع التمويل */}
             <div className="relative bg-[var(--mn-surface)] hover:bg-[var(--mn-gold-surface)]/40 border-1.5 border-[var(--mn-accent)]/70 hover:border-[var(--mn-accent)] rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-center text-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all h-[58px] sm:h-[64px] cursor-pointer mn-panel ">
@@ -706,7 +707,7 @@ export const ScholarshipsSearchPage: React.FC<ScholarshipsSearchPageProps> = ({
                         if (onSelectScholarship) onSelectScholarship(scholarship);
                       }}
                       className="bg-[var(--mn-primary)] hover:bg-[var(--mn-primary)] text-white rounded-lg px-2.5 py-1.5 flex items-center justify-center gap-1 transition-all active:scale-95 cursor-pointer shadow-2xs mn-inverse hover:mn-inverse "
-                      style={{ fontSize: '10.5px', fontWeight: 'bold', fontFamily: 'Cairo, sans-serif' }}
+                      data-mn-font="10.5" data-mn-bold="true" data-mn-cairo="true"
                     >
                       <span className="text-[10px] sm:text-[11px] font-bold text-center leading-tight text-[var(--mn-accent-soft)]">عرض التفاصيل</span>
                       <ChevronLeft className="w-3.5 h-3.5 rotate-180 text-[var(--mn-accent-soft)]" />
@@ -723,7 +724,9 @@ export const ScholarshipsSearchPage: React.FC<ScholarshipsSearchPageProps> = ({
       {isFilterOpen && (
         <>
           {/* Backdrop Blur */}
-          <div
+          <button
+            type="button"
+            aria-label="إغلاق خيارات التصفية"
             className="fixed inset-0 bg-black/55 backdrop-blur-xs z-50 transition-opacity animate-fade-in"
             onClick={() => setIsFilterOpen(false)}
           />
@@ -769,7 +772,7 @@ export const ScholarshipsSearchPage: React.FC<ScholarshipsSearchPageProps> = ({
                             setIsFilterOpen(false);
                           }}
                           className={`w-full flex items-center justify-between px-3 py-1.5 rounded-md font-bold transition-colors cursor-pointer block ${isSelected ? 'bg-[var(--mn-accent)]/10 text-[var(--mn-accent-text)]' : 'hover:bg-[var(--mn-surface-muted)] text-[var(--mn-text)]'}`}
-                          style={{ fontSize: '11px' }}
+                          data-mn-font="11"
                         >
                           <span className="truncate">{country.label}</span>
                           <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center shrink-0 transition-all ${isSelected ? 'border-[var(--mn-accent)] bg-[var(--mn-accent)] text-white' : 'border-[var(--mn-border)] bg-[var(--mn-surface)]'}`}>
@@ -799,7 +802,7 @@ export const ScholarshipsSearchPage: React.FC<ScholarshipsSearchPageProps> = ({
                 {isMajorsExpanded && (
                   <div className="max-h-[140px] overflow-y-auto pr-1 space-y-0.5 border-r border-[var(--mn-border)] mr-1 mt-1">
                     {majorOptions.length === 0 ? (
-                      <span className="text-[9px] text-[var(--mn-text-muted)] block p-2 text-center" style={{ fontSize: '9px' }}>لا توجد تخصصات مصنفة حالياً</span>
+                      <span className="text-[9px] text-[var(--mn-text-muted)] block p-2 text-center" data-mn-font="9">لا توجد تخصصات مصنفة حالياً</span>
                     ) : (
                       majorOptions.map((major) => {
                         const isSelected = selectedFilter === `major:${major}`;
@@ -811,7 +814,7 @@ export const ScholarshipsSearchPage: React.FC<ScholarshipsSearchPageProps> = ({
                               setIsFilterOpen(false);
                             }}
                             className={`w-full flex items-center justify-between px-3 py-1.5 rounded-md font-bold transition-colors cursor-pointer block ${isSelected ? 'bg-[var(--mn-accent)]/10 text-[var(--mn-accent-text)]' : 'hover:bg-[var(--mn-surface-muted)] text-[var(--mn-text)]'}`}
-                            style={{ fontSize: '11px' }}
+                            data-mn-font="11"
                           >
                             <span className="truncate">{major}</span>
                             <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center shrink-0 transition-all ${isSelected ? 'border-[var(--mn-accent)] bg-[var(--mn-accent)] text-white' : 'border-[var(--mn-border)] bg-[var(--mn-surface)]'}`}>
@@ -851,7 +854,7 @@ export const ScholarshipsSearchPage: React.FC<ScholarshipsSearchPageProps> = ({
                             setIsFilterOpen(false);
                           }}
                           className={`w-full flex items-center justify-between px-3 py-1.5 rounded-md font-bold transition-colors cursor-pointer block ${isSelected ? 'bg-[var(--mn-accent)]/10 text-[var(--mn-accent-text)]' : 'hover:bg-[var(--mn-surface-muted)] text-[var(--mn-text)]'}`}
-                          style={{ fontSize: '11px' }}
+                          data-mn-font="11"
                         >
                           <span className="truncate">فلترة بدون ايلتس او توفل</span>
                           <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center shrink-0 transition-all ${isSelected ? 'border-[var(--mn-accent)] bg-[var(--mn-accent)] text-white' : 'border-[var(--mn-border)] bg-[var(--mn-surface)]'}`}>
@@ -875,7 +878,7 @@ export const ScholarshipsSearchPage: React.FC<ScholarshipsSearchPageProps> = ({
                             setIsFilterOpen(false);
                           }}
                           className={`w-full flex items-center justify-between px-3 py-1.5 rounded-md font-bold transition-colors cursor-pointer block ${isSelected ? 'bg-[var(--mn-accent)]/10 text-[var(--mn-accent-text)]' : 'hover:bg-[var(--mn-surface-muted)] text-[var(--mn-text)]'}`}
-                          style={{ fontSize: '11px' }}
+                          data-mn-font="11"
                         >
                           <span className="truncate">فلترة الدراسة باللغة الإنجليزية فقط</span>
                           <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center shrink-0 transition-all ${isSelected ? 'border-[var(--mn-accent)] bg-[var(--mn-accent)] text-white' : 'border-[var(--mn-border)] bg-[var(--mn-surface)]'}`}>

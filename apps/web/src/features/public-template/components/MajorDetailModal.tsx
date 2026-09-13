@@ -974,8 +974,9 @@ export const MajorDetailModal: React.FC<MajorDetailModalProps> = ({
                 </thead>
                 <tbody className="divide-y divide-[var(--mn-border)]">
                   {relatedJobsList.map((row, index) => {
-                    const matchText = row.matchRate || (row.entry && row.entry.length <= 15 ? row.entry : 'مناسبة');
-                    const notesText = row.notes || (row.entry && row.entry !== matchText ? row.entry : 'ـ');
+                    const entry = 'entry' in row ? row.entry : undefined;
+                    const matchText = row.matchRate || (entry && entry.length <= 15 ? entry : 'مناسبة');
+                    const notesText = row.notes || (entry && entry !== matchText ? entry : 'ـ');
 
                     return (
                       <tr key={index} className="hover:bg-[var(--mn-surface-muted)]/50 transition-colors group">

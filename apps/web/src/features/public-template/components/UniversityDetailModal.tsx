@@ -472,17 +472,17 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
                       ? university.studyPrograms.topKeyMajors
                       : (university.studyPrograms.majorLinks ?? []).map((l) => l.label)
                   ).map((majorName, idx) => {
-                    const matchedLink = university.studyPrograms.majorLinks?.find(
+                    const matchedLink = university.studyPrograms?.majorLinks?.find(
                       (l) => l.label === majorName || l.programLabel === majorName
                     );
                     const majorId = matchedLink?.majorId;
 
                     return (
-                      <div
+                      <button
+                        type="button"
                         key={majorId || `${majorName}-${idx}`}
                         onClick={majorId ? () => onOpenMajor?.(majorId) : undefined}
-                        role={majorId ? 'button' : undefined}
-                        tabIndex={majorId ? 0 : undefined}
+                        disabled={!majorId || !onOpenMajor}
                         className={`bg-[var(--mn-page)] dark:bg-[var(--mn-surface)] border border-[var(--mn-accent)]/30 dark:border-[var(--mn-accent)]/25 text-[var(--mn-heading)] dark:text-[var(--mn-text)] px-2.5 py-1 rounded-lg text-[10px] sm:text-[10.5px] font-bold flex items-center gap-1.5 shadow-2xs hover:border-[var(--mn-border-brand)] transition-all font-['Cairo',sans-serif] mn-panel dark:mn-panel ${
                           majorId ? 'cursor-pointer hover:text-[var(--mn-accent-text)]' : ''
                         }`}
@@ -490,7 +490,7 @@ export const UniversityDetailModal: React.FC<UniversityDetailModalProps> = ({
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-[var(--mn-primary)] dark:bg-[var(--mn-accent)] shrink-0 mn-inverse dark:mn-gold " />
                         <span>{majorName}</span>
-                      </div>
+                      </button>
                     );
                   })}
                 </div>
