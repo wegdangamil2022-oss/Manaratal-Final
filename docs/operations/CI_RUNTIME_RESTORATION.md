@@ -3,7 +3,7 @@
 The full source CI covers more than remediation:verify. Keep both gates enabled.
 
 - The imported-course source job uses the existing Prisma source gate. It supplies non-routable-to-production validation configuration for both datasource variables and runs only validate/generate, never migration or SQL.
-- Translation CI builds domain/shared artifacts before running Vitest, including on a clean checkout.
+- Translation CI builds application and its transitive project references (including domain/shared/core) before running Vitest, including on a clean checkout. The locale contract imports application at runtime; building only domain/shared is insufficient.
 - PreviewDatabaseProbe delegates Prisma construction/metadata to the existing RuntimeResourceRegistry authority. It imports that authority only after the explicit Preview gate and URL checks. The client remains isolated, bounded, and disconnected in finally; no Redis client is instantiated by these factory functions.
 - `scripts/verify-vercel-api-handler.mjs` is explicitly classified as source/runtime-verification tooling in operational-tooling-boundary.json. It imports Prisma only to check the constructor, never creates that client, rejects external network/periodic workers, and injects a mock database. This classification grants no permission to mutate a database.
 - University major navigation uses the canonical majorLinks entries directly. Unlinked topKeyMajors labels remain non-interactive; display-name equality never determines an ID.

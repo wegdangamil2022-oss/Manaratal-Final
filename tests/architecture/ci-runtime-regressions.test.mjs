@@ -26,7 +26,7 @@ test('source-only Prisma job uses the isolated validation gate, never deployment
 
 test('translation builds runtime artifacts before behavioral tests', () => {
   const manifest = JSON.parse(read('package.json'));
-  assert.match(manifest.scripts['translation:ci'], /^tsc -b packages\/domain packages\/shared &&/);
+  assert.match(manifest.scripts['translation:ci'], /^tsc -b packages\/application &&/);
   assert.match(manifest.scripts['translation:ci'], /npm run translation:test$/);
 });
 
