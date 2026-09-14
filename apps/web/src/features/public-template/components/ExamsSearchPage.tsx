@@ -248,7 +248,7 @@ export const ExamsSearchPage: React.FC<ExamsSearchPageProps> = ({
             <article
               key={exam.id}
               onClick={() => onSelectExam?.(exam)}
-              className="min-h-[168px] bg-[var(--mn-surface)] border border-[var(--mn-border)] rounded-2xl p-4 text-right shadow-sm hover:border-[var(--mn-accent)]/55 hover:shadow-md active:scale-[0.99] transition-all cursor-pointer relative overflow-hidden mn-panel "
+              className="min-h-[168px] bg-[var(--mn-surface)] border border-[#142B5F] dark:border-[#D6A43B]/60 hover:border-[#142B5F] rounded-2xl p-4 text-right shadow-sm hover:shadow-md active:scale-[0.99] transition-all cursor-pointer relative overflow-hidden mn-panel "
             >
               {onToggleFavorite && (
                 <FavoriteButton

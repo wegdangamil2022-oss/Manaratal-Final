@@ -59,7 +59,7 @@ const CareerOpportunityCard: React.FC<{
   isFavorite?: boolean;
   onToggleFavorite?: (id: string) => void;
 }> = ({ opportunity, onOpen, isFavorite = false, onToggleFavorite }) => (
-  <article className="relative group bg-[var(--mn-surface)] border border-[var(--mn-border)] hover:border-[var(--mn-accent)]/60 rounded-3xl p-3.5 sm:p-4 shadow-2xs hover:shadow-md transition-all active:scale-[0.99] mn-panel ">
+  <article className="relative group bg-[var(--mn-surface)] border border-[#142B5F] dark:border-[#D6A43B]/60 hover:border-[#142B5F] rounded-3xl p-3.5 sm:p-4 shadow-2xs hover:shadow-md transition-all active:scale-[0.99] mn-panel ">
     {onToggleFavorite && (
       <FavoriteButton
         active={isFavorite}

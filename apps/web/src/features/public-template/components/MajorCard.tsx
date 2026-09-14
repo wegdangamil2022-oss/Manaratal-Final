@@ -35,7 +35,7 @@ export const MajorCard: React.FC<MajorCardProps> = ({
 }) => {
   // Select specialty icon in green outline style matching the design
   const renderSpecialtyIcon = (iconSizeClass?: string) => {
-    const iconClass = iconSizeClass || 'w-6 h-6 sm:w-7 sm:h-7 text-[var(--mn-heading)] stroke-[1.75]';
+    const iconClass = iconSizeClass || 'w-6 h-6 sm:w-7 sm:h-7 text-[#D6A43B] dark:text-[var(--mn-accent)] stroke-[1.75]';
     const nameLower = (
       major.name +
       ' ' +
@@ -177,7 +177,7 @@ export const MajorCard: React.FC<MajorCardProps> = ({
           }
         }}
         onClick={() => onSelectMajor && onSelectMajor(major)}
-        className="group relative overflow-hidden bg-[var(--mn-surface)] rounded-[24px] sm:rounded-[28px] border-2 border-[var(--mn-accent)]/35 hover:border-[var(--mn-accent)] active:border-[var(--mn-accent)] active:bg-[var(--mn-accent)]/10 shadow-sm hover:shadow-[0_0_12px_rgba(214,164,59,0.25)] active:shadow-[0_0_15px_rgba(214,164,59,0.35)] transition-all duration-150 active:scale-[0.985] p-3 sm:p-4 text-right cursor-pointer select-none mn-panel "
+        className="group relative overflow-hidden bg-[var(--mn-surface)] rounded-[24px] sm:rounded-[28px] border border-[#142B5F] dark:border-[#D6A43B]/60 hover:border-[#142B5F] active:border-[#142B5F] shadow-sm transition-all duration-150 active:scale-[0.985] p-3 sm:p-4 text-right cursor-pointer select-none mn-panel "
         dir="rtl"
       >
         {/* Top-Right Metallic Gold Corner Ribbon */}
@@ -335,11 +335,11 @@ export const MajorCard: React.FC<MajorCardProps> = ({
                   • {durationText}
                 </span>
               </div>
-              
+
               <h3 className="text-[13.5px] sm:text-[14.5px] font-bold text-[var(--mn-heading)] font-['Cairo',sans-serif] leading-tight truncate">
                 {major.name}
               </h3>
-              
+
               <div className="flex items-center gap-1 text-[9.5px] font-semibold text-[var(--mn-text-muted)] font-['Cairo',sans-serif] truncate">
                 <School className="w-3 h-3 text-[var(--mn-border-gold)] shrink-0" />
                 <span>{facultyCategory}</span>
@@ -401,17 +401,16 @@ export const MajorCard: React.FC<MajorCardProps> = ({
         }
       }}
       onClick={() => onSelectMajor && onSelectMajor(major)}
-      className="group relative overflow-hidden bg-[var(--mn-surface)] rounded-r-[4px] rounded-l-2xl border-r-3 border-y border-l border-[var(--mn-accent)] border-y-[var(--mn-border)] border-l-[var(--mn-border)] hover:border-r-[var(--mn-accent)] hover:border-y-[var(--mn-accent)]/40 hover:border-l-[var(--mn-accent)]/40 hover:shadow-xs transition-all duration-200 p-2.5 sm:p-3 text-right cursor-pointer select-none mn-panel "
+      className="group relative overflow-hidden bg-[var(--mn-surface)] rounded-r-[4px] rounded-l-2xl border border-[#142B5F]/30 dark:border-[var(--mn-border)] border-r-3 border-r-[#142B5F] dark:border-r-[var(--mn-accent)] hover:border-[#142B5F]/50 dark:hover:border-[var(--mn-accent)]/40 hover:shadow-xs transition-all duration-200 p-2.5 sm:p-3 text-right cursor-pointer select-none mn-panel "
       dir="rtl"
     >
       {/* Top Header Row: Icon + Title + Favorite Button */}
       <div className="flex items-start justify-between gap-2.5">
         {/* Right Info Flow: Icon + Names */}
         <div className="flex items-center gap-2.5 sm:gap-3 flex-1 min-w-0">
-          {/* Subtle gold double ring icon wrapper */}
-          <div className="w-10.5 h-10.5 sm:w-11 sm:h-11 rounded-full border border-[var(--mn-border-gold)]/40 flex items-center justify-center shrink-0 bg-[var(--mn-page)] relative mn-panel ">
-            <div className="absolute inset-0.5 rounded-full border border-[var(--mn-accent)]/10" />
-            {renderSpecialtyIcon('w-5 h-5 sm:w-5.5 sm:h-5.5 text-[var(--mn-accent-text)] stroke-[2]')}
+          {/* Navy circle icon wrapper with gold icon */}
+          <div className="w-10.5 h-10.5 sm:w-11 sm:h-11 rounded-full border border-[#142B5F] dark:border-[var(--mn-accent)]/40 flex items-center justify-center shrink-0 bg-[#142B5F] dark:bg-[var(--mn-surface)] relative shadow-xs">
+            {renderSpecialtyIcon('w-5 h-5 sm:w-5.5 sm:h-5.5 text-[#D6A43B] dark:text-[var(--mn-accent)] stroke-[2]')}
           </div>
 
           <div className="flex-1 min-w-0 space-y-0.5">

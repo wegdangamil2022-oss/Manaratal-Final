@@ -265,7 +265,7 @@ export const CoursesSearchPage: React.FC<CoursesSearchPageProps> = ({ onBack, on
           <div className="relative inline-block mb-1">
             <div className="absolute -inset-x-6 -inset-y-3 bg-[var(--mn-accent)]/10 blur-xl rounded-full" />
             <h1 className="relative text-2xl sm:text-3xl font-bold text-white font-['Cairo',sans-serif] tracking-tight leading-tight">
-              الدورات <span className="text-[var(--mn-accent-soft)]">المستوردة</span>
+              الدورات <span className="text-[var(--mn-accent-soft)]">العالمية</span>
             </h1>
           </div>
 
@@ -276,7 +276,7 @@ export const CoursesSearchPage: React.FC<CoursesSearchPageProps> = ({ onBack, on
           </div>
 
           <p className="text-[12px] sm:text-sm text-[var(--mn-on-dark-muted)] font-medium font-['Cairo',sans-serif] leading-relaxed max-w-[92%] mx-auto drop-shadow-md">
-            ابحث في الدورات المجانية المستوردة من المنصات والجامعات العالمية، واختر ما يناسب مجالك ومستواك.
+            ابحث في الدورات المجانية المتاحة من كبرى المنصات والجامعات العالمية، واختر ما يناسب مجالك ومستواك.
           </p>
 
           {/* Search stays inside the upper section, matching Scholarships. */}
@@ -320,10 +320,10 @@ export const CoursesSearchPage: React.FC<CoursesSearchPageProps> = ({ onBack, on
       <div className="max-w-lg mx-auto mn-inline-gutter -mt-7 sm:-mt-8 relative z-20 pb-3">
         <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
           {/* نوع الدورة */}
-          <div className="relative bg-[var(--mn-surface)] hover:bg-[var(--mn-gold-surface)]/40 border-1.5 border-[var(--mn-accent)]/70 hover:border-[var(--mn-accent)] rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-center text-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all h-[62px] sm:h-[66px] cursor-pointer mn-panel ">
+          <div className="relative bg-[var(--mn-surface)] hover:bg-[var(--mn-surface-muted)] border-1.5 border-[#142B5F]/50 dark:border-[#D6A43B]/60 hover:border-[#142B5F] rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-center text-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all h-[62px] sm:h-[66px] cursor-pointer mn-panel ">
             <div className="flex items-center justify-center gap-1 text-[var(--mn-heading)] font-semibold text-[10.5px] sm:text-xs font-['Cairo',sans-serif] w-full">
               <span className="truncate">{freeCourseMode === 'all' ? 'نوع الدورة' : selectedFreeCourseLabel}</span>
-              <Award className="w-3.5 h-3.5 text-[var(--mn-accent-text)] shrink-0" />
+              <Award className="w-3.5 h-3.5 text-[#142B5F] dark:text-[#D6A43B] shrink-0" />
             </div>
             <ChevronDown className="w-3.5 h-3.5 text-[var(--mn-text-muted)] mt-0.5" />
             <select
@@ -339,10 +339,10 @@ export const CoursesSearchPage: React.FC<CoursesSearchPageProps> = ({ onBack, on
           </div>
 
           {/* المنصة */}
-          <div className="relative bg-[var(--mn-surface)] hover:bg-[var(--mn-gold-surface)]/40 border-1.5 border-[var(--mn-accent)]/70 hover:border-[var(--mn-accent)] rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-center text-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all h-[62px] sm:h-[66px] cursor-pointer mn-panel ">
+          <div className="relative bg-[var(--mn-surface)] hover:bg-[var(--mn-surface-muted)] border-1.5 border-[#142B5F]/50 dark:border-[#D6A43B]/60 hover:border-[#142B5F] rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-center text-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all h-[62px] sm:h-[66px] cursor-pointer mn-panel ">
             <div className="flex items-center justify-center gap-1 text-[var(--mn-heading)] font-semibold text-[10.5px] sm:text-xs font-['Cairo',sans-serif] w-full">
               <span className="truncate">{selectedPlatform === 'all' ? 'المنصة' : selectedPlatform}</span>
-              <Globe2 className="w-3.5 h-3.5 text-[var(--mn-accent-text)] shrink-0" />
+              <Globe2 className="w-3.5 h-3.5 text-[#142B5F] dark:text-[#D6A43B] shrink-0" />
             </div>
             <ChevronDown className="w-3.5 h-3.5 text-[var(--mn-text-muted)] mt-0.5" />
             <select
@@ -365,12 +365,12 @@ export const CoursesSearchPage: React.FC<CoursesSearchPageProps> = ({ onBack, on
             className={`relative border-1.5 rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-center text-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all h-[62px] sm:h-[66px] cursor-pointer ${
               showAdvancedFilters || advancedFiltersCount > 0
                 ? 'bg-[var(--mn-primary)] border-[var(--mn-border-brand)] text-white mn-inverse '
-                : 'bg-[var(--mn-surface)] hover:bg-[var(--mn-gold-surface)]/40 border-[var(--mn-accent)]/70 hover:border-[var(--mn-accent)] text-[var(--mn-heading)] mn-panel '
+                : 'bg-[var(--mn-surface)] hover:bg-[var(--mn-surface-muted)] border-[#142B5F]/50 dark:border-[#D6A43B]/60 hover:border-[#142B5F] text-[var(--mn-heading)] mn-panel '
             }`}
           >
             <div className="flex items-center justify-center gap-1 font-semibold text-[10.5px] sm:text-xs font-['Cairo',sans-serif] w-full">
               <span>{advancedFiltersCount > 0 ? `تصفية (${advancedFiltersCount})` : 'تصفية'}</span>
-              <SlidersHorizontal className={`w-3.5 h-3.5 shrink-0 ${showAdvancedFilters || advancedFiltersCount > 0 ? 'text-[var(--mn-accent-soft)]' : 'text-[var(--mn-accent-text)]'}`} />
+              <SlidersHorizontal className={`w-3.5 h-3.5 shrink-0 ${showAdvancedFilters || advancedFiltersCount > 0 ? 'text-[var(--mn-accent-soft)]' : 'text-[#142B5F] dark:text-[#D6A43B]'}`} />
             </div>
             <span className={`mt-0.5 max-w-full truncate text-[8px] sm:text-[9px] font-bold ${showAdvancedFilters || advancedFiltersCount > 0 ? 'text-[var(--mn-on-dark-muted)]' : 'text-[var(--mn-text-muted)]'}`}>
               المجال • اللغة • المستوى • الشهادة

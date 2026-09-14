@@ -286,13 +286,13 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
         <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
           {/* Tile 1: القارة */}
           <div className="relative bg-[var(--mn-surface)] hover:bg-[var(--mn-gold-surface)]/40 border-1.5 border-[var(--mn-accent)]/70 hover:border-[var(--mn-accent)] rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-center text-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all h-[58px] sm:h-[64px] cursor-pointer mn-panel ">
-            <div className="flex items-center justify-center gap-1 text-[var(--mn-heading)] font-semibold text-[11px] sm:text-xs font-['Cairo',sans-serif] w-full">
+            <div className="flex items-center justify-center gap-1 text-[var(--mn-heading)] dark:text-[var(--mn-accent-soft)] font-semibold text-[11px] sm:text-xs font-['Cairo',sans-serif] w-full">
               <Globe2 className="w-3.5 h-3.5 text-[var(--mn-accent-text)] shrink-0" />
               <span className="truncate">
                 {selectedContinent === 'الكل' ? 'القارة' : selectedContinent}
               </span>
             </div>
-            <ChevronDown className="w-3.5 h-3.5 text-[var(--mn-text-muted)] mt-0.5" />
+            <ChevronDown className="w-3.5 h-3.5 text-[var(--mn-text-muted)] dark:text-[var(--mn-accent-soft)] mt-0.5" />
             <select
               value={selectedContinent}
               onChange={(e) => handleContinentChange(e.target.value)}
@@ -309,13 +309,13 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
 
           {/* Tile 2: الدولة */}
           <div className="relative bg-[var(--mn-surface)] hover:bg-[var(--mn-gold-surface)]/40 border-1.5 border-[var(--mn-accent)]/70 hover:border-[var(--mn-accent)] rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-center text-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all h-[58px] sm:h-[64px] cursor-pointer mn-panel ">
-            <div className="flex items-center justify-center gap-1 text-[var(--mn-heading)] font-semibold text-[11px] sm:text-xs font-['Cairo',sans-serif] w-full">
+            <div className="flex items-center justify-center gap-1 text-[var(--mn-heading)] dark:text-[var(--mn-accent-soft)] font-semibold text-[11px] sm:text-xs font-['Cairo',sans-serif] w-full">
               <MapPin className="w-3.5 h-3.5 text-[var(--mn-accent-text)] shrink-0" />
               <span className="truncate">
                 {selectedCountry === 'الكل' ? 'الدولة' : selectedCountry}
               </span>
             </div>
-            <ChevronDown className="w-3.5 h-3.5 text-[var(--mn-text-muted)] mt-0.5" />
+            <ChevronDown className="w-3.5 h-3.5 text-[var(--mn-text-muted)] dark:text-[var(--mn-accent-soft)] mt-0.5" />
             <select
               value={selectedCountry}
               onChange={(e) => handleCountryChange(e.target.value)}
@@ -332,11 +332,11 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
 
           {/* Tile 3: المدينة */}
           <div className="relative bg-[var(--mn-surface)] hover:bg-[var(--mn-gold-surface)]/40 border-1.5 border-[var(--mn-accent)]/70 hover:border-[var(--mn-accent)] rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-center text-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all h-[58px] sm:h-[64px] cursor-pointer mn-panel ">
-            <div className="flex items-center justify-center gap-1 text-[var(--mn-heading)] font-semibold text-[11px] sm:text-xs font-['Cairo',sans-serif] w-full">
+            <div className="flex items-center justify-center gap-1 text-[var(--mn-heading)] dark:text-[var(--mn-accent-soft)] font-semibold text-[11px] sm:text-xs font-['Cairo',sans-serif] w-full">
               <Building2 className="w-3.5 h-3.5 text-[var(--mn-accent-text)] shrink-0" />
               <span className="truncate">{selectedCity === 'الكل' ? 'المدينة' : selectedCity}</span>
             </div>
-            <ChevronDown className="w-3.5 h-3.5 text-[var(--mn-text-muted)] mt-0.5" />
+            <ChevronDown className="w-3.5 h-3.5 text-[var(--mn-text-muted)] dark:text-[var(--mn-accent-soft)] mt-0.5" />
             <select
               value={selectedCity}
               onChange={(e) => setSelectedCity(e.target.value)}
@@ -404,9 +404,9 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
                     }
                   }}
                   onClick={() => onSelectUniversity?.(univ)}
-                  className="bg-[var(--mn-surface)] rounded-xl sm:rounded-2xl border-2 border-[var(--mn-accent)]/35 hover:border-[var(--mn-accent)] active:border-[var(--mn-accent)] active:bg-[var(--mn-accent)]/10 shadow-sm hover:shadow-[0_0_12px_rgba(214,164,59,0.25)] active:shadow-[0_0_15px_rgba(214,164,59,0.35)] transition-all duration-150 active:scale-[0.985] p-2.5 sm:p-3 relative overflow-hidden group cursor-pointer flex flex-col gap-2 sm:gap-2.5 select-none mn-panel "
+                  className="bg-[var(--mn-surface)] rounded-xl sm:rounded-2xl border border-[#142B5F] dark:border-[#D6A43B]/60 hover:border-[#142B5F] active:border-[#142B5F] shadow-sm transition-all duration-150 active:scale-[0.985] p-2.5 sm:p-3 relative overflow-hidden group cursor-pointer flex flex-col gap-2 sm:gap-2.5 select-none mn-panel "
                 >
-                  <div className="absolute top-0 right-0 w-1.5 h-full bg-gradient-to-b from-[var(--mn-accent)] to-[var(--mn-gold-surface)] opacity-0 group-hover:opacity-100 transition-opacity mn-gold "></div>
+                  <div className="absolute top-0 right-0 w-1.5 h-full bg-gradient-to-b from-[#142B5F] dark:from-[#D6A43B] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
                   {/* Top Row: Logo & Names + Actions */}
                   <div className="flex items-center justify-between gap-2">
@@ -420,7 +420,7 @@ export const UniversitiesSearchPage: React.FC<UniversitiesSearchPageProps> = ({
 
                       {/* Names with beautiful responsive typography */}
                       <div className="flex flex-col items-start text-right min-w-0 flex-1">
-                        <h3 className="text-[13px] sm:text-[14px] font-bold text-[var(--mn-heading)] font-['Cairo',sans-serif] leading-tight truncate w-full">
+                        <h3 className="text-[13px] sm:text-[14px] font-bold text-[var(--mn-heading)] dark:text-[var(--mn-accent-soft)] font-['Cairo',sans-serif] leading-tight truncate w-full">
                           {univ.name}
                         </h3>
                         <span className="text-[10px] sm:text-[11px] font-medium text-[var(--mn-text-muted)] font-['Cairo',sans-serif] truncate w-full">

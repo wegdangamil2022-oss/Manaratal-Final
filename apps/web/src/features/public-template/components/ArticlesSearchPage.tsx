@@ -169,7 +169,7 @@ export const ArticlesSearchPage: React.FC<ArticlesSearchPageProps> = ({ articles
             return (
               <article
                 key={article.id}
-                className="relative group overflow-hidden rounded-3xl border border-[var(--mn-border)] bg-[var(--mn-surface)] shadow-sm transition hover:border-[var(--mn-border-gold)] hover:shadow-md mn-panel "
+                className="relative group overflow-hidden rounded-3xl border border-[#142B5F] dark:border-[#D6A43B]/60 hover:border-[#142B5F] bg-[var(--mn-surface)] shadow-sm transition hover:shadow-md mn-panel "
               >
                 {onToggleFavorite && (
                   <FavoriteButton

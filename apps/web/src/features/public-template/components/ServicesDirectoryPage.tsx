@@ -165,7 +165,7 @@ export const ServicesDirectoryPage: React.FC<ServicesDirectoryPageProps> = ({
             filteredServices.map((service) => (
               <article
                 key={service.id}
-                className="relative group overflow-hidden rounded-2xl border-2 border-[var(--mn-border-brand)]/40 bg-[var(--mn-surface)] p-3 shadow-sm transition-all hover:border-[var(--mn-border-brand)] hover:shadow-md mn-panel "
+                className="relative group overflow-hidden rounded-2xl border border-[#142B5F] dark:border-[#D6A43B]/60 hover:border-[#142B5F] bg-[var(--mn-surface)] p-3 shadow-sm transition-all hover:shadow-md mn-panel "
               >
                 {onToggleFavorite && (
                   <FavoriteButton

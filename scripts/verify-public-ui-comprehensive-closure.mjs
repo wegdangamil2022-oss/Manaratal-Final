@@ -78,7 +78,14 @@ if(exists(logo)){
  const hash=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,logo))).digest('hex');
  check('LOGO_OFFICIAL_HASH',hash==='10bc5fd51307913795990c95e87c758bdd653a07583286fe1ade6b8239b7321c',hash);
 }
-check('LOGO_IMAGE_NOT_SVG',contains(logoComponent,'/brand/manaratak-logo-official.png') && notContains(logoComponent,'<svg'),'official image asset only');
+// September 2026 public-design import supplies a new circular logo; keep the legacy asset intact too.
+const templateLogo='apps/web/public/brand/manaratak-logo.png';
+check('LOGO_TEMPLATE_ASSET_EXISTS',exists(templateLogo),templateLogo);
+if(exists(templateLogo)){
+ const hash=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,templateLogo))).digest('hex');
+ check('LOGO_TEMPLATE_HASH',hash==='a1ad2bedd8cacbdb05a3c6b883edd0f4460112f658f69d9595c8324af1b6aef2',hash);
+}
+check('LOGO_IMAGE_NOT_SVG',contains(logoComponent,'/brand/manaratak-logo.png') && notContains(logoComponent,'<svg'),'user-supplied template image asset only');
 check('LOGO_OBJECT_CONTAIN',contains(logoComponent,'object-contain'),'preserve aspect ratio');
 
 // Shared detail patterns

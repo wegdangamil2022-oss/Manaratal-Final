@@ -290,6 +290,29 @@ export const CountriesSearchPage: React.FC<CountriesSearchPageProps> = ({
       }
     : null;
 
+  if (detailCountry) {
+    return (
+      <CountryDetailModal
+        country={detailCountry}
+        searchAnchor={searchAnchor}
+        searchTerm={searchTerm}
+        isFavorite={favoriteIds.includes(detailCountry.id)}
+        onToggleFavorite={onToggleFavorite}
+        onClose={() => onDetailChange ? onBack() : setActiveCountryModal(null)}
+        onOpenUniversity={onOpenUniversity}
+        onOpenScholarship={onOpenScholarship}
+        onOpenMajor={onOpenMajor}
+        onOpenExam={onOpenExam}
+        onOpenArticle={onOpenArticle}
+        onBrowseScholarships={() => {
+          const countryId = detailCountry.id;
+          setActiveCountryModal(null);
+          onSelectCountryScholarships?.(countryId);
+        }}
+      />
+    );
+  }
+
   return (
     <div
       className="min-h-screen bg-[var(--mn-page)] text-[var(--mn-heading)] pb-24 font-['Cairo',sans-serif] select-none mn-panel "
@@ -514,7 +537,7 @@ export const CountriesSearchPage: React.FC<CountriesSearchPageProps> = ({
           {filteredCountries.map((country) => (
             <div
               key={country.id}
-              className="bg-[var(--mn-surface)] rounded-2xl border border-[var(--mn-border-gold)] hover:border-[var(--mn-accent)] shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:shadow-md transition-all p-3 sm:p-3.5 space-y-2.5 relative overflow-hidden group mn-panel "
+              className="bg-[var(--mn-surface)] rounded-2xl border border-[#142B5F] dark:border-[#D6A43B]/60 hover:border-[#142B5F] shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:shadow-md transition-all p-3 sm:p-3.5 space-y-2.5 relative overflow-hidden group mn-panel "
             >
               {/* Top Row: Right Country Info & Circular Flag Badge | Left Explore Button */}
               <div className="flex items-center justify-between gap-2">
@@ -557,10 +580,11 @@ export const CountriesSearchPage: React.FC<CountriesSearchPageProps> = ({
 
                   <button
                     onClick={() => setActiveCountryModal(country)}
-                    className="bg-[var(--mn-primary)] hover:bg-[var(--mn-primary)] text-white text-[10.5px] sm:text-xs font-bold px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full flex items-center gap-1 shadow-xs transition-all active:scale-95 cursor-pointer font-['Cairo',sans-serif] mn-inverse hover:mn-inverse "
+                    className="bg-[var(--mn-primary)] hover:bg-[var(--mn-primary)] text-white rounded-lg px-2.5 py-1.5 flex items-center justify-center gap-1 transition-all active:scale-95 cursor-pointer shadow-2xs mn-inverse hover:mn-inverse "
+                    data-mn-font="10.5" data-mn-bold="true" data-mn-cairo="true"
                   >
-                    <span>استكشف الدولة</span>
-                    <ChevronLeft className="w-3 h-3 sm:w-3.5 sm:h-3.5 rotate-180" />
+                    <span className="text-[10px] sm:text-[11px] font-bold text-center leading-tight text-[var(--mn-accent-soft)]">استكشف الدولة</span>
+                    <ChevronLeft className="w-3.5 h-3.5 rotate-180 text-[var(--mn-accent-soft)]" />
                   </button>
                 </div>
               </div>
@@ -595,27 +619,6 @@ export const CountriesSearchPage: React.FC<CountriesSearchPageProps> = ({
           ))}
         </div>
       </div>
-
-      {detailCountry && (
-        <CountryDetailModal
-          country={detailCountry}
-          searchAnchor={searchAnchor}
-          searchTerm={searchTerm}
-          isFavorite={favoriteIds.includes(detailCountry.id)}
-          onToggleFavorite={onToggleFavorite}
-          onClose={() => onDetailChange ? onBack() : setActiveCountryModal(null)}
-          onOpenUniversity={onOpenUniversity}
-          onOpenScholarship={onOpenScholarship}
-          onOpenMajor={onOpenMajor}
-          onOpenExam={onOpenExam}
-          onOpenArticle={onOpenArticle}
-          onBrowseScholarships={() => {
-            const countryId = detailCountry.id;
-            setActiveCountryModal(null);
-            onSelectCountryScholarships?.(countryId);
-          }}
-        />
-      )}
     </div>
   );
 };

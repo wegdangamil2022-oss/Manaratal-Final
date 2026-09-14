@@ -26,7 +26,7 @@ export const CoursesList: React.FC<CoursesListProps> = ({ courses }) => {
         {courses.map((course) => (
           <div
             key={course.id}
-            className="bg-[var(--mn-surface)] rounded-2xl border border-[var(--mn-border)] shadow-xs hover:shadow-md transition-all overflow-hidden p-3.5 space-y-2.5 text-right hover:border-[var(--mn-border-gold)] mn-panel "
+            className="bg-[var(--mn-surface)] rounded-2xl border border-[#142B5F] dark:border-[#D6A43B]/60 hover:border-[#142B5F] shadow-xs hover:shadow-md transition-all overflow-hidden p-3.5 space-y-2.5 text-right mn-panel "
           >
             <div className="flex items-start gap-3">
               <img

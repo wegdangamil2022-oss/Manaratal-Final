@@ -19,6 +19,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onExploreClick }) => {
             className="w-full h-full object-cover object-top sm:object-[center_top] transform group-hover:scale-102 transition-transform duration-700 filter brightness-95"
             referrerPolicy="no-referrer"
             loading="eager"
+            onError={(event) => { event.currentTarget.hidden = true; }}
           />
 
           {/* Vignette Gradient: Soft shadow on text side */}

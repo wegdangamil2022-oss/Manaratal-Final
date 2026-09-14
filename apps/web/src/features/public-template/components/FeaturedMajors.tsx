@@ -53,22 +53,30 @@ export const FeaturedMajors: React.FC<FeaturedMajorsProps> = ({ onViewAllClick }
       className="px-0 py-3 w-full font-['Cairo',sans-serif]"
     >
       {/* Standard Framed Container with Top Border */}
-      <div className="relative rounded-3xl p-3.5 sm:p-4 bg-gradient-to-b from-[var(--mn-surface)] to-[var(--mn-page)]/80 border border-[var(--mn-border)] shadow-sm border-t-2 border-t-[var(--mn-primary)]/40 overflow-hidden mn-panel ">
+      <div className="relative rounded-3xl p-3.5 sm:p-4 bg-gradient-to-b from-[var(--mn-surface)] to-[var(--mn-page)]/80 border border-[var(--mn-border)] shadow-sm overflow-hidden mn-panel ">
+        {/* Elegant top gradient border line */}
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#142B5F] dark:via-[#D6A43B] to-transparent" />
+
         {/* Content Inside the Framed Section */}
         <div className="relative z-10">
           {/* Centered Section Title */}
-          <div className="text-center mb-4">
-            <h3 className="text-sm sm:text-base font-bold text-[var(--mn-heading)] inline-flex items-center justify-center gap-1.5">
-              <GraduationCap className="w-4 h-4 text-[var(--mn-accent-text)]" />
-              <span>ابحث عن تخصصك</span>
-            </h3>
-            <p className="text-[10px] sm:text-xs text-[var(--mn-text-muted)] font-medium mt-1 max-w-xs mx-auto font-['Cairo',sans-serif]">
+          <div className="text-center mb-2.5 sm:mb-3">
+            <div className="relative pb-1 mb-1 inline-block">
+              <h3 className="text-[14.5px] sm:text-base font-bold text-[#142B5F] dark:text-[#D6A43B] inline-flex items-center justify-center gap-1.5 font-['Cairo',sans-serif]">
+                <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#142B5F] border border-[#D6A43B]/60 flex items-center justify-center shrink-0 shadow-2xs">
+                  <GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D6A43B]" />
+                </span>
+                <span>ابحث عن تخصصك</span>
+              </h3>
+              <div className="absolute -bottom-0.5 left-0 right-0 h-[2.5px] rounded-full bg-gradient-to-r from-transparent via-[#D6A43B] to-transparent" />
+            </div>
+            <p className="text-[11px] sm:text-xs text-[var(--mn-text-muted)] font-medium max-w-md mx-auto font-['Cairo',sans-serif]">
               اختر الدرجة العلمية التي تطمح للوصول إليها وتعرف على التخصصات المتاحة لها.
             </p>
           </div>
 
           {/* 2x2 Grid for Degree Categories with Images */}
-          <div className="grid grid-cols-2 gap-2 sm:gap-3 w-full">
+          <div className="grid grid-cols-2 gap-1.5 sm:gap-2.5 w-full max-w-2xl mx-auto">
             {DEGREE_CATEGORIES.map((category) => (
               <div
                 key={category.id}
@@ -81,10 +89,10 @@ export const FeaturedMajors: React.FC<FeaturedMajorsProps> = ({ onViewAllClick }
                   }
                 }}
                 onClick={onViewAllClick}
-                className="group relative flex flex-col rounded-2xl overflow-hidden shadow-xs hover:shadow-md border border-[var(--mn-border)] bg-[var(--mn-primary)] cursor-pointer transition-all active:scale-97 hover:border-[var(--mn-accent)] mn-inverse "
+                className="group relative flex flex-col rounded-xl sm:rounded-2xl overflow-hidden shadow-2xs hover:shadow-md border border-[var(--mn-border)] bg-[var(--mn-primary)] cursor-pointer transition-all active:scale-97 hover:border-[var(--mn-accent)] mn-inverse "
               >
-                {/* Compact Image Container with 16:9 ratio */}
-                <div className="relative aspect-[4/3] sm:aspect-video w-full overflow-hidden bg-[var(--mn-primary)] mn-inverse ">
+                {/* Sleeker Compact Image Container with Widescreen Ratio */}
+                <div className="relative aspect-[16/9] sm:aspect-[2/1] w-full overflow-hidden bg-[var(--mn-primary)] mn-inverse ">
                   <img
                     src={category.imageUrl}
                     alt={category.title}
@@ -96,11 +104,11 @@ export const FeaturedMajors: React.FC<FeaturedMajorsProps> = ({ onViewAllClick }
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--mn-primary)] via-[var(--mn-primary)]/70 to-transparent pointer-events-none mn-inverse " />
 
                   {/* Card Title and Subtitle */}
-                  <div className="absolute inset-x-0 bottom-0 p-2 text-center text-white z-10">
-                    <h4 className="font-bold text-[11px] sm:text-xs leading-tight text-white line-clamp-2 drop-shadow-xs mb-0.5 font-['Cairo',sans-serif]">
+                  <div className="absolute inset-x-0 bottom-0 p-1.5 sm:p-2 text-center text-white z-10">
+                    <h4 className="font-bold text-[10.5px] sm:text-xs leading-tight text-white line-clamp-1 drop-shadow-xs mb-0.2 font-['Cairo',sans-serif]">
                       {category.title}
                     </h4>
-                    <p className="text-[9px] sm:text-[10px] font-bold text-[var(--mn-accent-text)] line-clamp-1 font-['Cairo',sans-serif]">
+                    <p className="text-[8.5px] sm:text-[9.5px] font-bold text-[var(--mn-accent-text)] line-clamp-1 font-['Cairo',sans-serif]">
                       {category.count} تخصص
                     </p>
                   </div>
@@ -114,10 +122,10 @@ export const FeaturedMajors: React.FC<FeaturedMajorsProps> = ({ onViewAllClick }
             <button
               id="btn-view-all-majors"
               onClick={onViewAllClick}
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 bg-[var(--mn-surface)] hover:bg-[var(--mn-accent)]/10 text-[var(--mn-heading)] border border-[var(--mn-accent)]/50 rounded-full text-xs sm:text-sm font-bold transition-all shadow-[0_0_15px_rgba(214,164,59,0.3)] hover:shadow-[0_0_25px_rgba(214,164,59,0.5)] animate-pulse hover:animate-none active:scale-95 font-['Cairo',sans-serif] mn-panel "
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 bg-[var(--mn-surface-muted)] hover:bg-[#142B5F]/5 dark:hover:bg-[#D6A43B]/10 text-[#142B5F] dark:text-[#D6A43B] border border-[#142B5F]/50 dark:border-[#D6A43B]/50 rounded-full transition-all active:scale-95 font-['Cairo',sans-serif] shadow-xs "
             >
               <span className="text-[12px] sm:text-sm font-bold">تصفح جميع التخصصات</span>
-              <ChevronLeft className="w-4 h-4 text-[var(--mn-heading)] transition-transform group-hover:-translate-x-1" />
+              <ChevronLeft className="w-4 h-4 text-[#142B5F] dark:text-[#D6A43B] transition-transform group-hover:-translate-x-1" />
             </button>
           </div>
         </div>

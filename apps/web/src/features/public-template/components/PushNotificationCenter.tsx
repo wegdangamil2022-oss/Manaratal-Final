@@ -7,11 +7,10 @@ import {
   BellRing,
   BookOpen,
   Building2,
-  CheckCheck,
   ChevronLeft,
   Clock,
   GraduationCap,
-  Send,
+  Sparkles,
   Volume2,
   VolumeX,
   X,
@@ -36,6 +35,7 @@ const notificationTitle = (value: string) =>
   value.replace(/^[\p{Extended_Pictographic}\uFE0F\u200D\s:–—-]+/u, '').trim();
 
 const typeIcon = (notification: PushNotificationItem) => {
+  if (notification.actionType === 'ai-tools' || notification.type === 'system') return Sparkles;
   if (notification.actionType === 'scholarship') return GraduationCap;
   if (notification.type === 'urgent') return AlertTriangle;
   if (notification.type === 'deadline') return Clock;
@@ -48,7 +48,7 @@ const FILTERS: Array<{ id: NotificationFilter; label: string; icon: React.Compon
   { id: 'all', label: 'الكل', icon: Bell },
   { id: 'urgent', label: 'عاجل', icon: AlertTriangle },
   { id: 'opportunity', label: 'فرص', icon: GraduationCap },
-  { id: 'deadline', label: 'مواعيد نهائية', icon: Clock },
+  { id: 'deadline', label: 'مواعيد', icon: Clock },
   { id: 'course', label: 'دورات', icon: BookOpen },
 ];
 
@@ -74,64 +74,195 @@ export const PushNotificationCenter: React.FC<PushNotificationCenterProps> = ({
       {activeToast && !isOpen && (() => {
         const ToastIcon = typeIcon(activeToast);
         return (
-          <div id="instant-push-toast" className="fixed inset-x-2 top-2 z-[80] mx-auto max-w-md pointer-events-auto">
-            <div className="mn-card flex items-start gap-3 border-[var(--mn-border-gold)] p-3.5 shadow-2xl">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--mn-border-gold)] bg-[var(--mn-primary)] text-[var(--mn-accent-soft)] mn-inverse">
+          <div id="instant-push-toast" className="fixed inset-x-2 top-3 z-[80] mx-auto max-w-md pointer-events-auto font-['Cairo',sans-serif]">
+            <div className="rounded-2xl border border-[var(--mn-accent)]/50 bg-[var(--mn-surface)] dark:bg-[#112450] p-3.5 shadow-2xl flex items-start gap-3 backdrop-blur-md">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--mn-accent)]/40 bg-[#142B5F] text-[#F3CE74] shadow-xs">
                 <ToastIcon className="h-5 w-5" />
               </span>
-              <button type="button" className="min-w-0 flex-1 text-right" onClick={() => { onSelectAction?.(activeToast.actionType, activeToast.targetId); onDismissToast(); }}>
-                <div className="flex items-center justify-between gap-2"><span className="text-[10px] font-semibold text-[var(--mn-accent-text)]">منارتك · تنبيه فوري</span><span className="text-[10px] text-[var(--mn-text-muted)]">{activeToast.timestamp}</span></div>
-                <h4 className="mt-0.5 text-xs font-semibold leading-snug text-[var(--mn-heading)]">{notificationTitle(activeToast.title)}</h4>
-                <p className="mt-0.5 line-clamp-2 text-[11px] text-[var(--mn-text-muted)]">{activeToast.body}</p>
+              <button
+                type="button"
+                className="min-w-0 flex-1 text-right cursor-pointer"
+                onClick={() => { onSelectAction?.(activeToast.actionType, activeToast.targetId); onDismissToast(); }}
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[11px] font-bold text-[var(--mn-accent)] dark:text-[#F3CE74]">منارتك · تنبيه فوري</span>
+                  <span className="text-[10px] text-[var(--mn-text-muted)]">{activeToast.timestamp}</span>
+                </div>
+                <h4 className="mt-0.5 text-xs font-bold leading-snug text-[var(--mn-heading)]">{notificationTitle(activeToast.title)}</h4>
+                <p className="mt-0.5 line-clamp-2 text-[11px] leading-relaxed text-[var(--mn-text-muted)]">{activeToast.body}</p>
               </button>
-              <button type="button" onClick={onDismissToast} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-[var(--mn-text-muted)] hover:bg-[var(--mn-surface-muted)]" aria-label="إغلاق التنبيه"><X className="h-4 w-4" /></button>
+              <button
+                type="button"
+                onClick={onDismissToast}
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[var(--mn-text-muted)] hover:bg-[var(--mn-surface-muted)] cursor-pointer"
+                aria-label="إغلاق التنبيه"
+              >
+                <X className="h-4 w-4" />
+              </button>
             </div>
           </div>
         );
       })()}
 
       {isOpen && (
-        <div role="presentation" tabIndex={-1} onKeyDown={(event) => { if (event.key === 'Escape') onClose(); }} onClick={(event) => { if (event.target === event.currentTarget) onClose(); }} className="fixed inset-0 z-[80] flex items-end justify-center bg-black/60 p-0 backdrop-blur-xs sm:items-center sm:p-4">
-          <div id="mn-notification-dialog" role="dialog" aria-modal="true" aria-label="مركز التنبيهات" tabIndex={-1} className="mn-card flex max-h-[85vh] w-full max-w-md flex-col overflow-hidden rounded-t-3xl border-[var(--mn-border-gold)] shadow-2xl sm:rounded-3xl">
-            <div className="mn-search-hero flex items-center justify-between p-4 text-white mn-inverse">
-              <div className="flex items-center gap-2">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--mn-border-gold)] bg-white/10 text-[var(--mn-accent-soft)]"><Bell className="h-4 w-4" /></span>
+        <div
+          role="presentation"
+          tabIndex={-1}
+          onKeyDown={(event) => { if (event.key === 'Escape') onClose(); }}
+          onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}
+          className="fixed inset-0 z-[80] flex items-start justify-center pt-2 sm:pt-8 pb-4 px-2 sm:px-4 bg-black/60 backdrop-blur-xs font-['Cairo',sans-serif]"
+          dir="rtl"
+        >
+          <div
+            id="mn-notification-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-label="مركز التنبيهات"
+            tabIndex={-1}
+            className="flex max-h-[92vh] w-full max-w-md flex-col overflow-hidden rounded-2xl sm:rounded-3xl border border-[var(--mn-accent)]/40 bg-[var(--mn-surface)] dark:bg-[#0c1a3b] shadow-2xl transition-all"
+          >
+            {/* Top Golden Accent Line */}
+            <div className="h-1.5 w-full bg-gradient-to-r from-[#B38018] via-[#DDAA35] to-[#B38018]" />
+
+            {/* Header with Royal Gradient */}
+            <div className="flex items-center justify-between p-3.5 sm:p-4 bg-gradient-to-r from-[#142B5F] via-[#112450] to-[#0c1a3b] text-white">
+              <div className="flex items-center gap-2.5">
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--mn-accent)]/50 bg-white/10 text-[#F3CE74] shadow-xs">
+                  <Bell className="h-4 w-4" />
+                </span>
                 <div>
-                  <h2 className="flex items-center gap-1.5 text-sm font-bold text-white">مركز التنبيهات{unreadCount > 0 && <span className="rounded-full bg-[var(--mn-accent)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--mn-on-accent)] mn-gold">{unreadCount} جديد</span>}</h2>
-                  <p className="text-[10px] text-[var(--mn-on-dark-muted)]">منح، جامعات، دورات ومواعيد مهمة</p>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-sm font-bold text-white tracking-wide">مركز التنبيهات</h2>
+                    {unreadCount > 0 && (
+                      <span className="rounded-full bg-gradient-to-r from-[#B8841B] to-[#E2B040] px-2 py-0.5 text-[11px] font-bold text-[#0E1F44] shadow-xs">
+                        {unreadCount} جديد
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[11px] text-white/70 font-medium mt-0.5">منح، جامعات، دورات ومواعيد مهمة</p>
                 </div>
               </div>
+
               <div className="flex items-center gap-1">
-                <button type="button" onClick={() => setSoundEnabled((value) => !value)} className="flex h-10 w-10 items-center justify-center rounded-xl text-white/80 hover:bg-white/10" aria-label={soundEnabled ? 'كتم صوت التنبيهات' : 'تفعيل صوت التنبيهات'} title={soundEnabled ? 'صوت التنبيهات مفعل' : 'صوت التنبيهات صامت'}>{soundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}</button>
-                <button type="button" aria-label="إغلاق" onClick={onClose} className="flex h-10 w-10 items-center justify-center rounded-xl text-white/80 hover:bg-white/10"><X className="h-4 w-4" /></button>
+                <button
+                  type="button"
+                  onClick={() => setSoundEnabled((value) => !value)}
+                  className="flex h-9 w-9 items-center justify-center rounded-xl text-white/80 hover:text-white hover:bg-white/15 transition cursor-pointer"
+                  aria-label={soundEnabled ? 'كتم صوت التنبيهات' : 'تفعيل صوت التنبيهات'}
+                  title={soundEnabled ? 'صوت التنبيهات مفعل' : 'صوت التنبيهات صامت'}
+                >
+                  {soundEnabled ? <Volume2 className="h-4 w-4 text-[#F3CE74]" /> : <VolumeX className="h-4 w-4" />}
+                </button>
+                <button
+                  type="button"
+                  aria-label="إغلاق"
+                  onClick={onClose}
+                  className="flex h-9 w-9 items-center justify-center rounded-xl text-white/80 hover:text-white hover:bg-white/15 transition cursor-pointer"
+                >
+                  <X className="h-4 w-4" />
+                </button>
               </div>
             </div>
 
-            <div className="flex items-center justify-between gap-2 border-b border-[var(--mn-border)] bg-[var(--mn-surface-muted)] p-2.5">
-              <button type="button" onClick={onTriggerTestPush} className="inline-flex min-h-9 items-center gap-1.5 rounded-xl bg-[var(--mn-accent)] px-2.5 text-[10px] font-semibold text-[var(--mn-on-accent)] mn-gold"><Send className="h-3.5 w-3.5" />تجربة تنبيه</button>
-              {unreadCount > 0 && <button type="button" onClick={onMarkAllAsRead} className="inline-flex items-center gap-1 text-[11px] font-semibold text-[var(--mn-heading)]"><CheckCheck className="h-3.5 w-3.5" />تحديد الكل كمقروء</button>}
-            </div>
-
-            <div className="flex gap-1.5 overflow-x-auto border-b border-[var(--mn-border)] bg-[var(--mn-surface-muted)]/70 p-2 hide-scrollbar">
+            {/* Filter Tabs - Spacious, distinctly separated pills */}
+            <div className="flex items-center gap-2 overflow-x-auto border-b border-[var(--mn-border)] dark:border-white/10 bg-[var(--mn-surface)] dark:bg-[#0c1a3b] px-3.5 py-2.5 hide-scrollbar">
               {FILTERS.map((item) => {
                 const Icon = item.icon;
-                return <button type="button" key={item.id} onClick={() => setFilter(item.id)} aria-pressed={filter === item.id} className={`mn-filter-chip inline-flex items-center gap-1 whitespace-nowrap ${filter === item.id ? 'is-selected' : ''}`}><Icon className="h-3.5 w-3.5" />{item.label}</button>;
-              })}
-            </div>
-
-            <div className="flex-1 space-y-2 overflow-y-auto p-3">
-              {filteredNotifications.length === 0 ? <div className="py-12 text-center text-xs text-[var(--mn-text-muted)]">لا توجد تنبيهات في هذا التصنيف حاليًا.</div> : filteredNotifications.map((notification) => {
-                const Icon = typeIcon(notification);
+                const isSelected = filter === item.id;
                 return (
-                  <button type="button" key={notification.id} onClick={() => { onMarkAsRead(notification.id); if (notification.actionType) { onSelectAction?.(notification.actionType, notification.targetId); onClose(); } }} className={`w-full rounded-2xl border p-3 text-right transition ${notification.read ? 'border-[var(--mn-border)] bg-[var(--mn-surface)]' : 'border-[var(--mn-border-gold)] bg-[var(--mn-gold-surface)]/50 shadow-sm'}`}>
-                    <div className="flex items-start gap-2.5">
-                      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border ${notification.read ? 'border-[var(--mn-border)] bg-[var(--mn-surface-muted)] text-[var(--mn-text-muted)]' : 'border-[var(--mn-border-gold)] bg-[var(--mn-primary)] text-[var(--mn-accent-soft)] mn-inverse'}`}><Icon className="h-4 w-4" /></span>
-                      <div className="min-w-0 flex-1"><div className="flex items-start justify-between gap-2"><h4 className="text-xs font-semibold leading-snug text-[var(--mn-heading)]">{notificationTitle(notification.title)}</h4><span className="whitespace-nowrap text-[9px] text-[var(--mn-text-muted)]">{notification.timestamp}</span></div><p className="mt-1 text-[11px] leading-5 text-[var(--mn-text-muted)]">{notification.body}</p>{notification.actionType && <span className="mt-2 inline-flex items-center gap-1 text-[10px] font-semibold text-[var(--mn-accent-text)]">عرض التفاصيل<ChevronLeft className="mn-card-arrow h-3.5 w-3.5" /></span>}</div>
-                      {!notification.read && <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[var(--mn-accent)]" aria-label="غير مقروء" />}
-                    </div>
+                  <button
+                    type="button"
+                    key={item.id}
+                    onClick={() => setFilter(item.id)}
+                    aria-pressed={isSelected}
+                    data-mn-font="11" data-mn-cairo="true"
+                    className={`inline-flex shrink-0 min-h-[32px] items-center gap-1.5 whitespace-nowrap rounded-xl px-3 py-1.5 transition cursor-pointer border ${
+                      isSelected
+                        ? 'bg-[#142B5F] text-white dark:bg-[#1a3777] border-[var(--mn-accent)] shadow-xs font-bold'
+                        : 'bg-[var(--mn-surface-muted)] dark:bg-white/5 text-[var(--mn-text-muted)] hover:text-[var(--mn-heading)] hover:bg-[var(--mn-surface-muted)]/80 border-[var(--mn-border)] dark:border-white/10 font-semibold'
+                    }`}
+                  >
+                    <Icon className={`h-3.5 w-3.5 ${isSelected ? 'text-[#F3CE74]' : 'text-[var(--mn-text-muted)]'}`} />
+                    <span data-mn-font="11" data-mn-cairo="true">{item.label}</span>
                   </button>
                 );
               })}
+            </div>
+
+            {/* Notifications List - Unified, consistent, elegant cards */}
+            <div className="flex-1 space-y-3 overflow-y-auto p-3.5 sm:p-4">
+              {filteredNotifications.length === 0 ? (
+                <div className="py-16 text-center text-xs text-[var(--mn-text-muted)] font-medium">
+                  لا توجد تنبيهات في هذا التصنيف حاليًا.
+                </div>
+              ) : (
+                filteredNotifications.map((notification) => {
+                  const Icon = typeIcon(notification);
+                  const isUnread = !notification.read;
+                  return (
+                    <button
+                      type="button"
+                      key={notification.id}
+                      onClick={() => {
+                        onMarkAsRead(notification.id);
+                        if (notification.actionType) {
+                          onSelectAction?.(notification.actionType, notification.targetId);
+                          onClose();
+                        }
+                      }}
+                      className={`w-full rounded-2xl border p-3.5 text-right transition cursor-pointer relative overflow-hidden group ${
+                        isUnread
+                          ? 'border-[var(--mn-accent)]/50 bg-gradient-to-br from-[#FFFDF9] to-[#FBF7EE] dark:from-[#132347] dark:to-[#0f1c3a] shadow-xs'
+                          : 'border-[var(--mn-border)] dark:border-white/10 bg-[var(--mn-surface)] dark:bg-[#11203d]/60 hover:border-[var(--mn-accent)]/40 shadow-xs'
+                      }`}
+                    >
+                      {isUnread && (
+                        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--mn-accent)] to-transparent" />
+                      )}
+
+                      <div className="flex items-start gap-3">
+                        <span
+                          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${
+                            isUnread
+                              ? 'border-[var(--mn-accent)]/60 bg-[#142B5F] text-[#F3CE74] shadow-xs'
+                              : 'border-[var(--mn-border)] dark:border-white/10 bg-[var(--mn-surface-muted)] dark:bg-white/5 text-[var(--mn-text-muted)]'
+                          }`}
+                        >
+                          <Icon className="h-4.5 w-4.5" />
+                        </span>
+
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-start justify-between gap-2">
+                            <h4 data-mn-cairo="true" className="text-[13px] font-bold leading-snug text-[var(--mn-heading)] group-hover:text-[#142B5F] dark:group-hover:text-[#F3CE74] transition-colors">
+                              {notificationTitle(notification.title)}
+                            </h4>
+                            <span data-mn-cairo="true" className="whitespace-nowrap text-[10px] font-semibold text-[var(--mn-text-muted)]">
+                              {notification.timestamp}
+                            </span>
+                          </div>
+
+                          <p data-mn-cairo="true" className="mt-1 text-[11.5px] leading-relaxed text-[var(--mn-text-muted)] dark:text-white/70">
+                            {notification.body}
+                          </p>
+
+                          {notification.actionType && (
+                            <div className="mt-2.5 flex items-center justify-start">
+                              <span data-mn-cairo="true" className="inline-flex items-center gap-1 text-[11px] font-bold text-[var(--mn-accent)] dark:text-[#F3CE74] group-hover:translate-x-[-2px] transition-transform">
+                                <span>عرض التفاصيل</span>
+                                <ChevronLeft className="h-3.5 w-3.5" />
+                              </span>
+                            </div>
+                          )}
+                        </div>
+
+                        {isUnread && (
+                          <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[var(--mn-accent)] ring-2 ring-[var(--mn-accent)]/30" aria-label="غير مقروء" />
+                        )}
+                      </div>
+                    </button>
+                  );
+                })
+              )}
             </div>
           </div>
         </div>
