@@ -1,5 +1,15 @@
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 import { RedisClientFactory } from '@manaratak/infrastructure';
+
+/** Separate, short-lived diagnostic resource. The Preview gate and finally-disconnect belong to its caller. */
+export function createPreviewProbeClient(url: string) {
+  return new PrismaClient({ datasources: { db: { url } }, log: [], errorFormat: 'minimal' });
+}
+export type PreviewProbeClient = ReturnType<typeof createPreviewProbeClient>;
+
+export function previewProbeModelNames(): string[] {
+  return Prisma.dmmf.datamodel.models.map((model) => model.dbName ?? model.name);
+}
 
 interface RuntimeConfigReader {
   getOptional?<T = string>(key: string): T | undefined;

@@ -1,9 +1,10 @@
-# MANARATAK experimental Google AI Studio workspace
+# MANARATAK Google AI Studio workspace
 
 This repository is **wegdangamil2022-oss/Manaratal-Final**, branch **main**.
 Its initial functional baseline is the complete source tree of
 MANARATAK_FINAL/fix/vercel-typescript-config-context at
-818de64b3c9b26056070812865659a84bbf61819. The official repository must not be pushed or edited.
+818de64b3c9b26056070812865659a84bbf61819. The former repository must not be pushed or edited.
+Manaratal-Final is now the official source repository; see [adoption record](OFFICIAL_REPOSITORY.md).
 All apps, packages, data sets, tests and architecture documents are retained.
 
 ## Install and start
@@ -130,12 +131,12 @@ module loads or external Node connections. Additional tests cover the profile
 guard, security header separation, external URL configuration and Vite plugin selection.
 Source-only workflows are preserved. Automatic release promotion and scheduled
 restore operations are restricted to the original repository identity and cannot
-run against this experimental repository's unconfigured services.
+run against this repository's unconfigured services.
 
 Official Google import/environment instructions:
 https://ai.google.dev/gemini-api/docs/aistudio-build-mode
 https://ai.google.dev/gemini-api/docs/aistudio-fullstack
 
-Local tests cannot prove the remote importer or sandbox account permissions.
-Until an actual AI Studio import has been exercised, report:
-**LOCAL_COMPATIBILITY_VERIFIED / GOOGLE_AI_STUDIO_REMOTE_IMPORT_PENDING**.
+The user confirmed that the previous Google AI Studio import succeeded.
+Local checks for this restored monorepo do not prove a new remote import or Vercel deployment.
+Refresh/import the new commit in Studio after pushing; keep runtime deployment evidence separate.

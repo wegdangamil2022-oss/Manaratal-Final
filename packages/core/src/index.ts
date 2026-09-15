@@ -1,190 +1,57 @@
-export abstract class ValueObject<T = any> {
-  protected constructor(protected readonly props: T) {}
-  public equals(vo?: ValueObject<T>): boolean {
-    if (vo == null || vo == undefined) return false;
-    if (vo.props === undefined) return false;
-    return JSON.stringify(this.props) === JSON.stringify(vo.props);
-  }
-}
+export * from './core/Result';
+export * from './domain/Identifier';
+export * from './domain/IdentifierGenerator';
+export * from './domain/Entity';
+export * from './domain/ValueObject';
+export * from './domain/AggregateRoot';
+export * from './domain/events/IDomainEvent';
+export * from './domain/events/IAggregateRoot';
+export * from './domain/events/DomainEvents';
+export * from './domain/exceptions/AuthExceptions';
+export * from './domain/exceptions/AuthorizationExceptions';
+export * from './domain/exceptions/ConfigurationExceptions';
+export * from './application/IRepository';
+export * from './application/IUnitOfWork';
+export * from './application/UseCase';
+export * from './application/di/IDependencyContainer';
+export * from './application/auth/IPasswordHasher';
+export * from './application/auth/ITokenProvider';
+export * from './application/auth/ISessionManager';
+export * from './application/auth/IAuthService';
+export * from './application/authorization/Types';
+export * from './application/authorization/IPermissionEvaluator';
+export * from './application/authorization/IAuthorizationService';
+export * from './application/configuration/IConfigurationService';
+export * from './application/configuration/IConfigurationProvider';
+export * from './application/logging/LogLevel';
+export * from './application/logging/ILogContext';
+export * from './application/logging/ILogger';
+export * from './application/logging/ILoggerProvider';
+export * from './application/logging/IRequestLogger';
+export * from './application/logging/IErrorLogger';
+export * from './application/logging/IAuditLogger';
+export * from './presentation/IController';
+export * from './domain/exceptions/ErrorCode';
+export * from './domain/exceptions/BaseException';
+export * from './domain/exceptions/ValidationException';
+export * from './application/errors/IErrorSerializer';
+export * from './application/validation/IValidationContext';
+export * from './application/validation/IValidationProvider';
+export * from './application/validation/ISanitizer';
+export * from './application/validation/IValidationPipeline';
+export * from './application/validation/IValidationService';
+export * from './application/storage/FileMetadata';
+export * from './application/storage/IStorageProvider';
+export * from './application/storage/IStorageService';
+export * from './domain/exceptions/StorageExceptions';
+export * from './presentation/api/ApiResponse';
+export * from './presentation/api/Pagination';
+export * from './monitoring/IMetrics';
+export * from './monitoring/HealthStatus';
+export * from './monitoring/IMonitoringProvider';
+export * from './monitoring/IMonitoringService';
+export * from './security/IRateLimiter';
+export * from './security/ISecurityService';
+export * from './domain/ISpecification';
 
-export abstract class Identifier<T> {
-  constructor(private value: T) {
-    this.value = value;
-  }
-  equals(id?: Identifier<T>): boolean {
-    if (id == null || id == undefined) return false;
-    if (!(id instanceof this.constructor)) return false;
-    return id.toValue() === this.value;
-  }
-  toString() { return String(this.value); }
-  toValue(): T { return this.value; }
-}
-
-export class UniqueEntityID extends Identifier<string> {
-  constructor(id?: string | number) {
-    super(String(id || Math.random().toString(36).substring(2, 9)));
-  }
-}
-
-export abstract class Entity<T> {
-  protected readonly _id: UniqueEntityID;
-  public readonly props: T;
-  constructor(props: T, id?: Identifier<string | number>) {
-    this._id = id ? new UniqueEntityID(id.toValue()) : new UniqueEntityID();
-    this.props = props;
-  }
-  public equals(object?: Entity<T>): boolean {
-    if (object == null || object == undefined) return false;
-    if (this === object) return true;
-    if (!(object instanceof Entity)) return false;
-    return this._id.equals(object._id);
-  }
-}
-
-export interface ISpecification<T> {
-  isSatisfiedBy(candidate: T): boolean;
-}
-
-export interface IDomainEvent {
-  dateTimeOccurred: Date;
-  getAggregateId(): any;
-}
-
-export class ValidationException extends Error {
-  constructor(message: string, public readonly errors: { field: string; message: string; }[] = []) {
-    super(message);
-  }
-}
-
-export interface IPrincipalAccessValidator {
-  isAuthenticationAllowed(principalId: string): Promise<boolean>;
-}
-export interface ISessionManager {
-  isSessionActive(sessionId: string): Promise<boolean>;
-  revokeAllSessions(principalId: string): Promise<void>;
-}
-export interface ITokenProvider {
-  verifyAccessToken(token: string): Promise<any>;
-}
-export enum ErrorCode {
-  UNAUTHORIZED = 'UNAUTHORIZED',
-  FORBIDDEN = 'FORBIDDEN',
-  NOT_FOUND = 'NOT_FOUND',
-  VALIDATION_ERROR = 'VALIDATION_ERROR',
-  INTERNAL_ERROR = 'INTERNAL_ERROR',
-  CONFLICT = 'CONFLICT',
-  INFRASTRUCTURE_ERROR = 'INFRASTRUCTURE_ERROR',
-  UNEXPECTED_ERROR = 'UNEXPECTED_ERROR'
-}
-export interface SerializedError {
-  code: string;
-  message: string;
-  details?: any;
-  traceId?: string;
-}
-export interface ApiResponse<T = any> {
-  data?: T;
-  error?: SerializedError;
-  meta?: any;
-}
-export interface ApiError extends Error {
-  code: ErrorCode;
-  statusCode: number;
-}
-export class UnauthorizedException extends Error {}
-export interface IAuthorizationService {
-  checkPermission(principalId: string, permission: string, resourceId?: string): Promise<boolean>;
-}
-export interface Permission {}
-export class ForbiddenException extends Error {}
-export interface ILogger {
-  error(msg: string, ...meta: any[]): void;
-  info(msg: string, ...meta: any[]): void;
-  warn(msg: string, ...meta: any[]): void;
-  debug(msg: string, ...meta: any[]): void;
-}
-export interface ILogContext {
-  getCorrelationId(): string;
-  runWithContext(context: any, fn: () => void): void;
-}
-export interface IErrorSerializer {
-  serialize(error: Error, foo?: any): SerializedError;
-}
-export interface IRequestLogger {
-  logRequest(req: any, foo?: any, bar?: any, baz?: any): void;
-  logResponse(res: any, foo?: any, bar?: any, baz?: any): void;
-}
-export interface IMonitoringService {
-  getMetrics(): Promise<any>;
-  startSpan(name: string, foo?: any): any;
-  setGauge(name: string, value: any): void;
-  incrementCounter(name: string, value?: any): void;
-  recordHistogram(name: string, value: any): void;
-}
-export interface AuthTokens {
-  accessToken: string;
-  refreshToken: string;
-}
-export interface ISecurityService {
-  getRateLimiter(a?: any, b?: any, c?: any): IRateLimiter;
-  validateCsrfToken(token: string, foo?: any): Promise<boolean>;
-  generateCsrfToken(): Promise<string>;
-  isProductionReady(): boolean;
-  kind: string;
-}
-export interface IRateLimiter {
-  isProductionReady(): boolean;
-  kind: string;
-  consume(key: string, points: number): Promise<void>;
-}
-
-export interface UseCase<IRequest, IResponse> {
-  execute(request?: IRequest): Promise<IResponse> | IResponse;
-}
-
-export class Result<T> {
-  public isSuccess: boolean;
-  public isFailure: boolean;
-  public error: T | string;
-  private _value: T;
-
-  private constructor(isSuccess: boolean, error?: T | string, value?: T) {
-    if (isSuccess && error) {
-      throw new Error("InvalidOperation: A result cannot be successful and contain an error");
-    }
-    if (!isSuccess && !error) {
-      throw new Error("InvalidOperation: A failing result needs to contain an error message");
-    }
-
-    this.isSuccess = isSuccess;
-    this.isFailure = !isSuccess;
-    this.error = error as T | string;
-    this._value = value as T;
-    
-    Object.freeze(this);
-  }
-
-  public getValue(): T {
-    if (!this.isSuccess) {
-      console.log(this.error);
-      throw new Error("Can't get the value of an error result. Use 'error' instead.");
-    }
-
-    return this._value;
-  }
-
-  public static ok<U>(value?: U): Result<U> {
-    return new Result<U>(true, undefined, value);
-  }
-
-  public static fail<U>(error: any): Result<U> {
-    return new Result<U>(false, error);
-  }
-}
-
-export class ResultFactory {
-  static ok<T>(value?: T) { return Result.ok(value); }
-  static fail<T>(error: any) { return Result.fail<T>(error); }
-}
-
-export function generateOpaqueIdentifier() { return "opaque-" + Math.random().toString(); }
+export * from './application/auth/IPrincipalAccessValidator';

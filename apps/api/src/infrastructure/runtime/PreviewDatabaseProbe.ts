@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from '@prisma/client';
+import type { PreviewProbeClient } from './RuntimeResourceRegistry.js';
 
 type Environment = Readonly<Record<string, string | undefined>>;
 
@@ -27,7 +27,7 @@ function classify(error: unknown): string {
 async function withPreviewDatabase<T extends object>(
   env: Environment,
   source: 'DATABASE_URL' | 'DIRECT_URL',
-  read: (client: PrismaClient) => Promise<T>,
+  read: (client: PreviewProbeClient) => Promise<T>,
 ) {
   if (!isPreviewDatabaseProbeEnabled(env)) {
     return { status: 'DOWN' as const, error: 'PREVIEW_DATABASE_PROBE_DISABLED' };
@@ -47,10 +47,11 @@ async function withPreviewDatabase<T extends object>(
   url.searchParams.set('pool_timeout', '5');
   url.searchParams.set('connection_limit', '1');
   const started = Date.now();
-  let client: PrismaClient | undefined;
+  let client: PreviewProbeClient | undefined;
   try {
     // Prisma 5.22 runtime queries use the datasource url override (not directUrl).
-    client = new PrismaClient({ datasources: { db: { url: url.toString() } }, log: [], errorFormat: 'minimal' });
+    const { createPreviewProbeClient } = await import('./RuntimeResourceRegistry.js');
+    client = createPreviewProbeClient(url.toString());
     await client.$connect();
     const details = await read(client);
     return { ...details, status: 'UP' as const, latencyMs: Date.now() - started };
@@ -61,7 +62,7 @@ async function withPreviewDatabase<T extends object>(
   }
 }
 
-async function selectOne(client: PrismaClient) {
+async function selectOne(client: PreviewProbeClient) {
   await client.$queryRaw`SELECT 1`;
   return {};
 }
@@ -95,7 +96,8 @@ export function probePreviewDatabaseSchema(env: Environment = process.env) {
       migrationCount = count.count;
     }
     // Generated Prisma metadata respects @@map; never return internal table names.
-    const expected = Prisma.dmmf.datamodel.models.map((model) => model.dbName ?? model.name);
+    const { previewProbeModelNames } = await import('./RuntimeResourceRegistry.js');
+    const expected = previewProbeModelNames();
     const manaratakTableCount = expected.filter((name) => names.has(name)).length;
     return {
       publicSchemaExists: schema.exists,

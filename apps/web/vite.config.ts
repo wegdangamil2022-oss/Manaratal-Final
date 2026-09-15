@@ -61,19 +61,25 @@ function expressApiPlugin(): Plugin {
   };
 }
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command }) => {
   const rootDir = path.resolve(__dirname, '../..');
   const studioEnv = { ...loadEnv(mode, rootDir, ['MANARATAK_', 'VITE_']), ...process.env };
   const studio = isGoogleAiStudio(studioEnv);
   process.env.PRISMA_TELEMETRY_DISABLED = '1';
   assertPublicBuildDataMode({ mode, nodeEnv: process.env.NODE_ENV, dataMode: process.env.VITE_PUBLIC_TEMPLATE_DATA_MODE });
-  const allowPrototypeData = true;
+  const studioTemplatePreview = studio && command === 'serve' && prototypeCapabilityEnabled(process.env.NODE_ENV || mode);
+  const allowPrototypeData = (!studio || studioTemplatePreview) && prototypeCapabilityEnabled(process.env.NODE_ENV || mode);
+  // Studio's isolated design preview uses fixtures only until an API is explicitly configured.
+  // Production builds and configured API previews never silently fall back to demo data.
+  const studioDataMode = studioEnv.VITE_PUBLIC_TEMPLATE_DATA_MODE ||
+    (studioTemplatePreview && !studioEnv.VITE_API_URL ? 'prototype' : 'api');
   return {
     root: __dirname,
     envDir: studio ? rootDir : __dirname,
     define: {
       '__MANARATAK_PROTOTYPE_DATA_ENABLED__': JSON.stringify(allowPrototypeData),
       'import.meta.env.VITE_GOOGLE_AI_STUDIO': JSON.stringify(studio ? 'true' : 'false'),
+      ...(studio ? { 'import.meta.env.VITE_PUBLIC_TEMPLATE_DATA_MODE': JSON.stringify(studioDataMode) } : {}),
     },
     plugins: [frontendSecurityHeadersPlugin(), react(), tailwindcss(),
       studio ? googleAiStudioPreviewPlugin() : expressApiPlugin(), disableHmrPlugin()],
@@ -90,7 +96,7 @@ export default defineConfig(({ mode }) => {
         '@manaratak/ui': path.resolve(rootDir, 'packages/ui/src/index.tsx'),
       },
     },
-    build: { 
+    build: {
       sourcemap: false,
       minify: false,
       rollupOptions: {

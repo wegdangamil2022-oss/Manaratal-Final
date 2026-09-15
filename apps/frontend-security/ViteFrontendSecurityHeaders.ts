@@ -49,17 +49,6 @@ export const FRONTEND_SECURITY_HEADERS_FILE = `/*\n${Object.entries(FRONTEND_SEC
 function installHeaders(server: ViteDevServer | PreviewServer) {
   server.middlewares.use((_req, res, next) => {
     for (const [name, value] of Object.entries(FRONTEND_SECURITY_HEADERS)) {
-      if (name === 'X-Frame-Options') continue;
-      if (name === 'Content-Security-Policy') {
-        res.setHeader(
-          name,
-          value.replace(
-            "frame-ancestors 'none'",
-            "frame-ancestors 'self' https://aistudio.google.com https://ai.studio https://*.google.com https://*.googleusercontent.com https://*.usercontent.goog https://*.run.app https://localhost.corp.google.com:26001"
-          )
-        );
-        continue;
-      }
       res.setHeader(name, value);
     }
     next();

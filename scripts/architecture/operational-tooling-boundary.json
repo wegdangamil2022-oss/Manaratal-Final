@@ -72,6 +72,7 @@
     "scripts/verify-p9-plan-closure.mjs",
     "scripts/verify-scholarship-atomic-transfer-source.ts",
     "scripts/verify-transactional-outbox.ts",
+    "scripts/verify-vercel-api-handler.mjs",
     "scripts/verify-wp12-8-scholarship-import-center-ui-source.mjs",
     "scripts/verify-wp12-9-scholarship-catalog-detail-source.mjs",
     "scripts/verify_bachelor_integrity.ts",

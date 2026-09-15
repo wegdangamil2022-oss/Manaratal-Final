@@ -1,16 +1,23 @@
 {
   "compilerOptions": {
-    "composite": false
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": false
   },
+  "files": [],
   "references": [
-    { "path": "packages/types" },
-    { "path": "packages/shared" },
-    { "path": "packages/domain" },
-    { "path": "packages/infrastructure" },
-    { "path": "packages/ui" },
-    { "path": "apps/web" },
-    { "path": "apps/admin" },
-    { "path": "apps/api" }
-  ],
-  "files": []
+    { "path": "./packages/core" },
+    { "path": "./packages/types" },
+    { "path": "./packages/config" },
+    { "path": "./packages/domain" },
+    { "path": "./packages/shared" },
+    { "path": "./packages/application" },
+    { "path": "./packages/infrastructure" },
+    { "path": "./packages/ui" },
+    { "path": "./apps/admin" },
+    { "path": "./apps/api" },
+    { "path": "./apps/web" }
+  ]
 }

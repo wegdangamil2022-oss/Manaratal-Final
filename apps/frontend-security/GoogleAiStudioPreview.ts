@@ -10,8 +10,8 @@ export function frontendHeadersForDevelopment(studio: boolean): Readonly<Record<
   return {
     ...Object.fromEntries(Object.entries(FRONTEND_SECURITY_HEADERS).filter(([name]) => name !== 'X-Frame-Options')),
     'Content-Security-Policy': [...directives,
-      "frame-ancestors 'self' https://aistudio.google.com https://ai.studio https://*.google.com https://*.googleusercontent.com https://*.usercontent.goog https://*.run.app https://localhost.corp.google.com:26001",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      "frame-ancestors 'self' https://aistudio.google.com https://ai.studio https://*.googleusercontent.com https://*.usercontent.goog",
+      "script-src 'self' 'unsafe-inline'",
       "style-src 'self' 'unsafe-inline'",
       "style-src-elem 'self' 'unsafe-inline'",
       "connect-src 'self' https: wss: ws:",
@@ -23,7 +23,7 @@ export function frontendHeadersForDevelopment(studio: boolean): Readonly<Record<
 
 
 export function isGoogleAiStudio(env: Readonly<Record<string, string | undefined>>): boolean {
-  return true;
+  return env.MANARATAK_GOOGLE_AI_STUDIO === 'true' || env.MANARATAK_RUNTIME_PROFILE === 'google-ai-studio';
 }
 
 /** Frontend packages resolve from source in Vite; native Node entrypoints remain dist-based. */

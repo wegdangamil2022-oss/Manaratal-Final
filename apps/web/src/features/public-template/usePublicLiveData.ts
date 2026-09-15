@@ -25,21 +25,7 @@ export function usePublicLiveData(value: unknown, locale: PublicLiveLocale = 'ar
       return () => { active = false; };
     }
     setResult(initial);
-    loadPublicLiveSnapshot(locale).then((next) => {
-      if (!active) return;
-      const hasReadyData = Object.values(next.statuses).some((s) => s === 'ready');
-      if (hasReadyData) {
-        setResult(next);
-      } else {
-        import('./publicPrototypeDataSource').then(({ loadPublicPrototypeSnapshot }) => {
-          if (active) setResult(loadPublicPrototypeSnapshot());
-        });
-      }
-    }).catch(() => {
-      import('./publicPrototypeDataSource').then(({ loadPublicPrototypeSnapshot }) => {
-        if (active) setResult(loadPublicPrototypeSnapshot());
-      });
-    });
+    loadPublicLiveSnapshot(locale).then((next) => { if (active) setResult(next); });
     return () => { active = false; };
   }, [mode, locale, reloadVersion]);
   return { mode, ...result, reload };
