@@ -1,4 +1,1 @@
-export enum AuditLifecycleState {
-  RECORDED = 'RECORDED',
-  ARCHIVED = 'ARCHIVED'
-}
+export enum AuditLifecycleState {}

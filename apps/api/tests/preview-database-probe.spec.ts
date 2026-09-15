@@ -18,8 +18,6 @@ vi.mock('@prisma/client', async (importOriginal) => ({
 }));
 import { probePreviewDatabase, probePreviewDirectDatabase, probePreviewDatabaseSchema } from '../src/infrastructure/runtime/PreviewDatabaseProbe.js';
 import { createPreviewAvailabilityApp } from '../src/infrastructure/runtime/PreviewAvailabilityApp.js';
-// Load the mocked resource authority during suite setup, not inside the first timed query test.
-import '../src/infrastructure/runtime/RuntimeResourceRegistry.js';
 
 const env = { VERCEL: '1', VERCEL_ENV: 'preview', MANARATAK_PREVIEW_DATABASE_PROBE: 'true',
   DATABASE_URL: 'postgresql://user:private-test-password@database.invalid:6543/test',

@@ -1,6 +1,6 @@
 {
-  "name": "Manaratak",
-  "description": "منصة منارتك للمنح الدراسية والجامعات والتخصصات والمسار التعليمي والمهني مع لوحة تحكم إدارية متكاملة",
+  "name": "MANARATAK",
+  "description": "Discover trusted study opportunities, scholarships, universities, and student tools.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
