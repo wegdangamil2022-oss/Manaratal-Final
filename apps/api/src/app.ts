@@ -54,6 +54,10 @@ let isBootstrapping = false;
 let bootstrapPromise: Promise<Express> | null = null;
 
 export async function createApiApp(options?: CreateApiAppOptions): Promise<Express> {
+  const profile = options?.env ?? process.env;
+  if (profile.MANARATAK_RUNTIME_PROFILE === 'google-ai-studio' || profile.MANARATAK_GOOGLE_AI_STUDIO === 'true') {
+    throw new Error('AI_STUDIO_WEB_ONLY_BACKEND_DISABLED');
+  }
   if (options?.resetCache || options?.env) {
     appInstance = null;
     bootstrapPromise = null;

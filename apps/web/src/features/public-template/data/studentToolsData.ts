@@ -10,7 +10,6 @@ export const STUDENT_TOOL_CATEGORIES: StudentToolCategory[] = [
   'التخطيط المالي',
   'التحقق من الوثائق',
 ];
-
 /**
  * Update 22 intentionally exposes only two reference cards to validate the
  * public UX, filters, detail flow and contextual linking before the full
@@ -96,4 +95,3 @@ export const STUDENT_TOOLS_PREVIEW: StudentToolPreview[] = [
     ],
   },
 ];
-

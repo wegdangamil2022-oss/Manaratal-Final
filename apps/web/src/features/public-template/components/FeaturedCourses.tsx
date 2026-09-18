@@ -13,12 +13,13 @@ export const FeaturedCourses: React.FC<FeaturedCoursesProps> = ({
   onSelectCourse,
   onViewAllClick,
 }) => {
-  const [activeTab, setActiveTab] = useState<'internal' | 'external'>('internal');
-
   // Filter courses based on provider mapping for demonstration
   // In a real app, this might be a specific flag like `course.isInternal`
   const internalCourses = courses.filter((c) => c.provider.includes('منارتك'));
   const externalCourses = courses.filter((c) => !c.provider.includes('منارتك'));
+  const [activeTab, setActiveTab] = useState<'internal' | 'external'>(() =>
+    internalCourses.length > 0 ? 'internal' : 'external',
+  );
 
   const displayCourses = activeTab === 'internal' ? internalCourses : externalCourses;
 

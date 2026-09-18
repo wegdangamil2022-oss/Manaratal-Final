@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   restore-audit:
+    if: github.repository == 'wegdangamil2022-oss/MANARATAK_FINAL'
     runs-on: ubuntu-latest
     environment: recovery-audit
     steps:

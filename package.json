@@ -5,8 +5,12 @@
   "type": "module",
   "scripts": {
     "bootstrap": "npm install && npm run build",
-    "dev": "DISABLE_HMR=true npm run dev -w @manaratak/web",
-    "dev:admin": "npm run dev -w @manaratak/admin",
+    "dev": "node scripts/aistudio/run.mjs web dev",
+    "dev:aistudio": "node scripts/aistudio/run.mjs web dev",
+    "dev:admin": "node scripts/aistudio/run.mjs admin dev",
+    "dev:full": "npm run dev -w @manaratak/web",
+    "build:aistudio": "node scripts/aistudio/run.mjs web build",
+    "verify:aistudio": "node scripts/aistudio/verify.mjs",
     "build": "npm run build --workspaces --if-present",
     "build:cached": "turbo run build",
     "start": "npm run start -w @manaratak/api",
@@ -46,7 +50,7 @@
     "translation:schema:verify": "tsx scripts/verify-translation-schema-source.ts",
     "translation:quality:source": "tsx scripts/verify-translation-quality-source.ts && node scripts/verify-arabic-semantic-copy.mjs",
     "translation:test": "vitest run --config vitest.config.ts tests/translation/translation-quality-gates.spec.ts packages/shared/tests/localization/locale.spec.ts packages/shared/tests/localization/policy.spec.ts packages/application/tests/translation-import/TranslationImportPreparationService.spec.ts packages/application/tests/translation-import/TranslationImportTransferService.spec.ts",
-    "translation:ci": "npm run translation:schema:verify && npm run translation:quality:source && npm run translation:test",
+    "translation:ci": "tsc -b packages/application && npm run translation:schema:verify && npm run translation:quality:source && npm run translation:test",
     "web:sitemap:generate": "tsx scripts/generate-localized-public-sitemap.ts",
     "db:remediation:plan": "tsx scripts/db-remediation-gate.ts plan",
     "db:remediation:status": "tsx scripts/db-remediation-gate.ts status",
@@ -199,6 +203,6 @@
   },
   "engines": {
     "node": ">=22.16.0 <23",
-    "npm": ">=10.9.0 <11"
+    "npm": ">=10"
   }
 }

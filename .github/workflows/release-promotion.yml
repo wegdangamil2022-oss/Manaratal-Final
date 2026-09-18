@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   validation:
-    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
+    if: github.repository == 'wegdangamil2022-oss/MANARATAK_FINAL' && (github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'))
     runs-on: ubuntu-latest
     environment: validation
     env:
