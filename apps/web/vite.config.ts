@@ -2,8 +2,7 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { fileURLToPath } from 'node:url';
-import { defineConfig, loadEnv, Plugin } from 'vite';
-import { googleAiStudioPreviewPlugin, isGoogleAiStudio } from '../frontend-security/GoogleAiStudioPreview';
+import { defineConfig, Plugin } from 'vite';
 import { frontendSecurityHeadersPlugin } from '../frontend-security/ViteFrontendSecurityHeaders';
 import { assertPublicBuildDataMode, prototypeCapabilityEnabled } from './src/config/PublicDataModePolicy';
 
@@ -61,28 +60,16 @@ function expressApiPlugin(): Plugin {
   };
 }
 
-export default defineConfig(({ mode, command }) => {
+export default defineConfig(({ mode }) => {
   const rootDir = path.resolve(__dirname, '../..');
-  const studioEnv = { ...loadEnv(mode, rootDir, ['MANARATAK_', 'VITE_']), ...process.env };
-  const studio = isGoogleAiStudio(studioEnv);
   process.env.PRISMA_TELEMETRY_DISABLED = '1';
   assertPublicBuildDataMode({ mode, nodeEnv: process.env.NODE_ENV, dataMode: process.env.VITE_PUBLIC_TEMPLATE_DATA_MODE });
-  const studioTemplatePreview = studio && prototypeCapabilityEnabled(process.env.NODE_ENV || mode);
-  const allowPrototypeData = (!studio || studioTemplatePreview) && prototypeCapabilityEnabled(process.env.NODE_ENV || mode);
-  // Studio's isolated design preview uses fixtures only until an API is explicitly configured.
-  // Production builds and configured API previews never silently fall back to demo data.
-  const studioDataMode = studioEnv.VITE_PUBLIC_TEMPLATE_DATA_MODE ||
-    (studioTemplatePreview && !studioEnv.VITE_API_URL ? 'prototype' : 'api');
+  const allowPrototypeData = prototypeCapabilityEnabled(process.env.NODE_ENV || mode);
+  console.log('DISABLE_HMR is:', process.env.DISABLE_HMR);
   return {
     root: __dirname,
-    envDir: studio ? rootDir : __dirname,
-    define: {
-      '__MANARATAK_PROTOTYPE_DATA_ENABLED__': JSON.stringify(allowPrototypeData),
-      'import.meta.env.VITE_GOOGLE_AI_STUDIO': JSON.stringify(studio ? 'true' : 'false'),
-      ...(studio ? { 'import.meta.env.VITE_PUBLIC_TEMPLATE_DATA_MODE': JSON.stringify(studioDataMode) } : {}),
-    },
-    plugins: [frontendSecurityHeadersPlugin(), react(), tailwindcss(),
-      studio ? googleAiStudioPreviewPlugin() : expressApiPlugin(), disableHmrPlugin()],
+    define: { '__MANARATAK_PROTOTYPE_DATA_ENABLED__': JSON.stringify(allowPrototypeData) },
+    plugins: [frontendSecurityHeadersPlugin(), react(), tailwindcss(), expressApiPlugin(), disableHmrPlugin()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
@@ -96,7 +83,7 @@ export default defineConfig(({ mode, command }) => {
         '@manaratak/ui': path.resolve(rootDir, 'packages/ui/src/index.tsx'),
       },
     },
-    build: {
+    build: { 
       sourcemap: false,
       minify: false,
       rollupOptions: {
@@ -110,7 +97,7 @@ export default defineConfig(({ mode, command }) => {
       }
     },
     server: {
-      hmr: process.env.DISABLE_HMR === 'true' ? false : studio ? true : { clientPort: 443 },
+      hmr: process.env.DISABLE_HMR === 'true' ? false : { clientPort: 443 },
       port: 3000,
       host: '0.0.0.0',
       watch: {

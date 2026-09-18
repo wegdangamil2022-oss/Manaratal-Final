@@ -52,22 +52,10 @@ const AVAILABILITY_OPTIONS: Array<'الكل' | StudentToolAvailability> = [
   'قريبًا',
 ];
 
-const toolIcon = (tool: StudentToolPreview, iconClass = "w-5 h-5 text-[#D6A43B] dark:text-[var(--mn-accent)] stroke-[2]") => {
-  if (tool.executionLabel === 'أداة ذكية') return <Sparkles className={iconClass} />;
-  if (tool.executionLabel === 'بيانات ومقارنة') return <Database className={iconClass} />;
-  return <BookOpenCheck className={iconClass} />;
-};
-
-const getToolImageUrl = (toolKey: string) => {
-  const images: Record<string, string> = {
-    'university-comparison': 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=300&q=80',
-    'motivation-letter-generator': 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=300&q=80',
-    'gpa-calculator': 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=300&q=80',
-    'scholarship-eligibility-checker': 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=300&q=80',
-    'cv-builder': 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=300&q=80',
-    'recommendation-assistant': 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=300&q=80',
-  };
-  return images[toolKey] || 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=300&q=80';
+const toolIcon = (tool: StudentToolPreview) => {
+  if (tool.executionLabel === 'أداة ذكية') return <Sparkles className="w-5 h-5" />;
+  if (tool.executionLabel === 'بيانات ومقارنة') return <Database className="w-5 h-5" />;
+  return <BookOpenCheck className="w-5 h-5" />;
 };
 
 const StudentToolCard: React.FC<{
@@ -76,144 +64,65 @@ const StudentToolCard: React.FC<{
   isFavorite?: boolean;
   onToggleFavorite?: (id: string) => void;
 }> = ({ tool, onOpen, isFavorite = false, onToggleFavorite }) => (
-  <div
-    role="button"
-    tabIndex={0}
-    onKeyDown={(event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        onOpen(tool);
-      }
-    }}
-    onClick={() => onOpen(tool)}
-    className="group relative overflow-hidden bg-[var(--mn-surface)] rounded-r-[4px] rounded-l-xl border border-[#142B5F]/30 dark:border-[var(--mn-border)] border-r-3 border-r-[#142B5F] dark:border-r-[var(--mn-accent)] hover:border-[#142B5F]/50 dark:hover:border-[var(--mn-accent)]/40 hover:shadow-xs transition-all duration-200 pr-1.5 sm:pr-2 pl-2.5 sm:pl-3 py-2.5 sm:py-3 text-right cursor-pointer select-none mn-panel "
-    dir="rtl"
+  <article
+    className="relative group bg-[var(--mn-surface)] border border-[var(--mn-border)] hover:border-[var(--mn-accent)]/60 rounded-3xl p-3.5 sm:p-4 shadow-2xs hover:shadow-md transition-all active:scale-[0.99] mn-panel "
   >
-    {/* Decorative AI Sparkles Background Pattern - 10 Clearly visible distributed sparkles */}
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {/* Sparkle 1 */}
-      <span className="absolute right-[12%] top-[15%] w-3.5 h-3.5 text-[#142B5F] dark:text-[#D6A43B] opacity-[0.15] dark:opacity-[0.25] transition-all duration-300 group-hover:scale-125">
-        <Sparkles className="w-full h-full" />
-      </span>
-      {/* Sparkle 2 */}
-      <span className="absolute right-[45%] top-[8%] w-3 h-3 text-[#142B5F] dark:text-[#D6A43B] opacity-[0.12] dark:opacity-[0.20] transition-all duration-300 group-hover:scale-125">
-        <Sparkles className="w-full h-full" />
-      </span>
-      {/* Sparkle 3 */}
-      <span className="absolute right-[75%] top-[18%] w-3.5 h-3.5 text-[#142B5F] dark:text-[#D6A43B] opacity-[0.15] dark:opacity-[0.25] transition-all duration-300 group-hover:scale-125">
-        <Sparkles className="w-full h-full" />
-      </span>
-      {/* Sparkle 4 */}
-      <span className="absolute right-[28%] top-[45%] w-3.5 h-3.5 text-[#142B5F] dark:text-[#D6A43B] opacity-[0.12] dark:opacity-[0.20] transition-all duration-300 group-hover:scale-125">
-        <Sparkles className="w-full h-full" />
-      </span>
-      {/* Sparkle 5 */}
-      <span className="absolute right-[60%] top-[38%] w-3 h-3 text-[#142B5F] dark:text-[#D6A43B] opacity-[0.15] dark:opacity-[0.25] transition-all duration-300 group-hover:scale-125">
-        <Sparkles className="w-full h-full" />
-      </span>
-      {/* Sparkle 6 */}
-      <span className="absolute left-[20%] top-[25%] w-3 h-3 text-[#142B5F] dark:text-[#D6A43B] opacity-[0.12] dark:opacity-[0.20] transition-all duration-300 group-hover:scale-125">
-        <Sparkles className="w-full h-full" />
-      </span>
-      {/* Sparkle 7 */}
-      <span className="absolute left-[35%] top-[50%] w-3.5 h-3.5 text-[#142B5F] dark:text-[#D6A43B] opacity-[0.15] dark:opacity-[0.25] transition-all duration-300 group-hover:scale-125">
-        <Sparkles className="w-full h-full" />
-      </span>
-      {/* Sparkle 8 */}
-      <span className="absolute right-[20%] bottom-[20%] w-3 h-3 text-[#142B5F] dark:text-[#D6A43B] opacity-[0.12] dark:opacity-[0.20] transition-all duration-300 group-hover:scale-125">
-        <Sparkles className="w-full h-full" />
-      </span>
-      {/* Sparkle 9 */}
-      <span className="absolute right-[50%] bottom-[15%] w-3.5 h-3.5 text-[#142B5F] dark:text-[#D6A43B] opacity-[0.15] dark:opacity-[0.25] transition-all duration-300 group-hover:scale-125">
-        <Sparkles className="w-full h-full" />
-      </span>
-      {/* Sparkle 10 */}
-      <span className="absolute left-[15%] bottom-[18%] w-3 h-3 text-[#142B5F] dark:text-[#D6A43B] opacity-[0.12] dark:opacity-[0.20] transition-all duration-300 group-hover:scale-125">
-        <Sparkles className="w-full h-full" />
-      </span>
-    </div>
-
-    {/* Top Header Row: Image + Title + Favorite Button */}
-    <div className="flex items-center justify-between gap-2">
-      {/* Right Info Flow: Image + Title horizontally centered */}
-      <div className="flex items-center gap-2 sm:gap-2.5 flex-1 min-w-0">
-        {/* Circle image wrapper with high precision */}
-        <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden p-[1px] bg-[#142B5F] dark:bg-[var(--mn-accent)] border border-[#D6A43B]/60 shrink-0 shadow-2xs flex items-center justify-center">
-          <img
-            src={getToolImageUrl(tool.toolKey)}
-            alt={tool.title}
-            className="w-full h-full rounded-full object-cover"
-            referrerPolicy="no-referrer"
-            onError={(e) => {
-              (e.target as HTMLImageElement).onerror = null;
-              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=300&q=80';
-            }}
-          />
+    {onToggleFavorite && (
+      <FavoriteButton
+        active={isFavorite}
+        onToggle={(event) => {
+          event.stopPropagation();
+          onToggleFavorite(tool.id);
+        }}
+        className="absolute left-3 top-3 z-10"
+      />
+    )}
+    <button onClick={() => onOpen(tool)} className="w-full text-right cursor-pointer">
+      <div className="flex items-start gap-3">
+        <div className="w-11 h-11 rounded-2xl bg-[var(--mn-primary)] text-white flex items-center justify-center shrink-0 border border-[var(--mn-accent)]/25 shadow-sm mn-inverse ">
+          {toolIcon(tool)}
         </div>
 
         <div className="min-w-0 flex-1">
-          <h3 className="text-[12.5px] sm:text-[13.5px] font-bold text-[var(--mn-heading)] dark:text-[#D6A43B] font-['Cairo',sans-serif] truncate leading-normal pb-0.5">
-            {tool.title}
-          </h3>
+          <div className="flex items-start justify-between gap-2">
+            <div className="min-w-0">
+              <span className="text-[9px] sm:text-[10px] text-[var(--mn-accent-text)] font-bold font-['Cairo',sans-serif]">
+                {tool.category}
+              </span>
+              <h2 className="mt-0.5 text-[14px] sm:text-[15px] leading-snug font-bold text-[var(--mn-heading)] font-['Cairo',sans-serif]">
+                {tool.title}
+              </h2>
+            </div>
+            <span className="shrink-0 rounded-full bg-[var(--mn-success-soft)] border border-[var(--mn-success-border)] px-2 py-1 text-[9px] font-bold text-[var(--mn-success-text)] font-['Cairo',sans-serif]">
+              {tool.availability}
+            </span>
+          </div>
+
+          <p className="mt-1.5 text-[11px] sm:text-xs leading-relaxed text-[var(--mn-text-muted)] font-medium font-['Cairo',sans-serif] line-clamp-2">
+            {tool.shortDescription}
+          </p>
         </div>
       </div>
 
-      {/* Top-Left Favorite Button and Availability Badge */}
-      <div className="flex items-center gap-2 shrink-0">
-        <span className="text-[10px] sm:text-[11px] font-bold text-[#06B6D4] dark:text-[#22D3EE] font-['Cairo',sans-serif] tracking-wide select-none">
-          {tool.availability === 'متاحة الآن' ? 'متاح' : 'غير متاح'}
-        </span>
-        {onToggleFavorite && (
-          <div className="shrink-0">
-            <FavoriteButton
-              active={isFavorite}
-              onToggle={(event) => {
-                event.stopPropagation();
-                onToggleFavorite(tool.id);
-              }}
-            />
-          </div>
-        )}
-      </div>
-    </div>
+      <div className="mt-3 pt-2.5 border-t border-[var(--mn-border)] flex items-center justify-between gap-2">
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className="inline-flex items-center gap-1 rounded-full bg-[var(--mn-page)] border border-[var(--mn-border)] px-2 py-1 text-[9px] sm:text-[10px] font-bold text-[var(--mn-text-muted)] font-['Cairo',sans-serif] mn-panel ">
+            {tool.executionLabel === 'أداة ذكية' ? <Sparkles className="w-3 h-3" /> : <Database className="w-3 h-3" />}
+            {tool.executionLabel}
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-[var(--mn-page)] border border-[var(--mn-border)] px-2 py-1 text-[9px] sm:text-[10px] font-bold text-[var(--mn-text-muted)] font-['Cairo',sans-serif] mn-panel ">
+            <Clock3 className="w-3 h-3" />
+            {tool.estimatedTime}
+          </span>
+        </div>
 
-    {/* Short Description right below the icon & title with zero excess space */}
-    <p className="mt-1 text-[10.5px] sm:text-[11px] leading-relaxed text-[var(--mn-text-muted)] font-medium font-['Cairo',sans-serif] line-clamp-2">
-      {tool.shortDescription}
-    </p>
-
-    {/* Bottom Section: Structured Boxes for Category and Execution Type + View Details CTA */}
-    <div className="mt-2.5 pt-2 border-t border-[var(--mn-border)]/50 flex flex-wrap items-center justify-between gap-2">
-      {/* Pills / Boxes Flow */}
-      <div className="flex items-center gap-1.5 flex-wrap min-w-0">
-        {/* Category Badge (Golden box) */}
-        <span className="inline-flex items-center gap-1.5 bg-[var(--mn-surface)] text-[var(--mn-accent-text)] border border-[var(--mn-border-gold)] rounded-lg px-2 py-1 text-[10px] sm:text-[10.5px] font-bold font-['Cairo',sans-serif] leading-tight mn-panel shrink-0">
-          <BookOpenCheck className="w-3 h-3 text-[var(--mn-accent-text)] shrink-0" />
-          <span className="truncate">{tool.category}</span>
-        </span>
-
-        {/* Execution Type Badge */}
-        <span className="inline-flex items-center gap-1 bg-[var(--mn-surface-muted)] text-[var(--mn-link)] border border-[var(--mn-border-brand)] rounded-lg px-2 py-1 text-[9.5px] sm:text-[10.5px] font-bold font-['Cairo',sans-serif] shrink-0 mn-panel">
-          {tool.executionLabel === 'أداة ذكية' ? <Sparkles className="w-3 h-3 text-[var(--mn-link)] shrink-0" /> : <Database className="w-3 h-3 text-[var(--mn-link)] shrink-0" />}
-          <span>{tool.executionLabel}</span>
+        <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-[var(--mn-heading)] font-['Cairo',sans-serif] group-hover:text-[var(--mn-accent-text)] transition-colors shrink-0">
+          التفاصيل
+          <ChevronLeft className="w-3.5 h-3.5" />
         </span>
       </div>
-
-      {/* View Details Button */}
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          onOpen(tool);
-        }}
-        className="bg-[var(--mn-primary)] hover:bg-[var(--mn-primary)] text-white rounded-lg px-2.5 py-1.5 flex items-center justify-center gap-1 transition-all active:scale-95 cursor-pointer shadow-2xs mn-inverse hover:mn-inverse shrink-0"
-        data-mn-font="10.5" data-mn-bold="true" data-mn-cairo="true"
-      >
-        <span className="text-[10px] sm:text-[11px] font-bold text-center font-['Cairo',sans-serif] leading-tight text-[var(--mn-accent-soft)]">عرض التفاصيل</span>
-        <ChevronLeft className="w-3 h-3 rotate-180 text-[var(--mn-accent-soft)]" />
-      </button>
-    </div>
-  </div>
+    </button>
+  </article>
 );
 
 const ToolDetailView: React.FC<{
@@ -538,10 +447,9 @@ export const AIToolsPage: React.FC<AIToolsPageProps> = ({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="ابحث باسم الأداة أو الغرض..."
-                className="w-full py-2 pl-4 pr-10 bg-[var(--mn-primary)]/85 hover:bg-[var(--mn-primary-hover)] focus:bg-[var(--mn-primary)] border border-[var(--mn-accent)]/40 focus:border-[var(--mn-accent)] rounded-full text-[11px] font-bold text-white placeholder:text-white/80 placeholder:text-[11px] placeholder:font-bold placeholder:font-['Cairo',sans-serif] focus:outline-none shadow-inner transition-all text-center font-['Cairo',sans-serif] mn-inverse hover:mn-inverse focus:mn-inverse "
-                data-mn-font="11" data-mn-bold="true" data-mn-cairo="true"
+                className="w-full py-2.5 pl-4 pr-10 bg-[var(--mn-primary)]/85 hover:bg-[var(--mn-primary-hover)] focus:bg-[var(--mn-primary)] border border-[var(--mn-accent)]/40 focus:border-[var(--mn-accent)] rounded-full text-xs sm:text-[13px] font-bold text-white placeholder-white focus:outline-none shadow-inner transition-all text-center font-['Cairo',sans-serif] mn-inverse hover:mn-inverse focus:mn-inverse "
               />
-              <Search className="w-3.5 h-3.5 text-[var(--mn-accent-text)] absolute right-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-[var(--mn-accent-text)] absolute right-4 top-1/2 -translate-y-1/2" />
               {searchQuery && (
                 <button onClick={() => setSearchQuery('')} className="absolute left-3.5 top-1/2 -translate-y-1/2 p-1 text-[var(--mn-on-dark-muted)] hover:text-white cursor-pointer">
                   <X className="w-3.5 h-3.5" />

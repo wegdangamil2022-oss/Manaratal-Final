@@ -1,14 +1,5 @@
 # MANARATAK 2.0
 
-The official repository is **wegdangamil2022-oss/Manaratal-Final**.
-It contains the complete monorepo and the latest Google AI Studio UI changes.
-From the repository root, run `npm ci` then `npm run dev` (Public Web, port 3000).
-No backend secret is needed for this preview. Admin: `npm run dev:admin`.
-See [Google AI Studio setup and isolation](docs/operations/GOOGLE_AI_STUDIO.md)
-and the [environment inventory](docs/operations/GOOGLE_AI_STUDIO_ENVIRONMENT.md).
-The former MANARATAK_FINAL repository is a historical reference only; do not push changes to it.
-See [repository adoption and restoration](docs/operations/OFFICIAL_REPOSITORY.md).
-
 MANARATAK is an npm-workspaces monorepo containing the public web application, API, Admin application, domain packages, import foundation, source datasets, and architecture/remediation evidence.
 
 ## Current Status

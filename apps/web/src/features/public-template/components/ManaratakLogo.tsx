@@ -12,12 +12,12 @@ interface ManaratakLogoProps {
 export const ManaratakLogo: React.FC<ManaratakLogoProps> = ({ className = '', size = 48 }) => {
   return (
     <img
-      src="/brand/manaratak-logo.png"
+      src="/brand/manaratak-logo-official.png"
       width={size}
       height={size}
       alt="منارتك للفرص التعليمية — MANARATAK"
       draggable={false}
-      className={`block shrink-0 select-none rounded-full object-contain ${className}`}
+      className={`block shrink-0 select-none object-contain ${className}`}
     />
   );
 };

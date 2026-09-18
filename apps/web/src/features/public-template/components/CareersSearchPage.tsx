@@ -59,7 +59,7 @@ const CareerOpportunityCard: React.FC<{
   isFavorite?: boolean;
   onToggleFavorite?: (id: string) => void;
 }> = ({ opportunity, onOpen, isFavorite = false, onToggleFavorite }) => (
-  <article className="relative group bg-[var(--mn-surface)] border border-[#142B5F] dark:border-[#D6A43B]/60 hover:border-[#142B5F] rounded-3xl p-3.5 sm:p-4 shadow-2xs hover:shadow-md transition-all active:scale-[0.99] mn-panel ">
+  <article className="relative group bg-[var(--mn-surface)] border border-[var(--mn-border)] hover:border-[var(--mn-accent)]/60 rounded-3xl p-3.5 sm:p-4 shadow-2xs hover:shadow-md transition-all active:scale-[0.99] mn-panel ">
     {onToggleFavorite && (
       <FavoriteButton
         active={isFavorite}
@@ -492,11 +492,11 @@ export const CareersSearchPage: React.FC<CareersSearchPageProps> = ({
         {onBack && (
           <button
             onClick={onBack}
-            className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 w-8 h-8 bg-black/25 hover:bg-black/40 border border-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all z-30 cursor-pointer text-white shadow-xs active:scale-95"
+            className="absolute top-4 right-4 h-10 w-10 bg-black/20 hover:bg-black/30 backdrop-blur-md rounded-full transition-all z-20 cursor-pointer text-white flex items-center justify-center"
             title="العودة"
             aria-label="العودة"
           >
-            <ChevronLeft className="w-4 h-4 rotate-180 text-white" />
+            <ChevronLeft className="w-5 h-5 rotate-180" />
           </button>
         )}
 

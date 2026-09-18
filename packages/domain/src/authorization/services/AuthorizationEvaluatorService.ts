@@ -47,7 +47,7 @@ export class AuthorizationEvaluatorService {
 
     // Fetch all role assignments for identity
     const assignments = await this.roleAssignmentRepository.findBy({
-      isSatisfiedBy: (assignment: any) => assignment.identityId === identityId
+      isSatisfiedBy: (assignment) => assignment.identityId === identityId
     });
     const emergencyRoleIds = await this.emergencyAccessRepository?.listActiveRoleIds(identityId) ?? [];
     const roleIds = Array.from(new Set([...assignments.map(assignment => assignment.roleId), ...emergencyRoleIds]));

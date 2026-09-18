@@ -10,7 +10,6 @@ export function DetailSectionHeader({
   subtitle,
   level = 2,
   className = '',
-  titleClassName = '',
 }: {
   id?: string;
   icon?: LucideIcon;
@@ -19,16 +18,15 @@ export function DetailSectionHeader({
   subtitle?: string;
   level?: 2 | 3;
   className?: string;
-  titleClassName?: string;
 }) {
   const Heading = level === 2 ? 'h2' : 'h3';
   return (
-    <div id={id} className={`mn-detail-section-header scroll-mt-28 flex flex-col items-center text-center ${className}`}>
-      <div className="flex items-center justify-center gap-2">
-        <span className="mn-detail-section-icon shrink-0" aria-hidden="true">{Icon ? <Icon className="h-4 w-4" /> : iconNode}</span>
-        <Heading className={`mn-detail-section-title ${titleClassName}`}>{title}</Heading>
+    <div id={id} className={`mn-detail-section-header scroll-mt-28 ${className}`}>
+      <span className="mn-detail-section-icon" aria-hidden="true">{Icon ? <Icon className="h-4 w-4" /> : iconNode}</span>
+      <div className="min-w-0">
+        <Heading className="mn-detail-section-title">{title}</Heading>
+        {subtitle ? <p className="mt-0.5 text-[11px] font-medium leading-5 text-[var(--mn-text-muted)]">{subtitle}</p> : null}
       </div>
-      {subtitle ? <p className="mt-1 text-[11px] font-medium leading-5 text-[var(--mn-text-muted)] max-w-xl mx-auto text-center">{subtitle}</p> : null}
     </div>
   );
 }
@@ -36,21 +34,19 @@ export function DetailSectionHeader({
 export function DetailBackButton({
   onBack,
   mode = 'back',
-  className = '',
 }: {
   onBack: () => void;
   mode?: 'back' | 'close';
-  className?: string;
 }) {
   return (
     <button
       type="button"
       onClick={onBack}
-      className={`mn-detail-close ${className}`}
+      className="mn-detail-close"
       aria-label={mode === 'close' ? 'إغلاق' : 'العودة'}
       title={mode === 'close' ? 'إغلاق' : 'العودة'}
     >
-      {mode === 'close' ? <X className="h-3.5 w-3.5" /> : <ArrowRight className="h-3.5 w-3.5" />}
+      {mode === 'close' ? <X className="h-5 w-5" /> : <ArrowRight className="h-5 w-5" />}
     </button>
   );
 }

@@ -273,16 +273,6 @@ export default function App() {
     }
   }, [selectedCategory]);
 
-  const justClickedSearchRef = useRef(false);
-
-  useEffect(() => {
-    if (justClickedSearchRef.current) {
-      justClickedSearchRef.current = false;
-      return;
-    }
-    setIsHeaderSearchVisible(false);
-  }, [navigation.state]);
-
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     const saved = readStored('manaratak_dark_mode');
     if (saved !== null) return saved === 'true';
@@ -292,7 +282,6 @@ export default function App() {
   // Search & Filter States
   const [searchQuery, setSearchQuery] = navigation.field('searchQuery');
   const [globalSearchQuery, setGlobalSearchQuery] = navigation.field('globalSearchQuery');
-  const [isHeaderSearchVisible, setIsHeaderSearchVisible] = useState(!!globalSearchQuery);
   const [isSmartSearchOpen, setIsSmartSearchOpen] = navigation.field('isSmartSearchOpen');
   const [selectedCountry, setSelectedCountry] = navigation.field('selectedCountry');
   const [selectedDegree, setSelectedDegree] = navigation.field('selectedDegree');
@@ -487,37 +476,16 @@ export default function App() {
     setIsNotificationOpen(false);
     if (publicDataMode === 'api' && ['favorites', 'tracker', 'notifications'].includes(target)) {
       navigate({ activeTab: target === 'tracker' ? 'tracker' : target === 'favorites' ? 'favorites' : 'account' });
-      setIsHeaderSearchVisible(false);
       return;
     }
     if (['scholarships','universities','countries','majors','courses','exams','articles','services','jobs'].includes(target)) {
       navigate({activeTab: 'search', selectedCategory: target as CategoryType});
-      setIsHeaderSearchVisible(false);
     } else if (target === 'tools' || target === 'ai-tools') {
       navigate({activeTab: 'ai-tools'});
-      setIsHeaderSearchVisible(false);
     } else if (target === 'all' || target === 'search') {
-      if (target === 'search') {
-        justClickedSearchRef.current = true;
-        setIsHeaderSearchVisible(true);
-        if (activeTab !== 'home' && activeTab !== 'search') {
-          navigate({ activeTab: 'search', selectedCategory: 'all' });
-        }
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setTimeout(() => {
-          const searchInput = document.getElementById('header-global-search');
-          if (searchInput) {
-            searchInput.focus();
-            (searchInput as HTMLInputElement).select();
-          }
-        }, 150);
-      } else {
-        navigate({activeTab: 'search'});
-        setIsHeaderSearchVisible(false);
-      }
+      navigate({activeTab: 'search'});
     } else {
       navigate({activeTab: target === 'home' ? 'home' : target as TabType});
-      setIsHeaderSearchVisible(false);
     }
   };
   const openStudentTools = (toolKey?: string) => {
@@ -874,7 +842,6 @@ export default function App() {
         onSelectCategory={(category) => openSection(category === 'all' ? 'home' : category)}
         isDarkMode={isDarkMode}
         onToggleDarkMode={() => setIsDarkMode((prev) => !prev)}
-        isSearchVisible={isHeaderSearchVisible}
       />
 
       {/* Main Content Area */}
@@ -1087,13 +1054,6 @@ export default function App() {
               setSelectedArticle(article);
               window.scrollTo({ top: 0, behavior: 'instant' });
             }}
-            onOpenService={(service) => {
-              setSelectedScholarship(null);
-              setSelectedServiceTrack(service.audience);
-              setSelectedService(service);
-              window.scrollTo({ top: 0, behavior: 'instant' });
-            }}
-            contextualServices={services.slice(0, 2)}
           />
         ) : selectedUniversity ? (
           <UniversityDetailModal
@@ -1467,6 +1427,18 @@ export default function App() {
                       />
                     </div>
 
+                    {/* 9. Featured Jobs & Internships */}
+                    <div className="relative w-full">
+                      <FeaturedJobs
+                        onViewAllClick={() => {
+                          setSearchQuery('');
+                          setSelectedCategory('jobs');
+                          setActiveTab('search');
+                          window.scrollTo({ top: 0, behavior: 'instant' });
+                        }}
+                      />
+                    </div>
+
                     {/* 10. Featured Articles (Magazine Style) */}
                     <div className="relative w-full">
                       <FeaturedArticles
@@ -1484,7 +1456,7 @@ export default function App() {
                     </div>
 
                     {/* 11. Featured Services (Students & General Support) */}
-                    <div className="relative w-full">
+                    <div className="relative w-full pb-2">
                       <FeaturedServices
                         services={services}
                         onViewAllClick={() => {
@@ -1500,18 +1472,6 @@ export default function App() {
                           setSelectedCategory('services');
                           setActiveTab('search');
                           setSelectedService(service);
-                          window.scrollTo({ top: 0, behavior: 'instant' });
-                        }}
-                      />
-                    </div>
-
-                    {/* 12. Featured Jobs & Internships (Placed after Services) */}
-                    <div className="relative w-full pb-2">
-                      <FeaturedJobs
-                        onViewAllClick={() => {
-                          setSearchQuery('');
-                          setSelectedCategory('jobs');
-                          setActiveTab('search');
                           window.scrollTo({ top: 0, behavior: 'instant' });
                         }}
                       />
@@ -2075,6 +2035,7 @@ export default function App() {
                 </div>
               )
             )}
+
             {/* TAB 5: LEARNER PROGRESS TRACKER VIEW (نظام متابعة تقدم المتعلمين) */}
             {activeTab === 'tracker' && (
               publicDataMode === 'api' ? (

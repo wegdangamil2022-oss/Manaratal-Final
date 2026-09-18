@@ -146,115 +146,26 @@ export const GlobalSearchPage: React.FC<GlobalSearchPageProps> = ({
 
   return (
     <div className="mn-page-shell pb-24" dir={locale === 'en' ? 'ltr' : 'rtl'}>
-      {/* ========================================================================= */}
-      {/* HERO BANNER - MATCHING MAJORS SEARCH PAGE DESIGN */}
-      {/* ========================================================================= */}
-      <div className="relative mn-search-hero text-white px-3 sm:px-4 pt-4 pb-12 sm:pb-14 overflow-hidden shadow-sm mn-inverse ">
-        {/* Back Button */}
-        {onBack && (
-          <button
-            onClick={onBack}
-            className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 w-8 h-8 bg-black/25 hover:bg-black/40 border border-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all z-30 cursor-pointer text-white shadow-xs active:scale-95"
-            title="العودة"
-            aria-label="العودة"
-          >
-            <ChevronLeft className="w-4 h-4 rotate-180 text-white" />
+      <section className="mn-search-hero text-white mn-inverse">
+        <div className="mn-public-container py-5 sm:py-7">
+          <div className="flex items-center gap-3">
+            <button type="button" onClick={onBack} className="h-10 w-10 shrink-0 rounded-xl border border-white/20 bg-white/10 flex items-center justify-center" aria-label="العودة"><ArrowRight className="h-4 w-4" /></button>
+            <div className="min-w-0 flex-1 text-right">
+              <div className="text-[11px] font-medium text-white/80 sm:text-xs">بحث موحّد في البيانات العامة المنشورة</div>
+              <h1 className="mt-0.5 text-[22px] font-bold leading-tight sm:text-[28px]">نتائج البحث العام</h1>
+            </div>
+          </div>
+          <button type="button" onClick={onOpenSmartSearch} className="mt-4 flex w-full items-center justify-between gap-3 rounded-2xl border border-[var(--mn-accent)]/50 bg-white/10 px-3.5 py-3 text-right transition hover:bg-white/15">
+            <div className="min-w-0"><div className="flex items-center gap-1.5 text-[12px] font-semibold text-[var(--mn-accent-soft)]"><Sparkles className="h-4 w-4" />جرّب البحث الذكي</div><div className="mt-0.5 text-[10px] text-white/80">للاستكشاف المركب؛ النتائج المباشرة أدناه تأتي من فهرس الخادم.</div></div>
+            <ChevronLeft className="h-4 w-4 shrink-0 text-[var(--mn-accent-soft)]" />
           </button>
-        )}
-
-        {/* Background Decorative Gold Waves & Dot Patterns */}
-        <div className="absolute inset-0 pointer-events-none opacity-20">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 400 200"
-            fill="none"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M-50,50 Q100,-20 250,60 T550,40"
-              stroke="var(--mn-accent)"
-              strokeWidth="1.5"
-              fill="none"
-            />
-            <path
-              d="M-20,120 Q150,40 300,140 T600,100"
-              stroke="var(--mn-accent)"
-              strokeWidth="1"
-              fill="none"
-            />
-            <circle cx="30" cy="30" r="1" fill="var(--mn-accent)" />
-            <circle cx="45" cy="30" r="1" fill="var(--mn-accent)" />
-            <circle cx="60" cy="30" r="1" fill="var(--mn-accent)" />
-            <circle cx="30" cy="45" r="1" fill="var(--mn-accent)" />
-            <circle cx="45" cy="45" r="1" fill="var(--mn-accent)" />
-            <circle cx="60" cy="45" r="1" fill="var(--mn-accent)" />
-          </svg>
         </div>
-
-        <div className="max-w-xl mx-auto text-center relative z-10 space-y-2.5">
-          {/* Little 4-pointed Gold Sparkle Star */}
-          <div className="flex justify-center -mb-1">
-            <Sparkles className="h-4 w-4 text-[var(--mn-accent-text)]" aria-hidden="true" />
-          </div>
-
-          {/* Headline with Gold Curve */}
-          <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-white font-['Cairo',sans-serif] tracking-tight">
-              <span>نتائج </span>
-              <span className="relative inline-block text-white">
-                البحث العام
-                {/* Gold brush accent line underneath */}
-                <svg
-                  className="absolute -bottom-1.5 inset-x-0 w-full h-2 text-[var(--mn-accent-text)]"
-                  viewBox="0 0 100 12"
-                  fill="none"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    d="M2,9 Q50,2 98,6"
-                    stroke="var(--mn-accent)"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-[11px] sm:text-xs text-[var(--mn-on-dark-muted)] font-medium font-['Cairo',sans-serif] mt-1.5 leading-relaxed max-w-xs sm:max-w-sm mx-auto">
-              بحث موحّد في البيانات العامة المنشورة للمنح والجامعات والتخصصات
-            </p>
-          </div>
-        </div>
-      </div>
+      </section>
 
       <div className="mn-public-container space-y-4 py-4">
-        {/* Try Smart Search Button with Fine Rotating Gold Spark Line and Smooth Indigo-Turquoise Gradient */}
-        <button
-          type="button"
-          onClick={onOpenSmartSearch}
-          className="group relative flex w-full items-center justify-between gap-3 overflow-hidden rounded-2xl p-[1px] transition-all duration-300 hover:shadow-md cursor-pointer"
-        >
-          {/* A very fine, thin gold spark line rotating smoothly without being flashing or annoying */}
-          <div className="animate-button-orbit absolute inset-[-150%] bg-[conic-gradient(from_0deg,transparent_80%,#D6A43B_95%,transparent_100%)]" />
+        <div className="mn-card px-3.5 py-3"><div className="flex items-center gap-2"><Search className="h-4 w-4 shrink-0 text-[var(--mn-accent-text)]" /><div className="min-w-0"><div className="mn-meta">بحثك الحالي</div><div className="truncate text-[13px] font-semibold text-[var(--mn-heading)] sm:text-sm">{query || 'اكتب في شريط البحث أعلى الصفحة'}</div></div></div></div>
 
-          {/* Inner button container with smooth Indigo-Turquoise gradient matching the top hero */}
-          <div
-            data-mn-cairo="true"
-            className="relative flex w-full items-center justify-between gap-3 rounded-[14px] bg-gradient-to-r from-[#142B5F] to-[#0E7C86] px-5 py-3 text-right"
-          >
-            <div className="min-w-0">
-              <div className="flex items-center gap-1.5 text-[13px] sm:text-[14px] font-bold text-white">
-                <Sparkles className="h-4 w-4 animate-pulse text-[var(--mn-accent-text)]" />
-                <span>جرّب البحث الذكي</span>
-              </div>
-              <div className="mt-1 text-[10px] sm:text-[11px] text-white/95 font-medium">
-                للاستكشاف المركب بالذكاء الاصطناعي وبلغة طبيعية.
-              </div>
-            </div>
-            <ChevronLeft className="h-5 w-5 shrink-0 text-white transition-transform group-hover:-translate-x-1" />
-          </div>
-        </button>
+        {searchMode === 'prototype' && <div className="rounded-xl border border-dashed px-3 py-2 text-[11px] text-[var(--mn-text-muted)]">وضع Prototype صريح: البحث محلي في بيانات النموذج فقط، ولا يُعرض على أنه فهرس إنتاجي.</div>}
 
         <div className="flex gap-1.5 overflow-x-auto pb-1 hide-scrollbar">
           <button type="button" onClick={() => setSelectedKind('all')} aria-pressed={selectedKind === 'all'} className={`mn-filter-chip whitespace-nowrap ${selectedKind === 'all' ? 'is-selected' : ''}`}>الكل{totalVisible ? ` · ${totalVisible}${hasMore && searchMode === 'api' ? '+' : ''}` : ''}</button>

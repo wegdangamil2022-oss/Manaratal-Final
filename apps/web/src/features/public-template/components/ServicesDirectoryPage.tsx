@@ -65,11 +65,11 @@ export const ServicesDirectoryPage: React.FC<ServicesDirectoryPageProps> = ({
         <button
           type="button"
           onClick={onBack}
-          className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 w-8 h-8 bg-black/25 hover:bg-black/40 border border-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all z-30 cursor-pointer text-white shadow-xs active:scale-95"
+          className="absolute right-3 top-3 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/25 text-white shadow-md backdrop-blur-md transition-all hover:bg-black/40 active:scale-95 sm:right-4 sm:top-4 sm:h-10 sm:w-10"
           title="العودة"
           aria-label="العودة"
         >
-          <ChevronLeft className="w-4 h-4 rotate-180 text-white" />
+          <ChevronLeft className="h-4 w-4 rotate-180 sm:h-5 sm:w-5" />
         </button>
 
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -165,7 +165,7 @@ export const ServicesDirectoryPage: React.FC<ServicesDirectoryPageProps> = ({
             filteredServices.map((service) => (
               <article
                 key={service.id}
-                className="relative group overflow-hidden rounded-2xl border border-[#142B5F] dark:border-[#D6A43B]/60 hover:border-[#142B5F] bg-[var(--mn-surface)] p-3 shadow-sm transition-all hover:shadow-md mn-panel "
+                className="relative group overflow-hidden rounded-2xl border-2 border-[var(--mn-border-brand)]/40 bg-[var(--mn-surface)] p-3 shadow-sm transition-all hover:border-[var(--mn-border-brand)] hover:shadow-md mn-panel "
               >
                 {onToggleFavorite && (
                   <FavoriteButton
