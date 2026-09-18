@@ -67,7 +67,7 @@ export default defineConfig(({ mode, command }) => {
   const studio = isGoogleAiStudio(studioEnv);
   process.env.PRISMA_TELEMETRY_DISABLED = '1';
   assertPublicBuildDataMode({ mode, nodeEnv: process.env.NODE_ENV, dataMode: process.env.VITE_PUBLIC_TEMPLATE_DATA_MODE });
-  const studioTemplatePreview = studio && command === 'serve' && prototypeCapabilityEnabled(process.env.NODE_ENV || mode);
+  const studioTemplatePreview = studio && prototypeCapabilityEnabled(process.env.NODE_ENV || mode);
   const allowPrototypeData = (!studio || studioTemplatePreview) && prototypeCapabilityEnabled(process.env.NODE_ENV || mode);
   // Studio's isolated design preview uses fixtures only until an API is explicitly configured.
   // Production builds and configured API previews never silently fall back to demo data.
